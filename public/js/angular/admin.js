@@ -46,7 +46,7 @@ app.controller('DashboardCtrl', function ($scope, $sce) {
     $scope.save = function()
     {
         var post_markdown = $scope.editor.getValue();
-        var post_html = hljs.highlightAuto(code).value;
+        var post_html = hljs.highlightAuto(post_markdown).value;
     };
 
     $scope.preview = function(state)

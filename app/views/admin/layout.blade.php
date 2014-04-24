@@ -15,7 +15,7 @@
         <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
 
         <style>
-            .selectize-input { box-shadow: none !important; border-radius: 0; border-left:0;border-right:0;border-top:0;}
+            .selectize-input { box-shadow: none !important; border-radius: 0; border-left:0;border-right:0;border-top:0; border-bottom:1px dotted;}
         </style>
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

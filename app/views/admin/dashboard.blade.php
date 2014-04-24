@@ -20,7 +20,7 @@
     <div class="box-body">
         <div class="row" style="margin-bottom: 15px;">
             <div class="col-md-4">
-                <input class="form-control" type="text" placeholder="Title" ng-model="title" style="border-left:0;border-right:0;border-top:0;">
+                <input class="form-control" type="text" placeholder="Title" ng-model="title" style="border-left:0;border-right:0;border-top:0;border-bottom:1px dotted;">
             </div>
         </div>
         <div class="row" style="margin-bottom: 15px;">
