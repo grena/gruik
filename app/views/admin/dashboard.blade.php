@@ -8,25 +8,36 @@
 
 <div class="box box-solid">
     <div class="box-header">
+        <h3 class="box-title"><i class="fa fa-info-circle"></i></h3>
+        <div class="box-tools pull-right">
+            <button class="btn btn-default btn-sm" data-widget="collapse" ng-click="showInfos = !showInfos">
+                <i ng-show="showInfos" class="fa fa-2x fa-angle-double-down"></i>
+                <i ng-show="!showInfos" class="fa fa-2x fa-angle-double-up"></i>
+            </button>
+        </div>
     </div>
 
     <div class="box-body">
         <div class="row" style="margin-bottom: 15px;">
-            <div class="col-md-3">
-                <input class="form-control input-sm" type="text" placeholder="Title..." ng-model="title">
+            <div class="col-md-4">
+                <input class="form-control" type="text" placeholder="Title" ng-model="title" style="border-left:0;border-right:0;border-top:0;">
             </div>
-            <div class="col-md-2 col-md-offset-7">
-                <a href="#" class="btn btn-sm btn-primary btn-block pull-right" role="button" ng-click="save()">Save</a>
+        </div>
+        <div class="row" style="margin-bottom: 15px;">
+            <div class="col-md-4">
+                <select id="input-tags" placeholder="Tags..." ng-model="test"></select>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-3">
-                <input class="form-control input-sm" type="text" placeholder="Tags..." ng-model="tags">
-            </div>
-            <div class="col-md-9">
-                <small class="label label-info"><a href="#"><i class="fa fa-times"></i></a> Open-Source</small>
-                <small class="label label-info"><a href="#"><i class="fa fa-times"></i></a> Snippet</small>
-                <small class="label label-info"><a href="#"><i class="fa fa-times"></i></a> JavaScript</small>
+            <div class="col-md-4">
+                <p>This post is :
+                    <span ng-show="private">
+                        &nbsp;<a href="#" ng-click="private = !private" style="border-bottom:1px dotted; font-size: 18px;">Private</a>
+                    </span>
+                    <span ng-show="!private">
+                        &nbsp;<a href="#" ng-click="private = !private" style="border-bottom:1px dotted; font-size: 18px;">Public</a>
+                    </span>
+                </p>
             </div>
         </div>
     </div>
@@ -39,6 +50,7 @@
             <button class="btn btn-default btn-sm" ng-click="preview(false)" ng-class="!is_preview ? 'active' : ''">Code</button>
             <button class="btn btn-default btn-sm" ng-click="preview(true)" ng-class="is_preview ? 'active' : ''">Preview</button>
         </div>
+        <button class="pull-right btn btn-sm btn-success" ng-click="save()" style="margin-right: 5px; margin-top: 5px; width:150px;">Save</button>
     </div>
 
     <div class="box-body" ng-class="is_preview ? '' : 'no-padding'">

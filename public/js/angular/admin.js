@@ -1,4 +1,4 @@
-app = angular.module('app', []);
+app = angular.module('app', ['ui.select2']);
 
 app.controller('AdminCtrl', function ($scope) {
 
@@ -11,6 +11,31 @@ app.controller('DashboardCtrl', function ($scope, $sce) {
 
     $scope.is_preview = false;
     $scope.preview_content = '';
+
+    window.adrien = $scope;
+
+    $('#input-tags').selectize({
+        plugins: ['remove_button'],
+        maxItems: null,
+        delimiter: ',',
+        valueField: 'name',
+        labelField: 'name',
+        searchField: ['name'],
+        options: [
+            {name:'SQL'},
+            {name:'HTML'},
+            {name:'Android'},
+            {name:'PHP'},
+            {name:'Laravel'},
+            {name:'Idées'},
+        ],
+        persist: false,
+        create: function(input) {
+            return {
+                name: input
+            };
+        }
+    });
 
     marked.setOptions({
         highlight: function (code) {

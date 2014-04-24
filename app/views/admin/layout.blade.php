@@ -5,11 +5,18 @@
         <title>Gruiiiiik.</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="/vendor/select2/select2.css" rel="stylesheet" type="text/css" />
         <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
         <link href="css/AdminLTE.css" rel="stylesheet" type="text/css" />
         <link href="/vendor/highlightjs/styles/github.css" rel="stylesheet" type="text/css" />
+        <link href="/vendor/selectize/dist/css/selectize.css" rel="stylesheet" type="text/css" />
+        <link href="/vendor/selectize/dist/css/selectize.default.css" rel="stylesheet" type="text/css" />
 
         <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+
+        <style>
+            .selectize-input { box-shadow: none !important; border-radius: 0; border-left:0;border-right:0;border-top:0;}
+        </style>
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -46,10 +53,13 @@
 
 
         <script src="/vendor/jquery/jquery.min.js"></script>
+        <script src="/vendor/selectize/dist/js/standalone/selectize.min.js" type="text/javascript"></script>
+        <script src="/vendor/select2/select2.min.js"></script>
         <script src="/vendor/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="/vendor/angular/angular.min.js" type="text/javascript"></script>
+        <script src="/vendor/angular-ui-select2/src/select2.js" type="text/javascript"></script>
         <script src="/js/AdminLTE/app.js" type="text/javascript"></script>
 
-        <script src="/vendor/angular/angular.min.js" type="text/javascript"></script>
         <script src="/js/angular/admin.js" type="text/javascript"></script>
 
     </body>

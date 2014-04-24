@@ -11,6 +11,11 @@
             </a>
         </li>
         <li>
+            <a href="{% URL::to('admin/tags') %}">
+                <i class="fa fa-tags"></i> <span>Tags</span>
+            </a>
+        </li>
+        <li>
             <a href="{% URL::to('admin/settings') %}">
                 <i class="fa fa-wrench"></i> <span>Settings</span>
             </a>
