@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="app">
     <head>
         <meta charset="UTF-8">
         <title>Gruiiiiik.</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-        <!-- bootstrap 3.0.2 -->
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <!-- font Awesome -->
         <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-        <!-- Theme style -->
         <link href="css/AdminLTE.css" rel="stylesheet" type="text/css" />
+        <link href="/vendor/highlightjs/styles/github.css" rel="stylesheet" type="text/css" />
 
         <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
 
@@ -20,7 +18,7 @@
           <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
     </head>
-    <body class="skin-black">
+    <body class="skin-black" @yield('controller')>
         <!-- header logo: style can be found in header.less -->
         <header class="header">
             @include('admin.partials.navbar')
@@ -47,12 +45,12 @@
         </div><!-- ./wrapper -->
 
 
-        <!-- jQuery 2.0.2 -->
         <script src="/vendor/jquery/jquery.min.js"></script>
-        <!-- Bootstrap -->
         <script src="/vendor/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
-        <!-- AdminLTE App -->
         <script src="/js/AdminLTE/app.js" type="text/javascript"></script>
+
+        <script src="/vendor/angular/angular.min.js" type="text/javascript"></script>
+        <script src="/js/angular/admin.js" type="text/javascript"></script>
 
     </body>
 </html>

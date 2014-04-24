@@ -15,8 +15,11 @@ class CreatePostsTable extends Migration {
 		Schema::create('posts', function($table)
 		{
 		    $table->increments('id');
+		    $table->integer('user_id')->unsigned()->index();
 		    $table->string('title')->nullable();
-		    $table->text('content');
+		    $table->text('md_content');
+		    $table->text('html_content');
+		    $table->boolean('private')->default(false);
 		    $table->timestamps();
 		});
 	}

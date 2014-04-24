@@ -11,15 +11,6 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
     </a>
-    <a href="#" class="navbar-btn btn btn-sm btn-primary" role="button">Save</a>
-    <input type="checkbox"> Private
-    <div class="navbar-left" style="margin-left:8px; margin-top: 2px; margin-right: 10px;">
-        <ul class="nav navbar-nav">
-            <li>
-                <input class="form-control input-sm navbar-btn" style="width:300px;" type="text" placeholder="Title...">
-            </li>
-        </ul>
-    </div>
     <div class="navbar-right">
         <ul class="nav navbar-nav">
             <li class="dropdown user user-menu">

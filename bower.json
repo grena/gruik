@@ -9,6 +9,9 @@
     "momentjs": "~2.6.0",
     "angular-bootstrap": "~0.10.0",
     "angular": "1.2.16",
-    "select2": "~3.4.6"
+    "select2": "~3.4.6",
+    "markdown": "~0.5.0",
+    "marked": "~0.3.2",
+    "highlightjs": "~8.0.0"
   }
 }

@@ -120,6 +120,7 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Cartalyst\Sentry\SentryServiceProvider',
+		'Gruik\Repo\RepoServiceProvider',
 
 	),
 

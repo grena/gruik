@@ -9,4 +9,11 @@ class Post extends Eloquent {
      */
     protected $table = 'posts';
 
+    /**
+     * The attributes excluded from the model's JSON form.
+     *
+     * @var array
+     */
+    protected $hidden = [];
+
 }
