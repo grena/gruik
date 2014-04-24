@@ -4,10 +4,10 @@
         <meta charset="UTF-8">
         <title>Gruiiiiik.</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="/vendor/select2/select2.css" rel="stylesheet" type="text/css" />
-        <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-        <link href="css/AdminLTE.css" rel="stylesheet" type="text/css" />
+        <link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link href="/css/AdminLTE.css" rel="stylesheet" type="text/css" />
         <link href="/vendor/highlightjs/styles/github.css" rel="stylesheet" type="text/css" />
         <link href="/vendor/selectize/dist/css/selectize.css" rel="stylesheet" type="text/css" />
         <link href="/vendor/selectize/dist/css/selectize.default.css" rel="stylesheet" type="text/css" />
