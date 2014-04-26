@@ -67,3 +67,11 @@ app.controller('DashboardCtrl', function ($scope, $sce) {
     $scope.editor.setShowPrintMargin(false);
     $scope.editor.getSession().setMode(new MarkdownMode());
 });
+
+app.controller('PostsCtrl', function ($scope) {
+
+});
+
+app.controller('TagsCtrl', function ($scope) {
+
+});

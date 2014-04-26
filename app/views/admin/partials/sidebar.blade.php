@@ -10,7 +10,7 @@
                 <i class="fa fa-files-o"></i> <span>Posts</span>
             </a>
         </li>
-        <li class="{% Route::getCurrentRoute()->getPath() == 'fail' ? 'active' : '' %}">
+        <li class="{% Route::getCurrentRoute()->getPath() == 'admin/tags' ? 'active' : '' %}">
             <a href="{% URL::to('admin/tags') %}">
                 <i class="fa fa-tags"></i> <span>Tags</span>
             </a>
