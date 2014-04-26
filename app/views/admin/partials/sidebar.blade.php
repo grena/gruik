@@ -15,7 +15,7 @@
                 <i class="fa fa-tags"></i> <span>Tags</span>
             </a>
         </li>
-        <li class="{% Route::getCurrentRoute()->getPath() == 'fail' ? 'active' : '' %}">
+        <li class="{% Route::getCurrentRoute()->getPath() == 'admin/settings' ? 'active' : '' %}">
             <a href="{% URL::to('admin/settings') %}">
                 <i class="fa fa-wrench"></i> <span>Settings</span>
             </a>

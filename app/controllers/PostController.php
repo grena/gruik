@@ -2,7 +2,7 @@
 
 class PostController extends BaseController {
 
-    public function alist()
+    public function all()
     {
         return View::make('admin.posts')
                     ->with('user', Sentry::getUser());

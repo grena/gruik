@@ -30,7 +30,8 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
 {
 
     Route::get('/', ['uses' => 'AdminController@dashboard']);
-    Route::get('/posts', ['uses' => 'PostController@alist']);
-    Route::get('/tags', ['uses' => 'TagController@alist']);
+    Route::get('/posts', ['uses' => 'PostController@all']);
+    Route::get('/tags', ['uses' => 'TagController@all']);
+    Route::get('/settings', ['uses' => 'SettingsController@view']);
 
 });
