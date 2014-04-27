@@ -1,13 +1,10 @@
 <?php
 
-class Post extends Eloquent {
+class Tag extends Eloquent {
 
     protected $fillable = [
         'user_id',
-        'title',
-        'md_content',
-        'html_content',
-        'private'
+        'label'
     ];
 
     /**
@@ -15,7 +12,7 @@ class Post extends Eloquent {
      *
      * @var string
      */
-    protected $table = 'posts';
+    protected $table = 'tags';
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -29,9 +26,9 @@ class Post extends Eloquent {
         return $this->belongsTo('User');
     }
 
-    public function tags()
+    public function posts()
     {
-        return $this->belongsToMany('Tag', 'post_tags');
+        return $this->belongsToMany('Post', 'post_tags');
     }
 
 }

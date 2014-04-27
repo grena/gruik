@@ -5,7 +5,8 @@
 	"license": "MIT",
 	"require": {
 		"laravel/framework": "4.1.*",
-		"cartalyst/sentry": "2.1.*"
+		"cartalyst/sentry": "2.1.*",
+		"laracasts/utilities": "1.0.*"
 	},
 	"autoload": {
 		"classmap": [

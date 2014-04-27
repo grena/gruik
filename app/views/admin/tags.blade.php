@@ -13,15 +13,15 @@
     <div class="box-body">
         <div class="row">
             <div class="col-md-12">
-                <div class="col-xs-1 text-center" style="border-right: 1px solid #f4f4f4">
+                <div class="col-xs-3 col-md-2 col-lg-1 text-center" style="border-right: 1px solid #f4f4f4">
                     <div id="circles-1"></div>
                     <div class="knob-label"><i class="fa fa-tag"></i> SQL</div>
                 </div>
-                <div class="col-xs-1 text-center" style="border-right: 1px solid #f4f4f4">
+                <div class="col-xs-3 col-md-2 col-lg-1 text-center" style="border-right: 1px solid #f4f4f4">
                     <div id="circles-2"></div>
                     <div class="knob-label"><i class="fa fa-tag"></i> JavaScript</div>
                 </div>
-                <div class="col-xs-1 text-center" style="border-right: 1px solid #f4f4f4">
+                <div class="col-xs-3 col-md-2 col-lg-1 text-center" style="border-right: 1px solid #f4f4f4">
                     <div id="circles-3"></div>
                     <div class="knob-label"><i class="fa fa-tag"></i> HTML</div>
                 </div>

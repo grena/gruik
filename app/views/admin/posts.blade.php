@@ -68,64 +68,19 @@
         <div class="row">
             <div class="col-md-12">
                 <ul class="todo-list ui-sortable">
+                    @foreach($posts as $post)
                     <li>
                         <input type="checkbox" value="" name="" style="position: absolute; opacity: 0;">
-                        <span class="text"><a href="#" style="color:#000;">Design a nice theme</a></span>
-                        <small class="label label-primary">Design</small>
-                        <small class="label label-primary">Resource</small>
+                        <span class="text"><a href="{% URL::to('admin/?edit=' . $post->id) %}" style="color:#000;">{% $post->title %}</a></span>
+                        @foreach($post->tags as $tag)
+                        <small class="label label-primary">{% $tag->label %}</small>
+                        @endforeach
                         <div class="tools">
-                            <a href="#">Edit</a> |
+                            <a href="{% URL::to('admin/?edit=' . $post->id) %}">Edit</a> |
                             <a href="#">Delete</a>
                         </div>
                     </li>
-                    <li>
-                        <input type="checkbox" value="" name="" style="position: absolute; opacity: 0;">
-                        <span class="text"><a href="#" style="color:#000;">Make the theme responsive</a></span>
-                        <small class="label label-primary">Responsive</small>
-                        <small class="label label-primary">CSS</small>
-                        <small class="label label-primary">HTML</small>
-                        <small class="label label-primary">Web</small>
-                        <div class="tools">
-                            <a href="#">Edit</a> |
-                            <a href="#">Delete</a>
-                        </div>
-                    </li>
-                    <li>
-                        <input type="checkbox" value="" name="" style="position: absolute; opacity: 0;">
-                        <span class="text"><a href="#" style="color:#000;">Let theme shine like a star</a></span>
-                        <small class="label label-primary">Miscellaneous</small>
-                        <div class="tools">
-                            <a href="#">Edit</a> |
-                            <a href="#">Delete</a>
-                        </div>
-                    </li>
-                    <li>
-                        <input type="checkbox" value="" name="" style="position: absolute; opacity: 0;">
-                        <span class="text"><a href="#" style="color:#000;">Let theme shine like a star</a></span>
-                        <div class="tools">
-                            <a href="#">Edit</a> |
-                            <a href="#">Delete</a>
-                        </div>
-                    </li>
-                    <li>
-                        <input type="checkbox" value="" name="" style="position: absolute; opacity: 0;">
-                        <span class="text"><a href="#" style="color:#000;">Check your messages and notifications</a></span>
-                        <small class="label label-primary">PHP</small>
-                        <small class="label label-primary">Project</small>
-                        <div class="tools">
-                            <a href="#">Edit</a> |
-                            <a href="#">Delete</a>
-                        </div>
-                    </li>
-                    <li>
-                        <input type="checkbox" value="" name="">
-                        <span class="text"><a href="#" style="color:#000;">Let theme shine like a star</a></span>
-                        <small class="label label-primary">Alternative</small>
-                        <div class="tools">
-                            <a href="#">Edit</a> |
-                            <a href="#">Delete</a>
-                        </div>
-                    </li>
+                    @endforeach
                 </ul>
             </div>
         </div>

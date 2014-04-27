@@ -2,22 +2,24 @@
 
 class HomeController extends BaseController {
 
-	/*
-	|--------------------------------------------------------------------------
-	| Default Home Controller
-	|--------------------------------------------------------------------------
-	|
-	| You may wish to use controllers instead of, or in addition to, Closure
-	| based routes. That's great! Here is an example controller method to
-	| get you started. To route to this controller, just add the route:
-	|
-	|	Route::get('/', 'HomeController@showWelcome');
-	|
-	*/
-
-	public function showWelcome()
+	public function home()
 	{
-		return View::make('hello');
+        $postRepo = \App::make('Gruik\Repo\Post\PostInterface');
+
+        $posts = $postRepo->byUserId(Sentry::getUser()->id);
+
+		return View::make('front.home')
+					->with('posts', $posts);
+	}
+
+	public function view($id)
+	{
+        $postRepo = \App::make('Gruik\Repo\Post\PostInterface');
+
+        $post = $postRepo->byId($id);
+
+		return View::make('front.view')
+					->with('post', $post);
 	}
 
 }

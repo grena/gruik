@@ -20,22 +20,22 @@
     <div class="box-body">
         <div class="row" style="margin-bottom: 15px;">
             <div class="col-md-4">
-                <input class="form-control" type="text" placeholder="Title" ng-model="title" style="border-left:0;border-right:0;border-top:0;border-bottom:1px dotted;">
+                <input class="form-control" type="text" placeholder="Title" ng-model="currentPost.title" style="border-left:0;border-right:0;border-top:0;border-bottom:1px dotted;">
             </div>
         </div>
         <div class="row" style="margin-bottom: 15px;">
             <div class="col-md-4">
-                <select id="input-tags" placeholder="Tags..." ng-model="test"></select>
+                <select id="input-tags" placeholder="Tags..." ng-model="currentPost.tags"></select>
             </div>
         </div>
         <div class="row">
             <div class="col-md-4">
                 <p>This post is :
-                    <span ng-show="private">
-                        &nbsp;<a href="#" ng-click="private = !private" style="border-bottom:1px dotted; font-size: 18px;">Private</a>
+                    <span ng-show="currentPost.private">
+                        &nbsp;<a ng-click="currentPost.private = !currentPost.private" style="border-bottom:1px dotted; font-size: 18px; cursor:pointer;">Private</a>
                     </span>
-                    <span ng-show="!private">
-                        &nbsp;<a href="#" ng-click="private = !private" style="border-bottom:1px dotted; font-size: 18px;">Public</a>
+                    <span ng-show="!currentPost.private">
+                        &nbsp;<a ng-click="currentPost.private = !currentPost.private" style="border-bottom:1px dotted; font-size: 18px; cursor:pointer;">Public</a>
                     </span>
                 </p>
             </div>
@@ -50,7 +50,10 @@
             <button class="btn btn-default btn-sm" ng-click="preview(false)" ng-class="!is_preview ? 'active' : ''">Code</button>
             <button class="btn btn-default btn-sm" ng-click="preview(true)" ng-class="is_preview ? 'active' : ''">Preview</button>
         </div>
-        <button class="pull-right btn btn-sm btn-success" ng-click="save()" style="margin-right: 5px; margin-top: 5px; width:150px;">Save</button>
+        <button class="pull-right btn btn-sm btn-success" ng-click="save()" style="margin-right: 5px; margin-top: 5px; width:150px;" ng-disabled="loading">Save</button>
+        <div class="pull-right" style="margin-top: 10px; margin-right: 10px;" ng-show="loading">
+            <i class="fa fa-cog fa-spin"></i> Processing...
+        </div>
     </div>
 
     <div class="box-body" ng-class="is_preview ? '' : 'no-padding'">
@@ -62,15 +65,24 @@
                 </div>
 
                 <div style="display: block; min-height: 560px; width: 100%;" ng-show="is_preview">
-                    <span ng-bind-html="preview_content"></span>
+                    <span ng-bind-html="currentPost.html_content_preview"></span>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+<input id="csrf" type="hidden" name="csrf_token" value="{% csrf_token() %}">
+
+<div>
+    <pre>
+        {{currentPost | json}}
+    </pre>
+</div>
+
 <script src="/vendor/marked/lib/marked.js" type="text/javascript"></script>
 <script src="/vendor/highlightjs/highlight.pack.js" type="text/javascript"></script>
+<script src="/vendor/spin.js/spin.js" type="text/javascript" charset="utf-8"></script>
 <script src="/js/ace/ace.js" type="text/javascript" charset="utf-8"></script>
 <script src="/js/ace/theme-monokai.js" type="text/javascript" charset="utf-8"></script>
 <script src="/js/ace/mode-markdown.js" type="text/javascript" charset="utf-8"></script>

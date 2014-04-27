@@ -14,10 +14,8 @@ Blade::setEscapedContentTags('{%%', '%%}');
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('front.home');
-});
+Route::get('/', ['uses' => 'HomeController@home']);
+Route::get('/view/{id}', ['uses' => 'HomeController@view']);
 
 Route::get('admin/login', function()
 {
@@ -29,9 +27,23 @@ Route::post('admin/login', ['uses' => 'AuthController@login']);
 Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
 {
 
-    Route::get('/', ['uses' => 'AdminController@dashboard']);
+    Route::get('/', ['uses' => 'PostController@edit']);
     Route::get('/posts', ['uses' => 'PostController@all']);
     Route::get('/tags', ['uses' => 'TagController@all']);
     Route::get('/settings', ['uses' => 'SettingsController@view']);
+
+});
+
+Route::group(array('prefix' => 'api', 'before' => 'csrf'), function()
+{
+
+    // Public API interface
+    Route::resource('posts', 'API\PostController', array('only' => array('index', 'show')));
+
+    // Admin API interface
+    Route::group(array('before' => 'auth'), function()
+    {
+        Route::resource('posts', 'API\PostController', array('except' => array('index', 'show')));
+    });
 
 });

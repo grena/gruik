@@ -2,7 +2,7 @@
     <!-- Sidebar user panel -->
     <div class="user-panel">
         <div class="pull-left image">
-            <img src="img/user.jpg" class="img-circle" alt="User Image" style="height: auto; width:200px; border: 8px solid rgba(255, 255, 255, 0.2);" />
+            <img src="/img/user.jpg" class="img-circle" alt="User Image" style="height: auto; width:200px; border: 8px solid rgba(255, 255, 255, 0.2);" />
         </div>
     </div>
 

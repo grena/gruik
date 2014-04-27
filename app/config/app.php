@@ -121,6 +121,7 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Cartalyst\Sentry\SentryServiceProvider',
 		'Gruik\Repo\RepoServiceProvider',
+		'Laracasts\Utilities\UtilitiesServiceProvider',
 
 	),
 
