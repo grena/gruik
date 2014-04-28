@@ -74,11 +74,11 @@
 
 <input id="csrf" type="hidden" name="csrf_token" value="{% csrf_token() %}">
 
-<div>
+<!-- <div>
     <pre>
         {{currentPost | json}}
     </pre>
-</div>
+</div> -->
 
 <script src="/vendor/marked/lib/marked.js" type="text/javascript"></script>
 <script src="/vendor/highlightjs/highlight.pack.js" type="text/javascript"></script>
