@@ -5,7 +5,7 @@
 Well, Gruik is for you if...
 
 * You __take a lot of notes__ (post-it, gists, evernote, blog entries, .txt on your desktop (_Oh you know what I mean_)...)
-* You want to __"Bring You Own Server"__
+* You want to __"Bring You Own Server"__ (later, a free hosted version will be available at [http://gruik.io](http://gruik.io))
 * You want to store __all your notes in one place__
 * You write your notes __with Markdown__
 * You want to keep those __notes private__ or...
