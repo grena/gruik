@@ -6,12 +6,13 @@
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
         <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="/vendor/select2/select2.css" rel="stylesheet" type="text/css" />
+        <link href="/vendor/smoke.js/smoke.css" rel="stylesheet" type="text/css" />
         <link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
         <link href="/css/AdminLTE.css" rel="stylesheet" type="text/css" />
         <link href="/vendor/highlightjs/styles/github.css" rel="stylesheet" type="text/css" />
         <link href="/vendor/selectize/dist/css/selectize.css" rel="stylesheet" type="text/css" />
         <link href="/vendor/selectize/dist/css/selectize.default.css" rel="stylesheet" type="text/css" />
+        <link href="/css/gruik.css" rel="stylesheet" type="text/css" />
 
         <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
 
@@ -43,13 +44,17 @@
 
         <script src="/vendor/jquery/jquery.min.js"></script>
         <script src="/vendor/selectize/dist/js/standalone/selectize.min.js" type="text/javascript"></script>
-        <script src="/vendor/select2/select2.min.js"></script>
         <script src="/vendor/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="/vendor/angular/angular.min.js" type="text/javascript"></script>
+        <script src="/vendor/checklist-model/checklist-model.js"></script>
         <script src="/vendor/angular-ui-select2/src/select2.js" type="text/javascript"></script>
         <script src="/vendor/lodash/dist/lodash.min.js" type="text/javascript"></script>
         <script src="/js/AdminLTE/app.js" type="text/javascript"></script>
         <script src="/js/angular/admin.js" type="text/javascript"></script>
+
+        @yield('scripts')
+
+        <input id="csrf" type="hidden" name="csrf_token" value="{% csrf_token() %}">
 
     </body>
 </html>

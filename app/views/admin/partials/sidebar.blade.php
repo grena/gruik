@@ -1,13 +1,18 @@
 <section class="sidebar">
     <ul class="sidebar-menu">
+        <li class="{% Route::getCurrentRoute()->getPath() == 'fail' ? 'active' : '' %}">
+            <a href="{% URL::to('admin') %}">
+                <i class="fa fa-coffee"></i> <span>My Gruiks</span>
+            </a>
+        </li>
         <li class="{% Route::getCurrentRoute()->getPath() == 'admin' ? 'active' : '' %}">
             <a href="{% URL::to('admin') %}">
-                <i class="fa fa-coffee"></i> <span>Create</span>
+                <i class="fa fa-pencil"></i> <span>Create</span>
             </a>
         </li>
         <li class="{% Route::getCurrentRoute()->getPath() == 'admin/posts' ? 'active' : '' %}">
             <a href="{% URL::to('admin/posts') %}">
-                <i class="fa fa-files-o"></i> <span>Posts</span>
+                <i class="fa fa-files-o"></i> <span>Manage posts</span>
             </a>
         </li>
         <li class="{% Route::getCurrentRoute()->getPath() == 'admin/tags' ? 'active' : '' %}">

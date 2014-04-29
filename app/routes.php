@@ -28,7 +28,7 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
 {
 
     Route::get('/', ['uses' => 'PostController@edit']);
-    Route::get('/posts', ['uses' => 'PostController@all']);
+    Route::get('/posts', ['as' => 'admin_posts', 'uses' => 'PostController@all']);
     Route::get('/tags', ['uses' => 'TagController@all']);
     Route::get('/settings', ['uses' => 'SettingsController@view']);
 
@@ -44,6 +44,7 @@ Route::group(array('prefix' => 'api', 'before' => 'csrf'), function()
     Route::group(array('before' => 'auth'), function()
     {
         Route::resource('posts', 'API\PostController', array('except' => array('index', 'show')));
+        Route::post('posts/multiple_delete', ['uses' => 'API\PostController@multiple_delete']);
     });
 
 });

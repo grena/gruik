@@ -20,6 +20,7 @@ class PostController extends BaseController {
 
             // Boo-boo-boolean
             $post['private'] = $post['private'] == "1" ? true : false;
+            $post['allow_comments'] = $post['allow_comments'] == "1" ? true : false;
 
             JavaScript::put([
                 'edited_post' => $post,
@@ -46,10 +47,21 @@ class PostController extends BaseController {
     {
         $postRepo = \App::make('Gruik\Repo\Post\PostInterface');
 
-        $posts = $postRepo->byUserId(Sentry::getUser()->id);
+        $limit = Input::get('limit', 20);
+
+        $total = $postRepo->byUserId(Sentry::getUser()->id)->count();
+
+        $posts = $postRepo->byUserIdQuery(Sentry::getUser()->id)
+                    ->with('tags')
+                    ->paginate($limit);
+
+        JavaScript::put([
+            'posts' => $posts->toArray()
+        ]);
 
         return View::make('admin.posts')
                     ->with('user', Sentry::getUser())
+                    ->with('limit', $limit)
                     ->with('posts', $posts);
     }
 

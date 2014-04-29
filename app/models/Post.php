@@ -7,7 +7,8 @@ class Post extends Eloquent {
         'title',
         'md_content',
         'html_content',
-        'private'
+        'private',
+        'allow_comments'
     ];
 
     /**
@@ -32,6 +33,16 @@ class Post extends Eloquent {
     public function tags()
     {
         return $this->belongsToMany('Tag', 'post_tags');
+    }
+
+    public function getPrivateAttribute($value)
+    {
+        return boolval($value);
+    }
+
+    public function getAllowCommentsAttribute($value)
+    {
+        return boolval($value);
     }
 
 }

@@ -20,6 +20,7 @@ class CreatePostsTable extends Migration {
 		    $table->text('md_content');
 		    $table->text('html_content');
 		    $table->boolean('private')->default(false);
+		    $table->boolean('allow_comments')->default(true);
 		    $table->timestamps();
 		});
 	}

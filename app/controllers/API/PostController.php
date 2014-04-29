@@ -41,7 +41,8 @@ class PostController extends \BaseController {
             'title' => Input::get('title', ''),
             'md_content' => Input::get('md_content', ''),
             'html_content' => Input::get('html_content', ''),
-            'private' => Input::get('private', false)
+            'private' => Input::get('private', false),
+            'allow_comments' => Input::get('allow_comments', false)
         ];
 
         $tags = Input::get('tags', []);
@@ -50,7 +51,7 @@ class PostController extends \BaseController {
         $post = $postRepo->store($data);
         $post = $postRepo->syncTags($post->id, $tagsId);
 
-        return \Response::json($post->toArray(), 200);
+        return \Response::json($post, 200);
 	}
 
 
@@ -99,7 +100,8 @@ class PostController extends \BaseController {
                 'title' => Input::get('title', ''),
                 'md_content' => Input::get('md_content', ''),
                 'html_content' => Input::get('html_content', ''),
-                'private' => Input::get('private', false)
+                'private' => Input::get('private', false),
+                'allow_comments' => Input::get('allow_comments', false)
             ];
 
             $tags = Input::get('tags', []);
@@ -125,8 +127,35 @@ class PostController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$postRepo = \App::make('Gruik\Repo\Post\PostInterface');
+        $post = $postRepo->byId($id);
+
+        if($post && $postRepo->haveThisOwner($id, \Sentry::getUser()->id))
+        {
+            $postRepo->deleteById($id);
+            return \Response::json([], 200);
+        }
+        else
+        {
+            return \Response::json("Unauthorized : Post doesn't exist OR user is not allowed to modify this post", 400);
+        }
 	}
+
+    public function multiple_delete()
+    {
+        $postRepo = \App::make('Gruik\Repo\Post\PostInterface');
+        $ids = Input::get('ids', []);
+
+        if($ids && $postRepo->haveThisOwner($ids, \Sentry::getUser()->id))
+        {
+            $postRepo->deleteById($ids);
+            return \Response::json([], 200);
+        }
+        else
+        {
+            return \Response::json("Unauthorized : Posts don't exist OR user is not allowed to modify these posts", 400);
+        }
+    }
 
 
 }

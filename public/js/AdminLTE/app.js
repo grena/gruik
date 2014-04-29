@@ -129,10 +129,10 @@ $(function() {
      * iCheck plugin in.
      * You can find the documentation at http://fronteed.com/iCheck/
      */
-    $("input[type='checkbox'], input[type='radio']").iCheck({
-        checkboxClass: 'icheckbox_minimal',
-        radioClass: 'iradio_minimal'
-    });
+    // $("input[type='checkbox'], input[type='radio']").iCheck({
+    //     checkboxClass: 'icheckbox_minimal',
+    //     radioClass: 'iradio_minimal'
+    // });
 });
 function fix_sidebar() {
     //Make sure the body tag has the .fixed class

@@ -19,7 +19,12 @@ class EloquentPost extends RepoAbstract implements RepoInterface, PostInterface 
 
     public function byUserId($user_id)
     {
-        return $this->model->where('user_id', $user_id)->get();
+        return $this->byUserIdQuery($user_id)->get();
+    }
+
+    public function byUserIdQuery($user_id)
+    {
+        return $this->model->where('user_id', $user_id);
     }
 
     public function syncTags($id, $tags_id)
@@ -71,5 +76,25 @@ class EloquentPost extends RepoAbstract implements RepoInterface, PostInterface 
         $post->save();
 
         return $post;
+    }
+
+    public function haveThisOwner($id_posts, $id_owner)
+    {
+        $id_posts = (array) $id_posts;
+
+        if($id_posts)
+        {
+            return \DB::table('posts')->whereIn('id', $id_posts)->where('user_id', $id_owner)->count() === count($id_posts);
+        }
+    }
+
+    public function deleteById($id_posts)
+    {
+        $id_posts = (array) $id_posts;
+
+        if($id_posts)
+        {
+            \DB::table('posts')->whereIn('id', $id_posts)->delete();
+        }
     }
 }

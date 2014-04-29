@@ -1,4 +1,31 @@
-app = angular.module('app', ['ui.select2']);
+app = angular.module('app', ["checklist-model"]);
+
+app.factory('debounce', function ($timeout, $q) {
+    return function debounce(func, wait, immediate) {
+        var timeout;
+        var deferred = $q.defer();
+        return function () {
+            var context = this, args = arguments;
+            var later = function () {
+                timeout = null;
+                if (!immediate) {
+                    deferred.resolve(func.apply(context, args));
+                    deferred = $q.defer();
+                }
+            };
+            var callNow = immediate && !timeout;
+            if (timeout) {
+                $timeout.cancel(timeout);
+            }
+            timeout = $timeout(later, wait);
+            if (callNow) {
+                deferred.resolve(func.apply(context, args));
+                deferred = $q.defer();
+            }
+            return deferred.promise;
+        };
+    };
+});
 
 app.controller('AdminCtrl', function ($scope) {
 
@@ -17,7 +44,8 @@ app.controller('DashboardCtrl', function ($scope, $sce, $http) {
         title: '',
         md_content: '',
         html_content: '',
-        private: false
+        private: false,
+        allow_comments: true
     };
 
     $scope.is_preview = false;
@@ -84,6 +112,7 @@ app.controller('DashboardCtrl', function ($scope, $sce, $http) {
                 console.log('success = ', data);
                 $scope.currentPost = _.extend($scope.currentPost, data);
                 $scope.loading = false;
+                console.log('current post =' , $scope.currentPost);
             }).
             error(function(data, status, headers, config) {
                 console.log('fail = ', data);
@@ -132,7 +161,65 @@ app.controller('DashboardCtrl', function ($scope, $sce, $http) {
 
 });
 
-app.controller('PostsCtrl', function ($scope) {
+app.controller('PostsCtrl', function ($scope, $http, $window, debounce) {
+
+    $scope.selected = {
+        posts : []
+    };
+
+    $scope.posts = window.Gruik.posts.data;
+    $scope._token = $("#csrf").val();
+
+    window.scope = $scope;
+
+    $scope.deleteSelected = function(id)
+    {
+        var text = id ? "Delete this post ?" : "Delete selected posts ?";
+        var ids = [];
+
+        var deletePost = function(ids)
+        {
+            $scope.loading = true;
+
+            $http.post('/api/posts/multiple_delete', {'ids': ids, '_token': $scope._token}).
+            success(function(data, status, headers, config) {
+                console.log('success = ', data);
+                $window.location.reload();
+                $scope.loading = false;
+            }).
+            error(function(data, status, headers, config) {
+                console.log('fail = ', data);
+                $scope.loading = false;
+            });
+        };
+
+        if(id)
+        {
+            ids.push(id);
+        }
+        else
+        {
+            ids = angular.copy($scope.selected.posts);
+        }
+
+        console.log('ids before confirm = ', ids);
+
+        smoke.confirm(text, function(e){
+            if(e) {
+                deletePost(ids);
+            }
+        }, {
+            ok: "Yes",
+            cancel: "Gruik, NO !",
+            reverseButtons: true
+        });
+    };
+
+
+
+    $scope.$watch('search', debounce(function () {
+        console.log('search = ', $scope.search);
+    }, 500, false), true);
 
 });
 

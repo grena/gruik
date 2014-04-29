@@ -6,7 +6,7 @@ class HomeController extends BaseController {
 	{
         $postRepo = \App::make('Gruik\Repo\Post\PostInterface');
 
-        $posts = $postRepo->byUserId(Sentry::getUser()->id);
+        $posts = $postRepo->byUserId(1);
 
 		return View::make('front.home')
 					->with('posts', $posts);
