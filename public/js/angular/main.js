@@ -165,6 +165,8 @@ app.controller('DashboardCtrl', function ($scope, $http, $window, debounce) {
         posts : []
     };
 
+    $scope.showSearch = false;
+
     $scope.posts = window.Gruik.posts.data;
     $scope._token = $("#csrf").val();
 

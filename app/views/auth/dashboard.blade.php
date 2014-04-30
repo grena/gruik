@@ -24,8 +24,8 @@
         </h3>
         <div class="box-tools pull-right">
             <button class="btn btn-default btn-sm" data-widget="collapse" ng-click="showSearch = !showSearch">
-                <i ng-show="showSearch" class="fa fa-2x fa-angle-double-down"></i>
-                <i ng-show="!showSearch" class="fa fa-2x fa-angle-double-up"></i>
+                <i ng-show="!showSearch" class="fa fa-2x fa-angle-double-down"></i>
+                <i ng-show="showSearch" class="fa fa-2x fa-angle-double-up"></i>
             </button>
         </div>
     </div>
@@ -68,7 +68,14 @@
                         </span>
 
                         <input type="checkbox" checklist-model="selected.posts" checklist-value="post.id">
-                        <span class="text"><a href="{% URL::to('view') %}/{{ post.id }}" style="color:#000;">{{ post.title }}</a></span>
+
+                        <span class="text">
+                            <a href="{% URL::to('view') %}/{{ post.id }}" style="color:#000;">
+                                <span ng-show="post.title">{{ post.title }}</span>
+                                <span ng-show="!post.title"><em>Post #{{ post.id }}</em></span>
+                            </a>
+                        </span>
+
                         <small ng-repeat="tag in post.tags" class="label label-primary">{{ tag.label }}</small>
                         <div class="tools">
                             <a href="{% URL::to('create') %}?edit={{ post.id }}">Edit</a> |

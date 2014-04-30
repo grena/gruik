@@ -19,17 +19,17 @@
 
     <div class="box-body">
         <div class="row" style="margin-bottom: 15px;">
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <input class="form-control" type="text" placeholder="Title" ng-model="currentPost.title" style="border-left:0;border-right:0;border-top:0;border-bottom:1px dotted;">
             </div>
         </div>
         <div class="row" style="margin-bottom: 15px;">
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <select id="input-tags" placeholder="Tags..." ng-model="currentPost.tags"></select>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <p>
                     This post is
                     <span ng-show="currentPost.private">
