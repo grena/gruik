@@ -8,7 +8,7 @@ class SettingsController extends BaseController {
             'user' => Sentry::getUser()
         ]);
 
-        return View::make('admin.settings')
+        return View::make('auth.settings')
                     ->with('user', Sentry::getUser());
     }
 

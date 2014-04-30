@@ -1,9 +1,9 @@
 @extends('layout')
 
 @section('controller')
-    ng-controller="HomeCtrl"
+    ng-controller="ExploreCtrl"
 @stop
 
 @section('content')
-HOME
+EXPLORE
 @stop

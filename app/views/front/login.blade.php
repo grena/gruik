@@ -16,7 +16,7 @@
             <div class="header" style="background:#598D8F;">
                 <img src="/img/gruik.png" alt=""><br> Sign In
             </div>
-            <form action="{% URL::to('admin/login') %}" method="post">
+            <form action="{% URL::to('login') %}" method="post">
                 <div class="body bg-gray">
                     <div class="form-group">
                         <input type="text" name="email" class="form-control" placeholder="Email"/>

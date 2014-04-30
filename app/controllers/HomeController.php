@@ -4,22 +4,25 @@ class HomeController extends BaseController {
 
 	public function home()
 	{
-        $postRepo = \App::make('Gruik\Repo\Post\PostInterface');
-
-        $posts = $postRepo->byUserId(1);
-
-		return View::make('front.home')
-					->with('posts', $posts);
+        if(Sentry::check())
+        {
+            return Redirect::to('dashboard');
+        }
+        else
+        {
+    		return View::make('front.home');
+        }
 	}
 
-	public function view($id)
-	{
-        $postRepo = \App::make('Gruik\Repo\Post\PostInterface');
+    public function explore()
+    {
+        return View::make('front.explore')
+                    ->with('user', Sentry::getUser());
+    }
 
-        $post = $postRepo->byId($id);
-
-		return View::make('front.view')
-					->with('post', $post);
-	}
+    public function login()
+    {
+        return View::make('front.login');
+    }
 
 }

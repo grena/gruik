@@ -31,7 +31,7 @@ app.controller('AdminCtrl', function ($scope) {
 
 });
 
-app.controller('DashboardCtrl', function ($scope, $sce, $http) {
+app.controller('CreateCtrl', function ($scope, $sce, $http) {
 
 
     var marked = window.marked;
@@ -159,7 +159,7 @@ app.controller('DashboardCtrl', function ($scope, $sce, $http) {
 
 });
 
-app.controller('PostsCtrl', function ($scope, $http, $window, debounce) {
+app.controller('DashboardCtrl', function ($scope, $http, $window, debounce) {
 
     $scope.selected = {
         posts : []

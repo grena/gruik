@@ -1,4 +1,4 @@
-@extends('admin.layout')
+@extends('layout')
 
 @section('controller')
     ng-controller="SettingsCtrl"

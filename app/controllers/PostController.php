@@ -38,12 +38,12 @@ class PostController extends BaseController {
             'tags' => $tags_string
         ]);
 
-        return View::make('admin.dashboard')
+        return View::make('auth.create')
                     ->with('user', Sentry::getUser())
                     ->with('tags', $tags);
     }
 
-    public function all()
+    public function dashboard()
     {
         $postRepo = \App::make('Gruik\Repo\Post\PostInterface');
 
@@ -59,10 +59,21 @@ class PostController extends BaseController {
             'posts' => $posts->toArray()
         ]);
 
-        return View::make('admin.posts')
+        return View::make('auth.dashboard')
                     ->with('user', Sentry::getUser())
                     ->with('limit', $limit)
                     ->with('posts', $posts);
+    }
+
+    public function view($id)
+    {
+        $postRepo = \App::make('Gruik\Repo\Post\PostInterface');
+
+        $post = $postRepo->byId($id);
+
+        return View::make('front.view')
+                    ->with('user', Sentry::getUser())
+                    ->with('post', $post);
     }
 
 }

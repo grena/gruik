@@ -1,7 +1,7 @@
-@extends('admin.layout')
+@extends('layout')
 
 @section('controller')
-    ng-controller="PostsCtrl"
+    ng-controller="DashboardCtrl"
 @stop
 
 @section('content')
@@ -60,7 +60,7 @@
                 <ul class="todo-list ui-sortable">
                     <li ng-repeat="post in posts">
                         <input type="checkbox" checklist-model="selected.posts" checklist-value="post.id">
-                        <span class="text"><a href="{% URL::to('admin') %}?edit={{ post.id }}" style="color:#000;">{{ post.title }}</a></span>
+                        <span class="text"><a href="{% URL::to('view') %}/{{ post.id }}" style="color:#000;">{{ post.title }}</a></span>
                         <small ng-repeat="tag in post.tags" class="label label-primary">{{ tag.label }}</small>
                         <div class="tools">
                             <a href="{% URL::to('admin') %}?edit={{ post.id }}">Edit</a> |

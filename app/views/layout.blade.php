@@ -14,8 +14,6 @@
         <link href="/vendor/selectize/dist/css/selectize.default.css" rel="stylesheet" type="text/css" />
         <link href="/css/gruik.css" rel="stylesheet" type="text/css" />
 
-        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
-
         <style>
             .selectize-input { box-shadow: none !important; border-radius: 0; border-left:0;border-right:0;border-top:0; border-bottom:1px dotted;}
         </style>
@@ -24,12 +22,12 @@
     <body class="skin-black" @yield('controller')>
 
         <header class="header">
-            @include('admin.partials.navbar')
+            @include('partials.navbar')
         </header>
 
         <div class="wrapper row-offcanvas row-offcanvas-left">
             <aside class="left-side sidebar-offcanvas">
-                @include('admin.partials.sidebar')
+                @include('partials.sidebar')
             </aside>
 
             <aside class="right-side">
@@ -50,7 +48,7 @@
         <script src="/vendor/angular-ui-select2/src/select2.js" type="text/javascript"></script>
         <script src="/vendor/lodash/dist/lodash.min.js" type="text/javascript"></script>
         <script src="/js/AdminLTE/app.js" type="text/javascript"></script>
-        <script src="/js/angular/admin.js" type="text/javascript"></script>
+        <script src="/js/angular/main.js" type="text/javascript"></script>
 
         @yield('scripts')
 

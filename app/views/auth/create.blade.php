@@ -1,7 +1,7 @@
-@extends('admin.layout')
+@extends('layout')
 
 @section('controller')
-    ng-controller="DashboardCtrl"
+    ng-controller="CreateCtrl"
 @stop
 
 @section('content')

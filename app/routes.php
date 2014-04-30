@@ -15,21 +15,17 @@ Blade::setEscapedContentTags('{%%', '%%}');
 */
 
 Route::get('/', ['uses' => 'HomeController@home']);
-Route::get('/view/{id}', ['uses' => 'HomeController@view']);
+Route::get('/explore', ['uses' => 'HomeController@explore']);
+Route::get('/view/{id}', ['uses' => 'PostController@view']);
+Route::get('/login', ['uses' => 'HomeController@login']);
+Route::post('/login', ['uses' => 'AuthController@login']);
+Route::get('/logout', ['uses' => 'AuthController@logout']);
 
-Route::get('admin/login', function()
-{
-    return View::make('admin.login');
-});
-
-Route::post('admin/login', ['uses' => 'AuthController@login']);
-Route::get('admin/logout', ['uses' => 'AuthController@logout']);
-
-Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
+Route::group(array('before' => 'auth'), function()
 {
 
-    Route::get('/', ['uses' => 'PostController@edit']);
-    Route::get('/posts', ['as' => 'admin_posts', 'uses' => 'PostController@all']);
+    Route::get('/create', ['uses' => 'PostController@edit']);
+    Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'PostController@dashboard']);
     Route::get('/tags', ['uses' => 'TagController@all']);
     Route::get('/settings', ['uses' => 'SettingsController@view']);
 

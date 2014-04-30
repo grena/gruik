@@ -1,4 +1,4 @@
-@extends('front.layout')
+@extends('layout')
 
 @section('content')
 <style>
@@ -12,7 +12,7 @@
 </style>
 
 <div class="row">
-    <div class="col-md-6 col-md-offset-3">
+    <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
         <div class="box box-solid">
             <div class="box-header">
                 <h3 class="box-title">{% $post->title %}</h3>

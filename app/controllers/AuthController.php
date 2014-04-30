@@ -12,12 +12,10 @@ class AuthController extends BaseController {
                 'password' => Input::get('password')
             ];
 
-            Log::info('ADRIEN credentials = ' . json_encode($credentials));
-
             // Try to authenticate the user
             $user = Sentry::authenticate($credentials, Input::get('remember'));
 
-            return Redirect::to('admin');
+            return Redirect::to('dashboard');
         }
         catch (Cartalyst\Sentry\Users\LoginRequiredException $e)
         {
