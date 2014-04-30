@@ -43,6 +43,7 @@ Route::group(array('prefix' => 'api', 'before' => 'csrf'), function()
     // Admin API interface
     Route::group(array('before' => 'auth'), function()
     {
+        Route::resource('users', 'API\UserController');
         Route::resource('posts', 'API\PostController', array('except' => array('index', 'show')));
         Route::post('posts/multiple_delete', ['uses' => 'API\PostController@multiple_delete']);
     });

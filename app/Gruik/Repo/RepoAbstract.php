@@ -22,4 +22,9 @@ abstract class RepoAbstract implements RepoInterface {
     {
         return $this->model->newInstance( $attributes );
     }
+
+    public function byId($id)
+    {
+        return $this->model->find($id);
+    }
 }

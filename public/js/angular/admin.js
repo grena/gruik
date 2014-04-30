@@ -95,7 +95,6 @@ app.controller('DashboardCtrl', function ($scope, $sce, $http) {
             // Creating post
             $http.post('/api/posts', $scope.currentPost).
             success(function(data, status, headers, config) {
-                console.log('success = ', data);
                 $scope.currentPost = _.extend($scope.currentPost, data);
                 $scope.loading = false;
             }).
@@ -109,7 +108,6 @@ app.controller('DashboardCtrl', function ($scope, $sce, $http) {
             // Updating post
             $http.put('/api/posts/' + $scope.currentPost.id, $scope.currentPost).
             success(function(data, status, headers, config) {
-                console.log('success = ', data);
                 $scope.currentPost = _.extend($scope.currentPost, data);
                 $scope.loading = false;
                 console.log('current post =' , $scope.currentPost);
@@ -183,7 +181,6 @@ app.controller('PostsCtrl', function ($scope, $http, $window, debounce) {
 
             $http.post('/api/posts/multiple_delete', {'ids': ids, '_token': $scope._token}).
             success(function(data, status, headers, config) {
-                console.log('success = ', data);
                 $window.location.reload();
                 $scope.loading = false;
             }).
@@ -201,8 +198,6 @@ app.controller('PostsCtrl', function ($scope, $http, $window, debounce) {
         {
             ids = angular.copy($scope.selected.posts);
         }
-
-        console.log('ids before confirm = ', ids);
 
         smoke.confirm(text, function(e){
             if(e) {
@@ -225,4 +220,27 @@ app.controller('PostsCtrl', function ($scope, $http, $window, debounce) {
 
 app.controller('TagsCtrl', function ($scope) {
 
+});
+
+app.controller('SettingsCtrl', function ($scope, $http) {
+
+    $scope.user = window.Gruik.user;
+    $scope._token = $("#csrf").val();
+
+    $scope.saveUser = function()
+    {
+        $scope.loading = true;
+        $scope.user._token = $scope._token;
+
+        $http.put('/api/users/'+$scope.user.id, $scope.user).
+        success(function(data, status, headers, config) {
+            $scope.loading = false;
+            $scope.user.new_password = null;
+            $scope.user.new_password_conf = null;
+        }).
+        error(function(data, status, headers, config) {
+            console.log('fail = ', data);
+            $scope.loading = false;
+        });
+    };
 });

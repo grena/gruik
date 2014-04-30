@@ -12,11 +12,6 @@ class EloquentPost extends RepoAbstract implements RepoInterface, PostInterface 
         $this->model = $model;
     }
 
-    public function byId($id)
-    {
-        return $this->model->find($id);
-    }
-
     public function byUserId($user_id)
     {
         return $this->byUserIdQuery($user_id)->get();
