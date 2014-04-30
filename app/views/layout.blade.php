@@ -2,7 +2,7 @@
 <html ng-app="app">
     <head>
         <meta charset="UTF-8">
-        <title>Gruiiiiik.</title>
+        <title>Gruik.</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
         <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />

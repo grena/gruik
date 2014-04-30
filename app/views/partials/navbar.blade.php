@@ -17,14 +17,12 @@
             <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <i class="glyphicon glyphicon-user"></i>
-                    <span>{% $user->email %} <i class="caret"></i></span>
+                    <span>{% $user->username %} <i class="caret"></i></span>
                 </a>
                 <ul class="dropdown-menu">
                     <li class="user-header bg-light-blue">
                         <img src="{% Gravatar::src( $user->email, 80 ) %}" class="img-circle" alt="User Image" style="box-shadow: 0px 0px 15px #111111;" />
-                        <p>
-                            {% $user->email %}
-                        </p>
+                        <p>{% $user->email %}</p>
                     </li>
                     <li class="user-footer">
                         <div class="pull-left">

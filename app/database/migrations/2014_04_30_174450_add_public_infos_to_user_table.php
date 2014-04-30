@@ -17,6 +17,7 @@ class AddPublicInfosToUserTable extends Migration {
 		    $table->string('about', 512)->nullable();
 		    $table->string('github_username')->nullable();
 		    $table->string('twitter_username')->nullable();
+		    $table->string('username');
 		});
 	}
 
@@ -32,6 +33,7 @@ class AddPublicInfosToUserTable extends Migration {
 		    $table->dropColumn('about');
 		    $table->dropColumn('github_username');
 		    $table->dropColumn('twitter_username');
+		    $table->dropColumn('username');
 		});
 	}
 

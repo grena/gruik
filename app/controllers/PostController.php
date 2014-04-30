@@ -1,5 +1,7 @@
 <?php
 
+use Carbon\Carbon;
+
 class PostController extends BaseController {
 
     public function edit()
@@ -71,8 +73,12 @@ class PostController extends BaseController {
 
         $post = $postRepo->byId($id);
 
+        $diff = Carbon::now()->diffInMinutes(Carbon::parse($post->updated_at));
+        $post->updated_at_human = Carbon::now()->subMinutes($diff)->diffForHumans();
+
         return View::make('front.view')
                     ->with('user', Sentry::getUser())
+                    ->with('author', $post->user)
                     ->with('post', $post);
     }
 
