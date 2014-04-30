@@ -222,7 +222,7 @@ app.controller('TagsCtrl', function ($scope) {
 
 });
 
-app.controller('SettingsCtrl', function ($scope, $http) {
+app.controller('SettingsCtrl', function ($scope, $http, $window) {
 
     $scope.user = window.Gruik.user;
     $scope._token = $("#csrf").val();
@@ -235,8 +235,7 @@ app.controller('SettingsCtrl', function ($scope, $http) {
         $http.put('/api/users/'+$scope.user.id, $scope.user).
         success(function(data, status, headers, config) {
             $scope.loading = false;
-            $scope.user.new_password = null;
-            $scope.user.new_password_conf = null;
+            $window.location.reload();
         }).
         error(function(data, status, headers, config) {
             console.log('fail = ', data);

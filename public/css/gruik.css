@@ -1,0 +1,7 @@
+.navbar-nav > .user-menu > .dropdown-menu > li.user-header {
+    background: url('/img/bglogin.png');
+}
+
+.skin-black .sidebar > .sidebar-menu > li:first-of-type {
+    border-top: 0;
+}

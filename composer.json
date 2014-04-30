@@ -6,7 +6,8 @@
 	"require": {
 		"laravel/framework": "4.1.*",
 		"cartalyst/sentry": "2.1.*",
-		"laracasts/utilities": "1.0.*"
+		"laracasts/utilities": "1.0.*",
+		"thomaswelton/laravel-gravatar": "0.0.x"
 	},
 	"autoload": {
 		"classmap": [

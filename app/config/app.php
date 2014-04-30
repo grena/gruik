@@ -122,6 +122,7 @@ return array(
 		'Cartalyst\Sentry\SentryServiceProvider',
 		'Gruik\Repo\RepoServiceProvider',
 		'Laracasts\Utilities\UtilitiesServiceProvider',
+		'Thomaswelton\LaravelGravatar\LaravelGravatarServiceProvider'
 
 	),
 
@@ -189,6 +190,7 @@ return array(
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
 		'Sentry' => 'Cartalyst\Sentry\Facades\Laravel\Sentry',
+		'Gravatar' => 'Thomaswelton\LaravelGravatar\Facades\Gravatar',
 
 	),
 
