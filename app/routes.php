@@ -23,6 +23,7 @@ Route::get('admin/login', function()
 });
 
 Route::post('admin/login', ['uses' => 'AuthController@login']);
+Route::get('admin/logout', ['uses' => 'AuthController@logout']);
 
 Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
 {

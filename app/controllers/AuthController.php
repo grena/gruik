@@ -17,8 +17,6 @@ class AuthController extends BaseController {
             // Try to authenticate the user
             $user = Sentry::authenticate($credentials, Input::get('remember'));
 
-            Log::info('ADRIEN REDIRECTING  ');
-
             return Redirect::to('admin');
         }
         catch (Cartalyst\Sentry\Users\LoginRequiredException $e)
@@ -56,6 +54,7 @@ class AuthController extends BaseController {
     public function logout()
     {
         Sentry::logout();
-        return Response::json(['flash' => 'Logged Out!'], 200);
+
+        return Redirect::to('/');
     }
 }
