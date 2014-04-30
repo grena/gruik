@@ -71,6 +71,10 @@ class PostController extends BaseController {
     {
         $postRepo = \App::make('Gruik\Repo\Post\PostInterface');
 
+        JavaScript::put([
+            'disqus_username' => Config::get('gruik.disqus_username')
+        ]);
+
         $post = $postRepo->byId($id);
 
         $diff = Carbon::now()->diffInMinutes(Carbon::parse($post->updated_at));

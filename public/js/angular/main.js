@@ -245,3 +245,40 @@ app.controller('SettingsCtrl', function ($scope, $http, $window) {
         });
     };
 });
+
+app.controller('ViewCtrl', function ($scope) {
+
+    $scope.comments_loaded = false;
+    $scope.loading = false;
+
+    $scope.loadComments = function()
+    {
+        $scope.loading = true;
+        var disqus_shortname = window.Gruik.disqus_username;
+
+        window.scope = $scope;
+
+        $.ajax({
+              type: "GET",
+              url: "//" + disqus_shortname + ".disqus.com/embed.js",
+              dataType: "script",
+              cache: true
+        }).then(function() {
+            $scope.comments_loaded = true;
+            $scope.loading = false;
+            $scope.$apply();
+        }, function() {
+            $scope.loading = false;
+            $scope.$apply();
+            smoke.signal('<i class="fa fa-times"></i> Error while loading Disqus comments', function(e){
+
+            }, {
+                duration: 3000,
+                classname: "custom-class"
+            });
+
+        });
+
+
+    };
+});
