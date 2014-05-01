@@ -30,7 +30,7 @@ But if you want to try it :
 
 #### Technos
 
-* PHP 5.4+
+* PHP 5.5+
 * Laravel Framework
 * AngularJS
 
