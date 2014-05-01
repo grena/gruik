@@ -106,7 +106,6 @@ app.controller('CreateCtrl', function ($scope, $sce, $http) {
             success(function(data, status, headers, config) {
                 $scope.currentPost = _.extend($scope.currentPost, data);
                 $scope.loading = false;
-                console.log('current post =' , $scope.currentPost);
             }).
             error(function(data, status, headers, config) {
                 console.log('fail = ', data);
