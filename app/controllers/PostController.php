@@ -8,8 +8,12 @@ class PostController extends BaseController {
     {
         $tagRepo = \App::make('Gruik\Repo\Tag\TagInterface');
         $postRepo = \App::make('Gruik\Repo\Post\PostInterface');
+        $userRepo = \App::make('Gruik\Repo\User\UserInterface');
 
         $id_edit = Input::get('edit', false);
+
+        $user = Sentry::getUser();
+        $user->preferences = $userRepo->getPreferencesForUser($user->id);
 
         if($id_edit)
         {
@@ -30,18 +34,19 @@ class PostController extends BaseController {
             ]);
         }
 
-        $tags = $tagRepo->byUserId(Sentry::getUser()->id)->toArray();
+        $tags = $tagRepo->byUserId($user->id)->toArray();
 
         $tags_string = array_map(function($tag) {
             return ['label' => $tag['label']];
         }, $tags);
 
         JavaScript::put([
-            'tags' => $tags_string
+            'tags' => $tags_string,
+            'user' => $user
         ]);
 
         return View::make('auth.create')
-                    ->with('user', Sentry::getUser())
+                    ->with('user', $user)
                     ->with('tags', $tags);
     }
 

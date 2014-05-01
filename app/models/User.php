@@ -102,4 +102,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		$this->hasMany('Tag');
 	}
 
+	public function user_preferences()
+	{
+		$this->hasMany('UserPreference');
+	}
+
 }

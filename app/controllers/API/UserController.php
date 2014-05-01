@@ -81,6 +81,11 @@ class UserController extends \BaseController {
         	$new_password = array_pull($inputs, 'new_password', false);
         	$new_password_conf = array_pull($inputs, 'new_password_conf', false);
 
+            // Preferences
+            $preferences = array_pull($inputs, 'preferences', false);
+
+            $userRepo->setPreferencesForUser($id, $preferences);
+
             $user = $user->fill($inputs);
 
         	if($new_password && $new_password_conf && $new_password == $new_password_conf)
@@ -109,6 +114,5 @@ class UserController extends \BaseController {
 	{
 		//
 	}
-
 
 }

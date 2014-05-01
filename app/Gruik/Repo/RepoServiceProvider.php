@@ -4,6 +4,7 @@ use Illuminate\Support\ServiceProvider;
 
 use Gruik\Repo\User\EloquentUser;
 use \User;
+use \UserPreference;
 use Gruik\Repo\Post\EloquentPost;
 use \Post;
 use Gruik\Repo\Tag\EloquentTag;
@@ -17,7 +18,7 @@ class RepoServiceProvider extends ServiceProvider {
 
         $app->bind('Gruik\Repo\User\UserInterface', function($app)
         {
-            return new EloquentUser(new User);
+            return new EloquentUser(new User, new UserPreference);
         });
 
         $app->bind('Gruik\Repo\Post\PostInterface', function($app)

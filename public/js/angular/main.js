@@ -33,19 +33,18 @@ app.controller('AdminCtrl', function ($scope) {
 
 app.controller('CreateCtrl', function ($scope, $sce, $http) {
 
-
     var marked = window.marked;
     var hljs = window.hljs;
 
     window.scope = $scope;
 
+    $scope.user = window.Gruik.user;
+
     $scope.currentPost = {
         id: 0,
         title: '',
         md_content: '',
-        html_content: '',
-        private: false,
-        allow_comments: true
+        html_content: ''
     };
 
     $scope.is_preview = false;
@@ -83,10 +82,7 @@ app.controller('CreateCtrl', function ($scope, $sce, $http) {
 
     $scope.save = function()
     {
-        console.log($scope.currentPost);
-
         $scope.loading = true;
-
         $scope.currentPost._token = $("#csrf").val();
         $scope.currentPost.html_content = marked( $scope.currentPost.md_content );
 
@@ -156,6 +152,12 @@ app.controller('CreateCtrl', function ($scope, $sce, $http) {
         $scope.editor.setValue($scope.currentPost.md_content);
         $scope.editor.gotoLine(1);
     }
+    else
+    {
+        // Set user preferences to post
+        $scope.currentPost.private = $scope.user.preferences['posts.private'];
+        $scope.currentPost.allow_comments = $scope.user.preferences['posts.allow_comments'];
+    }
 
 });
 
@@ -169,8 +171,6 @@ app.controller('DashboardCtrl', function ($scope, $http, $window, debounce) {
 
     $scope.posts = window.Gruik.posts.data;
     $scope._token = $("#csrf").val();
-
-    window.scope = $scope;
 
     $scope.deleteSelected = function(id)
     {
@@ -229,6 +229,8 @@ app.controller('SettingsCtrl', function ($scope, $http, $window) {
     $scope.user = window.Gruik.user;
     $scope._token = $("#csrf").val();
 
+    window.scope = $scope;
+
     $scope.saveUser = function()
     {
         $scope.loading = true;
@@ -244,6 +246,7 @@ app.controller('SettingsCtrl', function ($scope, $http, $window) {
             $scope.loading = false;
         });
     };
+
 });
 
 app.controller('ViewCtrl', function ($scope) {
@@ -255,8 +258,6 @@ app.controller('ViewCtrl', function ($scope) {
     {
         $scope.loading = true;
         var disqus_shortname = window.Gruik.disqus_username;
-
-        window.scope = $scope;
 
         $.ajax({
               type: "GET",
