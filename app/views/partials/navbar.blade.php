@@ -43,6 +43,10 @@
             <a href="{% URL::to('login') %}" class="navbar-btn" role="button">
                 Login
             </a>
+            or
+            <a href="{% URL::to('register') %}" class="navbar-btn" role="button">
+                Register
+            </a>
         </div>
     </div>
     @endif

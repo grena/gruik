@@ -283,3 +283,59 @@ app.controller('ViewCtrl', function ($scope) {
 
     };
 });
+
+app.controller('RegisterCtrl', function ($scope, $http, $window) {
+
+    $scope.user = {
+        email: '',
+        password: '',
+        username: ''
+    };
+
+    $scope.loading = false;
+
+    $scope.register = function()
+    {
+        $scope.loading = true;
+        $scope.flash = null;
+
+        $http.post('/register', $scope.user).
+        success(function(data, status, headers, config) {
+            $scope.loading = false;
+            $window.location.href='/';
+        }).
+        error(function(data, status, headers, config) {
+            $scope.loading = false;
+            $scope.flash = data.flash;
+        });
+    };
+
+});
+
+app.controller('LoginCtrl', function ($scope, $http, $window) {
+
+    $scope.user = {
+        email: '',
+        password: '',
+        remember: false
+    };
+
+    $scope.loading = false;
+
+    $scope.login = function()
+    {
+        $scope.loading = true;
+        $scope.flash = null;
+
+        $http.post('/login', $scope.user).
+        success(function(data, status, headers, config) {
+            $scope.loading = false;
+            $window.location.href='/';
+        }).
+        error(function(data, status, headers, config) {
+            $scope.loading = false;
+            $scope.flash = data.flash;
+        });
+    };
+
+});

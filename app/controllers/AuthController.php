@@ -12,10 +12,21 @@ class AuthController extends BaseController {
                 'password' => Input::get('password')
             ];
 
-            // Try to authenticate the user
-            $user = Sentry::authenticate($credentials, Input::get('remember'));
+            $validator = Validator::make($credentials,
+                    [   'email' => 'required|email',
+                        'password' => 'required'
+                    ]
+            );
 
-            return Redirect::to('dashboard');
+            if ($validator->fails())
+            {
+                return Response::json(['flash' => $validator->messages()->first()], 500);
+            }
+
+            // Try to authenticate the user
+            $user = Sentry::authenticate($credentials, Input::get('remember', false));
+
+            return Response::json([], 200);
         }
         catch (Cartalyst\Sentry\Users\LoginRequiredException $e)
         {
@@ -54,5 +65,56 @@ class AuthController extends BaseController {
         Sentry::logout();
 
         return Redirect::to('/');
+    }
+
+    public function register()
+    {
+        $credentials = [
+            'email'    => Input::get('email'),
+            'username' => Input::get('username'),
+            'password' => Input::get('password'),
+            'activated' => true,
+        ];
+
+        $validator = Validator::make($credentials,
+                [   'email' => 'required|email|unique:users',
+                    'username' => 'required|unique:users',
+                    'password' => 'required'
+                ]
+        );
+
+        if ($validator->fails())
+        {
+            return Response::json(['flash' => $validator->messages()->first()], 500);
+        }
+
+        try
+        {
+
+            $user = Sentry::createUser($credentials);
+
+            Sentry::login($user, true);
+
+            $data = ['user' => $user];
+
+            Mail::send('emails.welcome', $data, function($message) use($user)
+            {
+                $message->to($user->email, $user->username)->subject('Welcome on Gruik !');
+            });
+
+            return Response::json([], 200);
+        }
+        catch (Cartalyst\Sentry\Users\LoginRequiredException $e)
+        {
+            return Response::json(['flash' => 'Email is required..'], 500);
+        }
+        catch (Cartalyst\Sentry\Users\PasswordRequiredException $e)
+        {
+            return Response::json(['flash' => 'Password field is required..'], 500);
+        }
+        catch (Cartalyst\Sentry\Users\UserExistsException $e)
+        {
+            return Response::json(['flash' => 'User with this login already exists..'], 500);
+        }
     }
 }

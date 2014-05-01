@@ -25,4 +25,9 @@ class HomeController extends BaseController {
         return View::make('front.login');
     }
 
+    public function register()
+    {
+        return View::make('front.register');
+    }
+
 }

@@ -47,10 +47,11 @@
 
     <div class="box-body">
 
-        <div class="row" style="margin-bottom:10px;">
+        <div class="row" style="margin:20px 0;" ng-show="posts.length == 0">
             <div class="col-md-12">
-                <div>
-
+                <div class="text-center small" style="color:#A3A3A3;">
+                    Gruik ! Nothing here. <br>
+                    Go and <a href="{% URL::to('create') %}">write something delicious</a> !
                 </div>
             </div>
         </div>

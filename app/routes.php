@@ -18,7 +18,9 @@ Route::get('/', ['uses' => 'HomeController@home']);
 Route::get('/explore', ['uses' => 'HomeController@explore']);
 Route::get('/view/{id}', ['uses' => 'PostController@view']);
 Route::get('/login', ['uses' => 'HomeController@login']);
+Route::get('/register', ['uses' => 'HomeController@register']);
 Route::post('/login', ['uses' => 'AuthController@login']);
+Route::post('/register', ['uses' => 'AuthController@register']);
 Route::get('/logout', ['uses' => 'AuthController@logout']);
 
 Route::group(array('before' => 'auth'), function()
