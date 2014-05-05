@@ -76,7 +76,7 @@
                 </div>
 
                 <div style="display: block; min-height: 560px; width: 100%;" ng-show="is_preview">
-                    <span ng-bind-html="currentPost.html_content_preview"></span>
+                    <span ng-bind-html="currentPost.html"></span>
                 </div>
             </div>
         </div>
@@ -94,7 +94,6 @@
 @section('scripts')
     <script src="/vendor/marked/lib/marked.js" type="text/javascript"></script>
     <script src="/vendor/highlightjs/highlight.pack.js" type="text/javascript"></script>
-    <script src="/vendor/spin.js/spin.js" type="text/javascript" charset="utf-8"></script>
     <script src="/js/ace/ace.js" type="text/javascript" charset="utf-8"></script>
     <script src="/js/ace/theme-monokai.js" type="text/javascript" charset="utf-8"></script>
     <script src="/js/ace/mode-markdown.js" type="text/javascript" charset="utf-8"></script>

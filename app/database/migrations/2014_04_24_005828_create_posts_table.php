@@ -18,7 +18,6 @@ class CreatePostsTable extends Migration {
 		    $table->integer('user_id')->unsigned()->index();
 		    $table->string('title')->nullable();
 		    $table->text('md_content');
-		    $table->text('html_content');
 		    $table->boolean('private')->default(false);
 		    $table->boolean('allow_comments')->default(true);
 		    $table->timestamps();

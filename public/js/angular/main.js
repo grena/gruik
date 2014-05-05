@@ -43,8 +43,7 @@ app.controller('CreateCtrl', function ($scope, $sce, $http) {
     $scope.currentPost = {
         id: 0,
         title: '',
-        md_content: '',
-        html_content: ''
+        md_content: ''
     };
 
     $scope.is_preview = false;
@@ -73,6 +72,7 @@ app.controller('CreateCtrl', function ($scope, $sce, $http) {
     selectize = $select[0].selectize;
 
     marked.setOptions({
+        sanitize: true,
         highlight: function (code) {
             return hljs.highlightAuto(code).value;
         }
@@ -84,7 +84,6 @@ app.controller('CreateCtrl', function ($scope, $sce, $http) {
     {
         $scope.loading = true;
         $scope.currentPost._token = $("#csrf").val();
-        $scope.currentPost.html_content = marked( $scope.currentPost.md_content );
 
         if($scope.currentPost.id === 0)
         {
@@ -118,8 +117,7 @@ app.controller('CreateCtrl', function ($scope, $sce, $http) {
     {
         if(state)
         {
-            $scope.currentPost.html_content = marked( $scope.currentPost.md_content );
-            $scope.currentPost.html_content_preview = $sce.trustAsHtml(marked( $scope.currentPost.md_content ));
+            $scope.currentPost.html = $sce.trustAsHtml(marked( $scope.currentPost.md_content ));
         }
 
         $scope.is_preview = state;
@@ -248,10 +246,23 @@ app.controller('SettingsCtrl', function ($scope, $http, $window) {
 
 });
 
-app.controller('ViewCtrl', function ($scope) {
+app.controller('ViewCtrl', function ($scope, $sce) {
 
+    var marked = window.marked;
+    var hljs = window.hljs;
+
+    $scope.post = window.Gruik.post;
     $scope.comments_loaded = false;
     $scope.loading = false;
+
+    marked.setOptions({
+        sanitize: true,
+        highlight: function (code) {
+            return hljs.highlightAuto(code).value;
+        }
+    });
+
+    $scope.post.html = $sce.trustAsHtml( marked( $scope.post.md_content ) );
 
     $scope.loadComments = function()
     {
@@ -277,8 +288,6 @@ app.controller('ViewCtrl', function ($scope) {
             });
 
         });
-
-
     };
 });
 

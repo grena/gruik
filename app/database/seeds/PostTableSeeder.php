@@ -10,7 +10,6 @@ class PostTableSeeder extends Seeder
             'user_id' => 1,
             'title' => 'My hello world',
             'md_content' => '#Hello world !',
-            'html_content' => '<h1>Hello world !</h1>',
             'private' => false,
             'allow_comments' => true,
         ];
@@ -19,7 +18,6 @@ class PostTableSeeder extends Seeder
             'user_id' => 1,
             'title' => 'My private note.',
             'md_content' => 'Because markdown is __awesome__.',
-            'html_content' => '<p>Because markdown is <strong>awesome</strong>.</p>',
             'private' => true,
             'allow_comments' => false,
         ];

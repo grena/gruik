@@ -77,7 +77,8 @@ class PostController extends BaseController {
         $postRepo = \App::make('Gruik\Repo\Post\PostInterface');
 
         JavaScript::put([
-            'disqus_username' => Config::get('gruik.disqus_username')
+            'disqus_username' => Config::get('gruik.disqus_username'),
+            'post' => $postRepo->byId($id)
         ]);
 
         $post = $postRepo->byId($id);

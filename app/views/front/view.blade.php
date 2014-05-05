@@ -37,8 +37,11 @@
 
                 <div class="box-body">
                     <div class="row" style="margin-bottom: 15px;">
-                        <div class="col-md-12">
-                        {% $post->html_content %}
+                        <div class="col-md-12" id="markdown_content">
+                            <div class="text-center" ng-show="!post.html">
+                                <i class="fa fa-cog fa-spin"></i>
+                            </div>
+                            <span ng-bind-html="post.html"></span>
                         </div>
                     </div>
                 </div>
@@ -119,4 +122,6 @@
 
 @section('scripts')
     <script src="/vendor/smoke.js/smoke.min.js" type="text/javascript"></script>
+    <script src="/vendor/marked/lib/marked.js" type="text/javascript"></script>
+    <script src="/vendor/highlightjs/highlight.pack.js" type="text/javascript"></script>
 @stop

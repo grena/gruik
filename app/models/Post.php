@@ -6,7 +6,6 @@ class Post extends Eloquent {
         'user_id',
         'title',
         'md_content',
-        'html_content',
         'private',
         'allow_comments'
     ];

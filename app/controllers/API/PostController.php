@@ -40,7 +40,6 @@ class PostController extends \BaseController {
             'user_id' => \Sentry::getUser()->id,
             'title' => Input::get('title', ''),
             'md_content' => Input::get('md_content', ''),
-            'html_content' => Input::get('html_content', ''),
             'private' => Input::get('private', false),
             'allow_comments' => Input::get('allow_comments', false)
         ];
@@ -99,7 +98,6 @@ class PostController extends \BaseController {
                 'user_id' => \Sentry::getUser()->id,
                 'title' => Input::get('title', ''),
                 'md_content' => Input::get('md_content', ''),
-                'html_content' => Input::get('html_content', ''),
                 'private' => Input::get('private', false),
                 'allow_comments' => Input::get('allow_comments', false)
             ];
