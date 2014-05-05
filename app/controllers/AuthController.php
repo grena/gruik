@@ -117,4 +117,75 @@ class AuthController extends BaseController {
             return Response::json(['flash' => 'User with this login already exists..'], 500);
         }
     }
+
+    public function forgotPassword()
+    {
+        $email = Input::get('email', false);
+        if ( $email )
+        {
+            if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+
+                try {
+
+                    $user = Sentry::findUserByLogin( $email );
+
+                    Mail::send('emails.auth.reminder', [
+                        'token'  => $user->getResetPasswordCode()
+                    ], function ($message) use ($user)
+                    {
+                        $message->to($user->email, $user->username)->subject('Password reset request !');
+                    });
+
+                    return Response::json([], 200);
+                } catch (Cartalyst\Sentry\Users\UserNotFoundException $e) {
+                    return Response::json(['flash' => 'No user has been found with this email'], 400);
+                }
+
+
+
+            } else {
+                return Response::json(['flash' => 'A valid email must be provided'], 400);
+            }
+        }
+
+        return Response::json(['flash' => 'Email field is required'], 400);
+    }
+
+    public function resetPassword()
+    {
+        $token                 = Input::get('token', false);
+
+        $password              = Input::get('password', false);
+        $password_confirmation = Input::get('password_confirmation', false);
+
+        if ( $token and $password and $password_confirmation )
+        {
+            if ( $password === $password_confirmation )
+            {
+                try {
+
+                    $user = Sentry::findUserByResetPasswordCode($token);
+
+                    if ($user->checkResetPasswordCode($token))
+                    {
+                        // Attempt to reset the user password
+                        if ($user->attemptResetPassword($token, $password))
+                        {
+                            return Response::json([], 200);
+                        }
+                        else
+                        {
+                            return Response::json(['flash' => 'Password reset fail'], 400);
+                        }
+                    }
+                }catch(Cartalyst\Sentry\Users\UserNotFoundException $e)
+                {
+                    return Response::json(['flash' => 'No user has been found'], 400);
+                }
+            } else {
+                return Response::json(['flash' => 'Password and password confirmation must be the same'], 400);
+            }
+        }
+        return Response::json(['flash' => 'Field missing'], 400);
+    }
 }

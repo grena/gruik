@@ -336,5 +336,58 @@ app.controller('LoginCtrl', function ($scope, $http, $window) {
             $scope.flash = data.flash;
         });
     };
+});
 
+app.controller('ForgotCtrl', function ($scope, $http) {
+    $scope.email = '';
+
+    $scope.loading = false;
+
+    $scope.sendEmail = function () {
+        console.log('sending email', $scope.email);
+        $scope.loading = true;
+
+        $scope.flash = null;
+
+        $http.post('/forgot-password', {email: $scope.email})
+            .success(function (data) {
+                smoke.signal('Email sent', function(e){
+
+                }, {
+                    duration: 3000,
+                    classname: "custom-class"
+                });
+            })
+            .error(function (data) {
+                $scope.loading = false;
+                $scope.flash = data.flash;
+            });
+    };
+});
+
+app.controller('ResetPasswordCtrl', function ($scope, $http) {
+    $scope.password             = '';
+    $scope.passwordConfirmation = '';
+
+    $scope.loading = false;
+
+    $scope.sendNewPassword = function (token) {
+        $scope.loading = true;
+
+        $scope.flash = null;
+
+        $http.post('/reset-password', {token: token, password: $scope.password, password_confirmation: $scope.password_confirmation})
+            .success(function (data) {
+                smoke.signal('Password reset', function(e){
+
+                }, {
+                    duration: 3000,
+                    classname: "custom-class"
+                });
+            })
+            .error(function (data) {
+                $scope.loading = false;
+                $scope.flash = data.flash;
+            });
+    };
 });
