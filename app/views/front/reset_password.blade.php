@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div class="footer">
-                    <button ng-disabled="loading" type="submit" class="btn bg-olive btn-block"><i ng-show="loading" class="fa fa-cog fa-spin"></i> Send me this email now !</button>
+                    <button ng-disabled="loading" type="submit" class="btn bg-olive btn-block"><i ng-show="loading" class="fa fa-cog fa-spin"></i> Ok</button>
                 </div>
             </form>
         </div>

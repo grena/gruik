@@ -35,13 +35,12 @@ class HomeController extends BaseController {
 		return View::make('front.forgot');
 	}
 
-	public function passwordReset( $token )
+	public function passwordReset($token)
 	{
-
-		if ( $token )
+		if ($token)
 		{
-
-			return View::make('front.resetPassword')->withToken( $token );
+			return View::make('front.reset_password')
+                        ->withToken($token);
 		}
 
 		App::abort(404);
