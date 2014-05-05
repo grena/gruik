@@ -30,4 +30,21 @@ class HomeController extends BaseController {
         return View::make('front.register');
     }
 
+	public function forgotPassword()
+	{
+		return View::make('front.forgot');
+	}
+
+	public function passwordReset( $token )
+	{
+
+		if ( $token )
+		{
+
+			return View::make('front.resetPassword')->withToken( $token );
+		}
+
+		App::abort(404);
+	}
+
 }
