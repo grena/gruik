@@ -273,8 +273,7 @@ app.controller('ViewCtrl', function ($scope) {
             smoke.signal('<i class="fa fa-times"></i> Error while loading Disqus comments', function(e){
 
             }, {
-                duration: 3000,
-                classname: "custom-class"
+                duration: 3000
             });
 
         });
@@ -336,5 +335,67 @@ app.controller('LoginCtrl', function ($scope, $http, $window) {
             $scope.flash = data.flash;
         });
     };
+});
 
+app.controller('ForgotCtrl', function ($scope, $http) {
+
+    $scope.email = '';
+
+    $scope.loading = false;
+
+    $scope.sendEmail = function ()
+    {
+        $scope.loading = true;
+        $scope.flash = null;
+
+        $http.post('/forgot-password', {email: $scope.email})
+            .success(function (data) {
+
+                $scope.loading = false;
+
+                smoke.signal('Email sent', function(e){
+
+                }, {
+                    duration: 3000
+                });
+            })
+            .error(function (data) {
+                $scope.loading = false;
+                $scope.flash = data.flash;
+            });
+    };
+});
+
+app.controller('ResetPasswordCtrl', function ($scope, $http, $timeout, $window) {
+
+    $scope.password             = '';
+    $scope.passwordConfirmation = '';
+
+    $scope.loading = false;
+
+    $scope.sendNewPassword = function (token)
+    {
+        $scope.loading = true;
+        $scope.flash = null;
+
+        $http.post('/reset-password', {token: token, password: $scope.password, password_confirmation: $scope.password_confirmation})
+            .success(function (data) {
+
+                $scope.loading = false;
+
+                $timeout(function() {
+                    $window.location.href='/';
+                }, 1500);
+
+                smoke.signal('Password reset !', function(e){
+
+                }, {
+                    duration: 1500
+                });
+            })
+            .error(function (data) {
+                $scope.loading = false;
+                $scope.flash = data.flash;
+            });
+    };
 });

@@ -119,6 +119,4 @@
 
 @section('scripts')
     <script src="/vendor/smoke.js/smoke.min.js" type="text/javascript"></script>
-    <script src="/vendor/highlightjs/highlight.pack.js" type="text/javascript"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
 @stop
