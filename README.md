@@ -5,7 +5,7 @@
 Well, Gruik is for you if...
 
 * You __take a lot of notes__ (post-it, gists, evernote, blog entries, .txt on your desktop (_Oh you know what I mean_)...)
-* You want to __"Bring You Own Server"__ (later, a free hosted version will be available at [http://gruik.io](http://gruik.io))
+* You want to __"Bring You Own Server"__ (a free hosted version is be available at [http://gruik.io](http://gruik.io))
 * You want to store __all your notes in one place__
 * You write your notes __with Markdown__
 * You want to keep those __notes private__ or...
@@ -17,7 +17,7 @@ Well, Gruik is for you if...
 ![Gruik preview](http://lut.im/OYLqTKCB/s6CWP6Pg)
 
 ## How to install ?
-__For now, Gruik is under hard development, and it's TOTALLY BROKEN, like a broken.. thing.__
+__For now, Gruik is under hard development with regular breaking changes !__
 
 But if you want to try it :
  
@@ -38,7 +38,7 @@ But if you want to try it :
 Well, the best way to look for libs we use is to search in the [composer file](https://github.com/grena/gruik/blob/master/composer.json), and the [bower file](https://github.com/grena/gruik/blob/master/bower.json).
 
 #### Design & Logo
-Design template is the free MIT licensed [template AdminLTE](https://github.com/almasaeed2010/AdminLTE), and the awesome and sweet logo has been designed by [MyleneLa](http://www.mylenela.fr/en/).
+Design template is the free MIT licensed [template AdminLTE](https://github.com/almasaeed2010/AdminLTE), and the awesome and sweet logo has been designed by [MyleneLa](http://www.mylenela.fr).
 
 ## License
 
