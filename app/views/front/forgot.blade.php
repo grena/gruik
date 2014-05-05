@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <title>Gruik. - Forgot password</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+        <link rel="Shortcut Icon" type="image/png" href="/img/gruik-black.png" />
 
         <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
