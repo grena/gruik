@@ -42,10 +42,10 @@
     <div class="box-header" style="border-bottom: 1px solid #EEEEEE;">
         <i class="fa fa-files-o"></i> <h3 class="box-title">Your posts</h3>
 
-        <button ng-click="deleteSelected()" ng-show="selected.posts.length > 0" class="pull-right btn btn-sm btn-danger" style="margin-right: 5px; margin-top: 5px;"><i class="fa fa-times"></i> &nbsp; Delete selected</button>
+        <button ng-cloak ng-click="deleteSelected()" ng-show="selected.posts.length > 0" class="pull-right btn btn-sm btn-danger" style="margin-right: 5px; margin-top: 5px;"><i class="fa fa-times"></i> &nbsp; Delete selected</button>
     </div>
 
-    <div class="box-body">
+    <div class="box-body" ng-cloak>
 
         <div class="row" style="margin:20px 0;" ng-show="posts.length == 0">
             <div class="col-md-12">

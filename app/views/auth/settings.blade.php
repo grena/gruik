@@ -16,7 +16,7 @@
                     <div class="box-header">
                         <h3 class="box-title"><i class="fa fa-user"></i> Personal</h3>
                     </div>
-                    <div class="box-body">
+                    <div class="box-body" ng-cloak>
                         <div class="row" style="margin-bottom: 15px;">
                             <div class="col-md-12">
                                 <i class="fa fa-envelope" style="position:absolute; top:9px; color:#cecece;"></i>
@@ -47,7 +47,7 @@
                     <div class="box-header">
                         <h3 class="box-title"><i class="fa fa-heart"></i> Preferences</h3>
                     </div>
-                    <div class="box-body">
+                    <div class="box-body" ng-cloak>
                         <div class="row">
                             <div class="col-md-12">
                                 <p>
@@ -87,7 +87,7 @@
                     <div class="box-header">
                         <h3 class="box-title"><i class="fa fa-globe"></i> Public</h3>
                     </div>
-                    <div class="box-body">
+                    <div class="box-body" ng-cloak>
                         <div class="row" style="margin-bottom: 15px;">
                             <div class="col-md-12">
                                 <i class="fa fa-quote-left" style="position:absolute; top:9px; color:#cecece;"></i>

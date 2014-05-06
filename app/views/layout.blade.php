@@ -18,6 +18,9 @@
         <style>
             .selectize-input { box-shadow: none !important; border-radius: 0; border-left:0;border-right:0;border-top:0; border-bottom:1px dotted;}
         </style>
+
+        <script src="/vendor/angular/angular.min.js" type="text/javascript"></script>
+
     </head>
 
     <body class="skin-black" @yield('controller')>
@@ -44,7 +47,6 @@
         <script src="/vendor/jquery/jquery.min.js"></script>
         <script src="/vendor/selectize/dist/js/standalone/selectize.min.js" type="text/javascript"></script>
         <script src="/vendor/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="/vendor/angular/angular.min.js" type="text/javascript"></script>
         <script src="/vendor/checklist-model/checklist-model.js"></script>
         <script src="/vendor/angular-ui-select2/src/select2.js" type="text/javascript"></script>
         <script src="/vendor/lodash/dist/lodash.min.js" type="text/javascript"></script>

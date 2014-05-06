@@ -6,7 +6,7 @@
 
 @section('content')
 
-<div class="box box-solid">
+<div class="box box-solid" ng-cloak>
     <div class="box-header">
         <h3 class="box-title"><i class="fa fa-info-circle"></i> <span ng-show="currentPost.id > 0">Post #{{ currentPost.id }}</span><span ng-show="currentPost.id == 0">New post</span></h3>
         <div class="box-tools pull-right">
@@ -54,7 +54,7 @@
     </div>
 </div>
 
-<div class="box box-solid">
+<div class="box box-solid" ng-cloak>
     <div class="box-header" style="border-bottom: 1px solid #EEEEEE;">
         <i class="fa fa-file-text"></i>
         <div class="btn-group" style="margin-left: 15px; margin-top: 5px;">
@@ -82,12 +82,6 @@
         </div>
     </div>
 </div>
-
-<!-- <div>
-    <pre>
-        {{currentPost | json}}
-    </pre>
-</div> -->
 
 @stop
 

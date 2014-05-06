@@ -10,6 +10,8 @@
         <link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
         <link href="/vendor/smoke.js/smoke.css" rel="stylesheet" type="text/css" />
         <link href="/css/AdminLTE.css" rel="stylesheet" type="text/css" />
+
+        <script src="/vendor/angular/angular.min.js" type="text/javascript"></script>
     </head>
 
     <body style="background: url('/img/bglogin.png')" ng-controller="ResetPasswordCtrl">
@@ -21,7 +23,7 @@
             <form ng-submit="sendNewPassword('{% $token %}')">
                 <div class="body bg-gray">
 
-                    <div class="text-center" ng-show="flash">
+                    <div class="text-center" ng-show="flash" ng-cloak>
                         <small class="label label-danger"><i class="fa fa-times"></i> {{ flash }}</small>
                     </div>
 
@@ -39,7 +41,6 @@
         </div>
 
         <script src="/vendor/jquery/jquery.min.js"></script>
-        <script src="/vendor/angular/angular.min.js" type="text/javascript"></script>
         <script src="/vendor/checklist-model/checklist-model.js"></script>
         <script src="/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="/vendor/smoke.js/smoke.min.js" type="text/javascript"></script>
