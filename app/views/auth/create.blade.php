@@ -83,6 +83,10 @@
     </div>
 </div>
 
+<div>
+    <pre>{{ currentPost | json }}</pre>
+</div>
+
 @stop
 
 @section('scripts')
@@ -91,4 +95,5 @@
     <script src="/js/ace/ace.js" type="text/javascript" charset="utf-8"></script>
     <script src="/js/ace/theme-monokai.js" type="text/javascript" charset="utf-8"></script>
     <script src="/js/ace/mode-markdown.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/vendor/humane-js/humane.min.js" type="text/javascript" charset="utf-8"></script>
 @stop

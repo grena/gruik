@@ -13,6 +13,7 @@
         <link href="/vendor/highlightjs/styles/github.css" rel="stylesheet" type="text/css" />
         <link href="/vendor/selectize/dist/css/selectize.css" rel="stylesheet" type="text/css" />
         <link href="/vendor/selectize/dist/css/selectize.default.css" rel="stylesheet" type="text/css" />
+        <link href="/vendor/humane-js/themes/flatty.css" rel="stylesheet" type="text/css" />
         <link href="/css/gruik.css" rel="stylesheet" type="text/css" />
 
         <style>

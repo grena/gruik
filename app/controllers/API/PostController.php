@@ -102,13 +102,22 @@ class PostController extends \BaseController {
                 'allow_comments' => Input::get('allow_comments', false)
             ];
 
+            // Save post
+            $post = $postRepo->store($data);
+
+            // Sync tags
             $tags = Input::get('tags', []);
             $tagsId = $tagRepo->labelToId($tags, \Sentry::getUser()->id);
+            $tags = $postRepo->syncTags($post->id, $tagsId)->toArray();
 
-            $post = $postRepo->store($data);
-            $post = $postRepo->syncTags($post->id, $tagsId);
+            $tags_string = array_map(function($tag) {
+                return $tag['label'];
+            }, $tags);
 
-            return \Response::json($post->toArray(), 200);
+            $post = $post->toArray();
+            $post['tags'] = $tags_string;
+
+            return \Response::json($post, 200);
         }
         else
         {

@@ -35,6 +35,7 @@ app.controller('CreateCtrl', function ($scope, $sce, $http) {
 
     var marked = window.marked;
     var hljs = window.hljs;
+    var humane = window.humane;
 
     window.scope = $scope;
 
@@ -80,6 +81,20 @@ app.controller('CreateCtrl', function ($scope, $sce, $http) {
 
     // FUNCTIONS
 
+    $scope.triggerSaved = function(success)
+    {
+        humane.remove(function() {
+            if(success)
+            {
+                humane.log('<span class="text-success"><i class="fa fa-check"></i> Post saved !</span>', { timeout: 1500, clickToClose: true });
+            }
+            else
+            {
+                humane.log('<span class="text-danger"><i class="fa fa-times"></i> An error has occured !</span>', { timeout: 5000, clickToClose: true });
+            }
+        });
+    };
+
     $scope.save = function()
     {
         $scope.loading = true;
@@ -92,10 +107,14 @@ app.controller('CreateCtrl', function ($scope, $sce, $http) {
             success(function(data, status, headers, config) {
                 $scope.currentPost = _.extend($scope.currentPost, data);
                 $scope.loading = false;
+
+                $scope.triggerSaved(true);
             }).
             error(function(data, status, headers, config) {
                 console.log('fail = ', data);
                 $scope.loading = false;
+
+                $scope.triggerSaved(false);
             });
         }
         else
@@ -105,10 +124,14 @@ app.controller('CreateCtrl', function ($scope, $sce, $http) {
             success(function(data, status, headers, config) {
                 $scope.currentPost = _.extend($scope.currentPost, data);
                 $scope.loading = false;
+
+                $scope.triggerSaved(true);
             }).
             error(function(data, status, headers, config) {
                 console.log('fail = ', data);
                 $scope.loading = false;
+
+                $scope.triggerSaved(false);
             });
         }
     };

@@ -52,7 +52,7 @@ class EloquentPost extends RepoAbstract implements RepoInterface, PostInterface 
             }
         }
 
-        return $post;
+        return $post->tags;
     }
 
     public function store($data)
