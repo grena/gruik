@@ -69,9 +69,7 @@ app.value('selectizeConfig', {}).directive("selectize", ['selectizeConfig', '$ti
       selectize = $(element)[0].selectize;
 
       function addAngularOption(value, data) {
-        console.log('ngModel status = ', ngModel);
         $timeout(function(){
-            console.log('add called');
           if(ngModel.$modelValue.length != selectize.currentResults.total)
           {
             ngModel.$modelValue.push(value);
@@ -81,7 +79,6 @@ app.value('selectizeConfig', {}).directive("selectize", ['selectizeConfig', '$ti
 
       function removeAngularOption(value, data) {
         $timeout(function(){
-            console.log('remove called value & data = ', value, data);
             ngModel.$setViewValue(selectize.items);
         });
       }
@@ -91,7 +88,6 @@ app.value('selectizeConfig', {}).directive("selectize", ['selectizeConfig', '$ti
         $timeout(function() {
             if(ngModel.$viewValue.length != selectize.currentResults.total)
             {
-                console.log('update called value puis data', value, data);
                 ngModel.$setViewValue(value);
             }
         });
@@ -209,16 +205,14 @@ app.controller('CreateCtrl', function ($scope, $sce, $http) {
         {
             // Creating post
             $http.post('/api/posts', $scope.currentPost).
-            success(function(data, status, headers, config) {
-                $scope.currentPost = _.extend(data, $scope.currentPost);
+            success(function(data) {
+                $scope.currentPost.id = data.id;
                 $scope.loading = false;
-
                 $scope.triggerSaved(true);
             }).
             error(function(data, status, headers, config) {
                 console.log('fail = ', data);
                 $scope.loading = false;
-
                 $scope.triggerSaved(false);
             });
         }
@@ -229,13 +223,11 @@ app.controller('CreateCtrl', function ($scope, $sce, $http) {
             success(function(data, status, headers, config) {
                 $scope.currentPost = _.extend(data, $scope.currentPost);
                 $scope.loading = false;
-
                 $scope.triggerSaved(true);
             }).
             error(function(data, status, headers, config) {
                 console.log('fail = ', data);
                 $scope.loading = false;
-
                 $scope.triggerSaved(false);
             });
         }

@@ -8,7 +8,11 @@
 
 <div class="box box-solid" ng-cloak>
     <div class="box-header">
-        <h3 class="box-title"><i class="fa fa-info-circle"></i> <span ng-show="currentPost.id > 0">Post #{{ currentPost.id }}</span><span ng-show="currentPost.id == 0">New post</span></h3>
+        <h3 class="box-title"><i class="fa fa-info-circle"></i>
+            <span ng-show="currentPost.id > 0">Post #{{ currentPost.id }}</span>
+            <span ng-show="currentPost.id == 0">New post</span>
+            <small ng-show="currentPost.id > 0">- <a href="{% URL::to('view') %}/{{ currentPost.id }}" style="text-decoration:underline;">View this post</a></small>
+        </h3>
         <div class="box-tools pull-right">
             <button class="btn btn-default btn-sm" data-widget="collapse" ng-click="showInfos = !showInfos">
                 <i ng-show="showInfos" class="fa fa-2x fa-angle-double-down"></i>

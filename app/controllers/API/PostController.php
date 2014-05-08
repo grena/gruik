@@ -48,7 +48,7 @@ class PostController extends \BaseController {
         $tagsId = $tagRepo->labelToId($tags, \Sentry::getUser()->id);
 
         $post = $postRepo->store($data);
-        $post = $postRepo->syncTags($post->id, $tagsId);
+        $tags = $postRepo->syncTags($post->id, $tagsId);
 
         return \Response::json($post, 200);
 	}
