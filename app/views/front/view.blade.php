@@ -38,7 +38,7 @@
                 <div class="box-body">
                     <div class="row" style="margin-bottom: 15px;">
                         <div class="col-md-12" id="markdown_content">
-                            <div class="text-center" ng-show="!post.html">
+                            <div class="text-center" ng-hide="post.html !== null">
                                 <i class="fa fa-cog fa-spin"></i>
                             </div>
                             <span ng-bind-html="post.html"></span>

@@ -379,6 +379,7 @@ app.controller('ViewCtrl', function ($scope, $sce) {
         }
     });
 
+    $scope.post.html = null;
     $scope.post.html = $sce.trustAsHtml( marked( $scope.post.md_content ) );
 
     $scope.loadComments = function()
