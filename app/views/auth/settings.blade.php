@@ -126,3 +126,6 @@
 </div>
 @stop
 
+@section('scripts')
+    <script src="/vendor/humane-js/humane.min.js" type="text/javascript" charset="utf-8"></script>
+@stop

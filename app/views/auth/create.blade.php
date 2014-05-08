@@ -25,7 +25,7 @@
         </div>
         <div class="row" style="margin-bottom: 15px;">
             <div class="col-md-6">
-                <select id="input-tags" placeholder="Tags..." ng-model="currentPost.tags"></select>
+                <select id="input-tags" placeholder="Tags..." selectize="selectizeConfig" options='selectizeOptions' ng-model="currentPost.tags"></select>
             </div>
         </div>
         <div class="row">
@@ -82,11 +82,6 @@
         </div>
     </div>
 </div>
-
-<div>
-    <pre>{{ currentPost | json }}</pre>
-</div>
-
 @stop
 
 @section('scripts')

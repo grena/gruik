@@ -80,18 +80,38 @@ class UserController extends \BaseController {
             // Password change
         	$new_password = array_pull($inputs, 'new_password', false);
         	$new_password_conf = array_pull($inputs, 'new_password_conf', false);
+            $email = array_pull($inputs, 'email', false);
+
+            if($new_password || $new_password_conf)
+            {
+                if($new_password == $new_password_conf)
+                {
+                    $user->password = $new_password;
+                }
+                else
+                {
+                    return \Response::json(['flash' => 'Passwords must be the same !'], 400);
+                }
+            }
+
+            // Email change
+            if($email != $user->email)
+            {
+                if(filter_var($email, FILTER_VALIDATE_EMAIL))
+                {
+                    $user->email = $email;
+                }
+                else
+                {
+                    return \Response::json(['flash' => 'Email address is not valid !'], 400);
+                }
+            }
 
             // Preferences
             $preferences = array_pull($inputs, 'preferences', false);
-
             $userRepo->setPreferencesForUser($id, $preferences);
 
             $user = $user->fill($inputs);
-
-        	if($new_password && $new_password_conf && $new_password == $new_password_conf)
-        	{
-        		$user->password = $new_password;
-        	}
 
             $user->save();
 

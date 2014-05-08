@@ -1,4 +1,4 @@
-app = angular.module('app', ["checklist-model"]);
+app = angular.module('app', ['checklist-model']);
 
 app.factory('debounce', function ($timeout, $q) {
     return function debounce(func, wait, immediate) {
@@ -27,32 +27,145 @@ app.factory('debounce', function ($timeout, $q) {
     };
 });
 
+/**
+ * Angular Selectize2 (fixed)
+ * Inspired by https://github.com/machineboy2045/angular-selectize
+ **/
+app.value('selectizeConfig', {}).directive("selectize", ['selectizeConfig', '$timeout', function(selectizeConfig, $timeout) {
+
+  return {
+    restrict: 'A',
+    require: '^ngModel',
+    link: function(scope, element, attrs, ngModel) {
+      var config;
+      var selectize;
+      var prevNgClasses = '';
+
+      //config
+      config = scope.$eval(attrs.selectize);
+      config.options = scope.$eval(attrs.options) || [];
+      if(typeof selectizeConfig !== 'undefined'){
+        config = angular.extend(config, selectizeConfig);
+      }
+      config.maxItems = config.maxItems || null; //default to tag editor
+
+      //support simple arrays
+      if(config.options && typeof config.options[0] === 'string'){
+        config.options = $.map(config.options, function(opt, index){
+          return {id:index, text:opt, value:opt};
+        })
+        config.sortField = config.sortField || 'id'; //preserve order
+      }
+
+      config.create = function(input) {
+        var data = {};
+        data[selectize.settings.labelField] = input;
+        data[selectize.settings.valueField] = input;
+        return data;
+      };
+
+      //init
+      $(element).selectize(config);
+      selectize = $(element)[0].selectize;
+
+      function addAngularOption(value, data) {
+        console.log('ngModel status = ', ngModel);
+        $timeout(function(){
+            console.log('add called');
+          if(ngModel.$modelValue.length != selectize.currentResults.total)
+          {
+            ngModel.$modelValue.push(value);
+          }
+        });
+      }
+
+      function removeAngularOption(value, data) {
+        $timeout(function(){
+            console.log('remove called value & data = ', value, data);
+            ngModel.$setViewValue(selectize.items);
+        });
+      }
+
+      function updateAngularOption(value, data)
+      {
+        $timeout(function() {
+            if(ngModel.$viewValue.length != selectize.currentResults.total)
+            {
+                console.log('update called value puis data', value, data);
+                ngModel.$setViewValue(value);
+            }
+        });
+      }
+
+      function updateClasses(){
+        var ngClasses = $(element).prop('class').match(/ng-[a-z-]+/g).join(' ');
+
+        if(ngClasses != prevNgClasses){
+          var selectizeClasses = selectize.$control.prop('class').replace(/ng-[a-z-]+/g, '');
+          prevNgClasses = ngClasses;
+          selectize.$control.prop('class', selectizeClasses+' '+ngClasses);
+        }
+      }
+
+      function refreshItem(val){
+        if(!selectize.userOptions[val]){
+          selectize.addOption( selectize.settings.create(val) );
+        }
+      }
+
+      function refreshSelectize(value){
+        $timeout(function(){
+          if(angular.isArray(value)){
+            angular.forEach(value, refreshItem);
+          }else{
+            refreshItem(value);
+          }
+          selectize.setValue(value);
+          updateClasses();
+        });
+      }
+
+      function toggle(disabled){
+        disabled ? selectize.disable() : selectize.enable();
+      }
+
+      // selectize.on('option_add', addAngularOption);
+      selectize.on('item_remove', removeAngularOption);
+      selectize.on('option_remove', removeAngularOption);
+      selectize.on('change', updateAngularOption);
+      scope.$watch(function(){ return ngModel.$modelValue }, refreshSelectize, true);
+      attrs.$observe('disabled', toggle);
+    }
+  };
+}]);
+
 app.controller('AdminCtrl', function ($scope) {
 
 });
 
 app.controller('CreateCtrl', function ($scope, $sce, $http) {
 
+    // Vars
     var marked = window.marked;
     var hljs = window.hljs;
     var humane = window.humane;
-
-    window.scope = $scope;
 
     $scope.user = window.Gruik.user;
 
     $scope.currentPost = {
         id: 0,
         title: '',
-        md_content: ''
+        md_content: '',
+        tags: []
     };
 
     $scope.is_preview = false;
     $scope.loading = false;
 
-    // INIT PLUGINS
+    // Selectize configuration
+    $scope.selectizeOptions = window.Gruik.tags;
 
-    $select = $('#input-tags').selectize({
+    $scope.selectizeConfig = {
         plugins: ['remove_button'],
         maxItems: null,
         openOnFocus: false,
@@ -61,17 +174,10 @@ app.controller('CreateCtrl', function ($scope, $sce, $http) {
         valueField: 'label',
         labelField: 'label',
         searchField: ['label'],
-        options: window.Gruik.tags,
-        persist: false,
-        create: function(input) {
-            return {
-                label: input
-            };
-        }
-    });
+        persist: false
+    };
 
-    selectize = $select[0].selectize;
-
+    // Marked configuration
     marked.setOptions({
         sanitize: true,
         highlight: function (code) {
@@ -80,7 +186,6 @@ app.controller('CreateCtrl', function ($scope, $sce, $http) {
     });
 
     // FUNCTIONS
-
     $scope.triggerSaved = function(success)
     {
         humane.remove(function() {
@@ -105,7 +210,7 @@ app.controller('CreateCtrl', function ($scope, $sce, $http) {
             // Creating post
             $http.post('/api/posts', $scope.currentPost).
             success(function(data, status, headers, config) {
-                $scope.currentPost = _.extend($scope.currentPost, data);
+                $scope.currentPost = _.extend(data, $scope.currentPost);
                 $scope.loading = false;
 
                 $scope.triggerSaved(true);
@@ -122,7 +227,7 @@ app.controller('CreateCtrl', function ($scope, $sce, $http) {
             // Updating post
             $http.put('/api/posts/' + $scope.currentPost.id, $scope.currentPost).
             success(function(data, status, headers, config) {
-                $scope.currentPost = _.extend($scope.currentPost, data);
+                $scope.currentPost = _.extend(data, $scope.currentPost);
                 $scope.loading = false;
 
                 $scope.triggerSaved(true);
@@ -164,10 +269,6 @@ app.controller('CreateCtrl', function ($scope, $sce, $http) {
     {
         $scope.currentPost = window.Gruik.edited_post;
         $scope.currentPost.tags = window.Gruik.edited_tags;
-
-        _.each($scope.currentPost.tags, function(tag) {
-            selectize.addItem(tag);
-        });
 
         $scope.editor.setValue($scope.currentPost.md_content);
         $scope.editor.gotoLine(1);
@@ -232,8 +333,6 @@ app.controller('DashboardCtrl', function ($scope, $http, $window, debounce) {
         });
     };
 
-
-
     $scope.$watch('search', debounce(function () {
         console.log('search = ', $scope.search);
     }, 500, false), true);
@@ -246,10 +345,10 @@ app.controller('TagsCtrl', function ($scope) {
 
 app.controller('SettingsCtrl', function ($scope, $http, $window) {
 
+    var humane = window.humane;
+
     $scope.user = window.Gruik.user;
     $scope._token = $("#csrf").val();
-
-    window.scope = $scope;
 
     $scope.saveUser = function()
     {
@@ -258,10 +357,13 @@ app.controller('SettingsCtrl', function ($scope, $http, $window) {
 
         $http.put('/api/users/'+$scope.user.id, $scope.user).
         success(function(data, status, headers, config) {
+            humane.log('<span class="text-success"><i class="fa fa-check"></i> Settings saved !</span>', { timeout: 1500, clickToClose: true }, function() {
+                $window.location.reload();
+            });
             $scope.loading = false;
-            $window.location.reload();
         }).
         error(function(data, status, headers, config) {
+            humane.log('<span class="text-danger"><i class="fa fa-times"></i> Error : '+data.flash+'</span>', { timeout: 5000, clickToClose: true });
             console.log('fail = ', data);
             $scope.loading = false;
         });

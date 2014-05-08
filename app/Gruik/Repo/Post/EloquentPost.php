@@ -22,9 +22,9 @@ class EloquentPost extends RepoAbstract implements RepoInterface, PostInterface 
         return $this->model->where('user_id', $user_id);
     }
 
-    public function syncTags($id, $tags_id)
+    public function syncTags($id_post, $tags_id)
     {
-        $post = $this->model->find($id);
+        $post = $this->model->find($id_post);
         $existing_tags = $post->tags;
 
         $existing_id = [];
