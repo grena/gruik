@@ -164,5 +164,25 @@ class PostController extends \BaseController {
         }
     }
 
+    public function search()
+    {
+        $term = Input::get('term', false);
+        $tags = Input::get('tags', false);
 
+        $postRepo = \App::make('Gruik\Repo\Post\PostInterface');
+        $posts = [];
+
+        if($term)
+        {
+            $term = trim($term);
+            $posts = $postRepo->searchByTerm($term, \Sentry::getUser()->id);
+        }
+
+        if($tags)
+        {
+
+        }
+
+        return \Response::json($posts, 200);
+    }
 }

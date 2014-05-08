@@ -280,9 +280,14 @@ app.controller('DashboardCtrl', function ($scope, $http, $window, debounce) {
         posts : []
     };
 
-    $scope.showSearch = false;
-
     $scope.posts = window.Gruik.posts.data;
+    $scope._posts = window.Gruik.posts.data;
+
+    $scope.search = {
+        term: '',
+        tags: []
+    };
+
     $scope._token = $("#csrf").val();
 
     $scope.deleteSelected = function(id)
@@ -325,8 +330,33 @@ app.controller('DashboardCtrl', function ($scope, $http, $window, debounce) {
         });
     };
 
+    $scope.doSearch = function()
+    {
+        if($scope.search.term == '' && $scope.search.tags.length === 0)
+        {
+            $scope.searchIsActive = false;
+
+            // Restore post from page
+            $scope.posts = angular.copy($scope._posts);
+        }
+        else
+        {
+            $scope.searchIsActive = true;
+
+            $http.post('/api/posts/search', {'term': $scope.search.term, 'tags': $scope.search.tags, '_token': $scope._token}).
+            success(function(data, status, headers, config) {
+                $scope.posts = data;
+                $scope.searchIsActive = false;
+            }).
+            error(function(data, status, headers, config) {
+                console.log('data = ' , data);
+                $scope.searchIsActive = false;
+            });
+        }
+    };
+
     $scope.$watch('search', debounce(function () {
-        console.log('search = ', $scope.search);
+        $scope.doSearch();
     }, 500, false), true);
 
 });

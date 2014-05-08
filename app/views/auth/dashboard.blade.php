@@ -18,9 +18,9 @@
 <div class="box box-solid collapsed-box">
     <div class="box-header">
         <h3 class="box-title">
-            <i class="fa fa-search"></i>
-            <input class="form-control" ng-model="search" type="text" ng-debounce="500" placeholder="Search..." style="position: absolute; border:0; top: 6px; left: 32px; width: 250px;">
-            {{ search }}
+            <i class="fa fa-search" ng-hide="searchIsActive"></i>
+            <i class="fa fa-cog fa-spin" ng-show="searchIsActive"></i>
+            <input class="form-control" ng-model="search.term" type="text" ng-debounce="500" placeholder="Search..." style="position: absolute; border:0; top: 6px; left: 32px; width: 250px;">
         </h3>
         <div class="box-tools pull-right">
             <button class="btn btn-default btn-sm" data-widget="collapse" ng-click="showSearch = !showSearch">

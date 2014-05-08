@@ -92,4 +92,18 @@ class EloquentPost extends RepoAbstract implements RepoInterface, PostInterface 
             \DB::table('posts')->whereIn('id', $id_posts)->delete();
         }
     }
+
+    public function searchByTerm($term, $id_user = 0)
+    {
+        $request = $this->model->where('md_content', 'LIKE', '%'.$term.'%')->orWhere('title', 'LIKE', '%'.$term.'%');
+
+        if($id_user !== 0)
+        {
+            $request->where('user_id', $id_user);
+        }
+
+        $request->with('tags');
+
+        return $request->get();
+    }
 }

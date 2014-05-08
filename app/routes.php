@@ -49,6 +49,7 @@ Route::group(array('prefix' => 'api', 'before' => 'csrf'), function()
         Route::resource('users', 'API\UserController');
         Route::resource('posts', 'API\PostController', array('except' => array('index', 'show')));
         Route::post('posts/multiple_delete', ['uses' => 'API\PostController@multiple_delete']);
+        Route::post('posts/search', ['uses' => 'API\PostController@search']);
     });
 
 });
