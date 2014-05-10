@@ -95,7 +95,10 @@ class EloquentPost extends RepoAbstract implements RepoInterface, PostInterface 
 
     public function searchByTerm($term, $id_user = 0)
     {
-        $request = $this->model->where('md_content', 'LIKE', '%'.$term.'%')->orWhere('title', 'LIKE', '%'.$term.'%');
+        $request = $this->model->where(function($q) use($term) {
+            return $q->where('md_content', 'LIKE', '%'.$term.'%')
+                    ->orWhere('title', 'LIKE', '%'.$term.'%');
+        });
 
         if($id_user !== 0)
         {
