@@ -371,8 +371,6 @@ app.controller('ExploreCtrl', function ($scope) {
         tags: []
     };
 
-    window.scope = $scope;
-
 });
 
 app.controller('UserProfileCtrl', function ($scope) {
