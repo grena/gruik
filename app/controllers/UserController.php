@@ -30,7 +30,7 @@ class UserController extends BaseController {
         ]);
 
         return View::make('front.user_profile')
-                    ->with('user', $visited_user)
+                    ->with('user', Sentry::getUser())
                     ->with('posts', $posts)
                     ->with('visited_user', $visited_user)
                     ->with('username', $username);
