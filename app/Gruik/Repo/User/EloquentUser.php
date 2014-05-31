@@ -67,4 +67,16 @@ class EloquentUser extends RepoAbstract implements RepoInterface, UserInterface 
 
         \DB::table('user_preferences')->insert($inserts);
     }
+
+    public function toPublicArray($user)
+    {
+        return array_only($user->toArray(), [
+                'about',
+                'created_at',
+                'github_username',
+                'last_login',
+                'twitter_username',
+                'username'
+            ]);
+    }
 }

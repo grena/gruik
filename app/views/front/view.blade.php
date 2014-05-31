@@ -36,7 +36,7 @@
                 <hr style="margin:0 5px;">
 
                 <div class="box-body">
-                    <div class="row" style="margin-bottom: 15px;">
+                    <div class="row">
                         <div class="col-md-12" id="markdown_content">
                             <div class="text-center" ng-hide="post.html !== null">
                                 <i class="fa fa-cog fa-spin"></i>
@@ -57,7 +57,7 @@
                                 @if($post->private)
                                     <span class="visible-sm visible-xs label label-default" data-toggle="tooltip" title="" data-original-title="Only you can view this post !"><i class="fa fa-lock"></i> Private</span>
                                 @endif
-                                By <a href="#">{% $author->username %}</a> | Last edited : <span data-toggle="tooltip" title="" data-original-title="{% $post->updated_at %}">{% $post->updated_at_human %}</span>
+                                By <a href="{% route('user_profile', ['username' => $author->username]); %}">{% $author->username %}</a> | Last edited : <span data-toggle="tooltip" title="" data-original-title="{% $post->updated_at %}">{% $post->updated_at_human %}</span>
                             </small>
                         </div>
                     </div>

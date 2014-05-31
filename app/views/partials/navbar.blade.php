@@ -24,6 +24,11 @@
                         <img src="{% Gravatar::src( $user->email, 80 ) %}" class="img-circle" alt="User Image" style="box-shadow: 0px 0px 15px #111111;" />
                         <p>{% $user->email %}</p>
                     </li>
+                    <li class="user-body">
+                        <div class="col-xs-12 text-center">
+                            <a href="{% route('user_profile', ['username' => $user->username]); %}"><i class="fa fa-user"></i> Profile</a>
+                        </div>
+                    </li>
                     <li class="user-footer">
                         <div class="pull-left">
                             <a href="{% URL::to('settings') %}" class="btn btn-default btn-flat">Settings</a>

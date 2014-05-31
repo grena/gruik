@@ -28,6 +28,13 @@ class EloquentTag extends RepoAbstract implements RepoInterface, TagInterface {
         return $this->model->where('user_id', $id_user)->get();
     }
 
+    public function publicByUserId($id_user)
+    {
+        return $this->model->whereHas('posts', function($q) use($id_user) {
+            $q->where('private', false)->where('user_id', $id_user);
+        })->get();
+    }
+
     public function createFromString($label, $user_id)
     {
         $tag = $this->make([

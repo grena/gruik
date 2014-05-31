@@ -361,6 +361,24 @@ app.controller('DashboardCtrl', function ($scope, $http, $window, debounce) {
 
 });
 
+app.controller('ExploreCtrl', function ($scope) {
+
+    $scope.search = {
+        term: '',
+        tags: []
+    };
+
+});
+
+app.controller('UserProfileCtrl', function ($scope) {
+    $scope.user = window.Gruik.user;
+    $scope.total_posts = window.Gruik.posts.total;
+    $scope.total_tags = window.Gruik.total_tags;
+    $scope.total_days = window.Gruik.total_days;
+    $scope.posts = window.Gruik.posts.data;
+    window.scope = $scope;
+});
+
 app.controller('TagsCtrl', function ($scope) {
 
 });

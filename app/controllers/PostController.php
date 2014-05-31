@@ -56,8 +56,6 @@ class PostController extends BaseController {
 
         $limit = Input::get('limit', 20);
 
-        $total = $postRepo->byUserId(Sentry::getUser()->id)->count();
-
         $posts = $postRepo->byUserIdQuery(Sentry::getUser()->id)
                     ->with('tags')
                     ->paginate($limit);
