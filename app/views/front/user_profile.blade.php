@@ -83,7 +83,9 @@
                                     </a>
                                 </span>
 
-                                <small ng-repeat="tag in post.tags" class="label label-primary">{{ tag.label }}</small>
+                                <div class="pull-right">
+                                    <small ng-repeat="tag in post.tags" class="label label-primary">{{ tag.label }}</small>
+                                </div>
                             </li>
                         </ul>
                     </div>

@@ -22,6 +22,11 @@ class EloquentPost extends RepoAbstract implements RepoInterface, PostInterface 
         return $this->model->where('user_id', $user_id);
     }
 
+    public function allPublicQuery()
+    {
+        return $this->model->where('private', false);
+    }
+
     public function syncTags($id_post, $tags_id)
     {
         $post = $this->model->find($id_post);

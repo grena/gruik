@@ -16,7 +16,7 @@
     background: url('/img/bgbody.png');
 }
 
-.box .todo-list > li {
+.box .todo-list > li.private {
     margin-left: 16px;
 }
 

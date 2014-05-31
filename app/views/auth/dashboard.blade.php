@@ -59,7 +59,7 @@
         <div class="row">
             <div class="col-md-12">
                 <ul class="todo-list ui-sortable">
-                    <li ng-repeat="post in posts">
+                    <li ng-repeat="post in posts" class="private">
 
                         <span ng-show="post.private" style="color:#f3f4f5; float:left; margin-left: -28px; margin-top: -3px;" data-toggle="tooltip" data-placement="left" title="Private post">
                             <span class="fa-stack">
