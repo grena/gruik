@@ -30,11 +30,11 @@
 
 <div class="row">
     <div class="col-md-7">
-        <div class="box box-solid">
+        <div class="box box-solid" ng-cloak>
             <div class="box-header" style="border-bottom: 1px solid #EEEEEE;">
                 <h3 class="box-title"><i class="fa fa-clock-o"></i> Recent public gruiks - Total : {{ total_posts | number }}</h3>
             </div>
-            <div class="box-body">
+            <div class="box-body" ng-cloak>
                 <div class="row" style="margin:20px 0;" ng-show="posts.length == 0">
                     <div class="col-md-12">
                         <div class="text-center small" style="color:#A3A3A3;">
