@@ -17,6 +17,11 @@
                         {{ user.about }}
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div style="color:#B6B6B6; font-style:italic; margin-top: 10px;"><small>Last login : {{ last_login }}</small></div>
+                    </div>
+                </div>
                 <hr>
                 <div class="row">
                     <div class="col-md-4">

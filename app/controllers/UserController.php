@@ -22,9 +22,13 @@ class UserController extends BaseController {
                     ->with('tags')
                     ->paginate($limit);
 
+        $diff = Carbon::now()->diffInMinutes(Carbon::parse($visited_user->last_login));
+        $last_login = Carbon::now()->subMinutes($diff)->diffForHumans();
+
         JavaScript::put([
             'user'       => $userRepo->toPublicArray($visited_user),
             'posts'      => $posts->toArray(),
+            'last_login' => $last_login,
             'total_tags' => $tagRepo->publicByUserId($visited_user->id)->count(),
             'total_days' => Carbon::now()->diffInDays(Carbon::parse($visited_user->created_at)),
         ]);

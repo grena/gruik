@@ -375,6 +375,7 @@ app.controller('ExploreCtrl', function ($scope) {
 
 app.controller('UserProfileCtrl', function ($scope) {
     $scope.user = window.Gruik.user;
+    $scope.last_login = window.Gruik.last_login;
 
     $scope.total_posts = window.Gruik.posts.total;
     $scope.total_tags = window.Gruik.total_tags;
