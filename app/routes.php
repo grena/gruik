@@ -18,7 +18,7 @@ Route::get('/', ['uses' => 'HomeController@home']);
 Route::get('/explore', ['uses' => 'HomeController@explore']);
 Route::get('/view/{id}', ['uses' => 'PostController@view']);
 Route::get('/login', ['uses' => 'HomeController@login']);
-Route::get('/register', ['uses' => 'HomeController@register']);
+Route::get('/register', ['as' => 'register', 'uses' => 'HomeController@register']);
 Route::get('/forgot-password', ['uses' => 'HomeController@forgotPassword']);
 Route::get('/password-reset/{token}', ['as' => 'passwordReseter', 'uses' => 'HomeController@passwordReset']);
 Route::post('/forgot-password', ['uses' => 'AuthController@forgotPassword']);
