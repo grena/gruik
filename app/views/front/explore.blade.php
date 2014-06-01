@@ -66,6 +66,8 @@
                                 <div class="pull-right">
                                     <small ng-repeat="tag in post.tags" class="label label-primary">{{ tag.label }}</small>
                                 </div>
+
+                                <div class="clearfix"></div>
                             </li>
                         </ul>
                     </div>
