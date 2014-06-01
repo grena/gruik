@@ -27,7 +27,7 @@
                     </div>
 
                     <div class="form-group">
-                        <input required ng-disabled="loading" ng-model="user.email" type="text" class="form-control" placeholder="Email"/>
+                        <input required ng-disabled="loading" ng-model="user.email" type="text" class="form-control" placeholder="Email" name="email"/>
                     </div>
                     <div class="form-group">
                         <input required ng-disabled="loading" ng-model="user.password" type="password" class="form-control" placeholder="Password"/>

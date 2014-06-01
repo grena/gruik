@@ -70,7 +70,7 @@ return array(
 		|
 		*/
 
-		'key' => 'cartalyst_sentry',
+		'key' => 'gruik_cartalyst_sentry',
 
  	),
 
