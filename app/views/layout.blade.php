@@ -8,7 +8,7 @@
 
         <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="/vendor/smoke.js/smoke.css" rel="stylesheet" type="text/css" />
-        <link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
         <link href="/css/AdminLTE.css" rel="stylesheet" type="text/css" />
         <link href="/vendor/highlightjs/styles/github.css" rel="stylesheet" type="text/css" />
         <link href="/vendor/selectize/dist/css/selectize.css" rel="stylesheet" type="text/css" />
