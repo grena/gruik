@@ -30,16 +30,10 @@
             @include('partials.navbar')
         </header>
 
-        <div class="wrapper row-offcanvas row-offcanvas-left">
-            <aside class="left-side sidebar-offcanvas">
-                @include('partials.sidebar')
-            </aside>
-
-            <aside class="right-side">
-                <section class="content">
-                    @yield('content')
-                </section>
-            </aside>
+        <div class="wrapper">
+            <section class="content">
+                @yield('content')
+            </section>
         </div>
 
         <!-- View where JS vals are bind from server -->

@@ -1,9 +1,5 @@
 @extends('layout')
 
-@section('controller')
-    ng-controller="HomeCtrl"
-@stop
-
 @section('content')
 <div class="row">
     <div class="col-md-8 col-md-offset-2">

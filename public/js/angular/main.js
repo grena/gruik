@@ -247,9 +247,10 @@ app.controller('CreateCtrl', function ($scope, $sce, $http) {
     $scope.editor = ace.edit("editor");
     var MarkdownMode = require("ace/mode/markdown").Mode;
 
-    $scope.editor.setTheme("ace/theme/monokai");
+    $scope.editor.setTheme("ace/theme/github");
     $scope.editor.setFontSize(14);
     $scope.editor.setShowPrintMargin(false);
+    $scope.editor.setHighlightActiveLine(false);
     $scope.editor.getSession().setMode(new MarkdownMode());
 
     $scope.editor.getSession().on('change', function(e) {

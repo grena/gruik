@@ -15,7 +15,7 @@ class UserController extends BaseController {
         $postRepo = App::make('Gruik\Repo\Post\PostInterface');
         $tagRepo = App::make('Gruik\Repo\Tag\TagInterface');
 
-        $limit = Input::get('limit', 20);
+        $limit = Input::get('limit', 10);
 
         $posts = $postRepo->byUserIdQuery($visited_user->id)
                     ->where('private', false)

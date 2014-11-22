@@ -54,7 +54,7 @@ class PostController extends BaseController {
     {
         $postRepo = \App::make('Gruik\Repo\Post\PostInterface');
 
-        $limit = Input::get('limit', 20);
+        $limit = Input::get('limit', 15);
 
         $posts = $postRepo->byUserIdQuery(Sentry::getUser()->id)
                     ->with('tags')

@@ -27,3 +27,44 @@
 .btn.btn-app > .badge {
   font-size: 13px;
 }
+
+.skin-black .logo {
+  background-color: #fff;
+  color: #000;
+  border-bottom: 1px solid #eee;
+}
+
+.skin-black .logo:hover {
+  background: #fff;
+}
+
+.gruik-top-menu {
+  margin-top:10px;
+}
+.gruik-top-menu > a {
+  font-weight: bold;
+  color:#000;
+  display: inline-block;
+  margin-right: 30px;
+}
+.gruik-top-menu > a:hover {
+  color:#3c8dbc;
+}
+.gruik-top-menu > input {
+  padding: 4px 5px;
+  border:1px solid #EFEFEF;
+  width: 250px;
+}
+.gruik-top-menu > input:focus {
+  border:1px solid #EFEFEF;
+}
+
+.navbar-nav>li>a {
+  padding-top: 12px !important;
+  padding-bottom: 15px;
+}
+
+#markdown_content {
+  padding-left: 25px;
+  padding-right: 25px;
+}

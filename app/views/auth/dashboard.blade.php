@@ -15,82 +15,75 @@
 }
 </style>
 
-<div class="box box-solid collapsed-box">
-    <div class="box-header">
-        <h3 class="box-title">
-            <i class="fa fa-search" ng-hide="searchIsActive"></i>
-            <i class="fa fa-cog fa-spin" ng-show="searchIsActive"></i>
-            <input class="form-control" ng-model="search.term" type="text" ng-debounce="500" placeholder="Search..." style="position: absolute; border:0; top: 6px; left: 32px; width: 250px;">
-        </h3>
-        <div class="box-tools pull-right">
-            <button class="btn btn-default btn-sm" data-widget="collapse" ng-click="showSearch = !showSearch">
-                <i ng-show="!showSearch" class="fa fa-2x fa-angle-double-down"></i>
-                <i ng-show="showSearch" class="fa fa-2x fa-angle-double-up"></i>
-            </button>
-        </div>
-    </div>
-
-    <div class="box-body" style="display:none;">
-        <div class="row" style="margin-bottom: 15px;">
-            <div class="col-md-4">
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="fa fa-files-o"></i> Your gruiks
+                <button ng-cloak ng-click="deleteSelected()" ng-show="selected.posts.length > 0" style="margin-top:-5px;margin-left: 5px;" class="pull-right btn-sm btn btn-danger"><i class="fa fa-times"></i> Delete selected</button>
+                <a href="{% URL::to('create') %}" style="margin-top:-5px;" class="pull-right btn-sm btn btn-success"><i class="fa fa-plus"></i> Create</a>
             </div>
-        </div>
-    </div>
-</div>
+            <div class="panel-body">
 
-<div class="box box-solid">
-    <div class="box-header" style="border-bottom: 1px solid #EEEEEE;">
-        <i class="fa fa-files-o"></i> <h3 class="box-title">Your posts</h3>
-
-        <button ng-cloak ng-click="deleteSelected()" ng-show="selected.posts.length > 0" class="pull-right btn btn-sm btn-danger" style="margin-right: 5px; margin-top: 5px;"><i class="fa fa-times"></i> &nbsp; Delete selected</button>
-    </div>
-
-    <div class="box-body" ng-cloak>
-
-        <div class="row" style="margin:20px 0;" ng-show="posts.length == 0">
-            <div class="col-md-12">
-                <div class="text-center small" style="color:#A3A3A3;">
-                    Gruik ! Nothing here. <br>
-                    Go and <a href="{% URL::to('create') %}">write something delicious</a> !
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-12">
-                <ul class="todo-list ui-sortable">
-                    <li ng-repeat="post in posts" class="private">
-
-                        <span ng-show="post.private" style="color:#f3f4f5; float:left; margin-left: -28px; margin-top: -3px;" data-toggle="tooltip" data-placement="left" title="Private post">
-                            <span class="fa-stack">
-                              <i class="fa fa-circle fa-stack-2x"></i>
-                              <i style="color:#000;" class="fa fa-lock fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </span>
-
-                        <input type="checkbox" checklist-model="selected.posts" checklist-value="post.id">
-
-                        <span class="text">
-                            <a href="{% URL::to('view') %}/{{ post.id }}" style="color:#000;">
-                                <span ng-show="post.title">{{ post.title }}</span>
-                                <span ng-show="!post.title"><em>Post #{{ post.id }}</em></span>
-                            </a>
-                        </span>
-
-                        <small ng-repeat="tag in post.tags" class="label label-primary">{{ tag.label }}</small>
-                        <div class="tools">
-                            <a href="{% URL::to('create') %}?edit={{ post.id }}">Edit</a> |
-                            <a ng-click="deleteSelected(post.id)" style="cursor:pointer;">Delete</a>
+                <!-- NO POST -->
+                <div class="row" style="margin:20px 0;" ng-show="posts.length == 0" ng-cloak>
+                    <div class="col-md-12">
+                        <div class="text-center small" style="color:#A3A3A3;">
+                            <p><i class="fa fa-book fa-4x"></i></p>
+                            Gruik ! Nothing here. <br>
+                            Go and <a href="{% URL::to('create') %}">write something delicious</a> !
                         </div>
-                    </li>
-                </ul>
+                    </div>
+                </div>
+                <!-- / NO POST -->
+
+                <!-- POSTS TABLE -->
+                <table class="table table-striped" ng-show="posts.length > 0" ng-cloak>
+                    <thead>
+                        <tr>
+                            <th class="col-md-1">#</th>
+                            <th class="col-md-7">Title</th>
+                            <th class="col-md-2">Tags</th>
+                            <th class="col-md-2">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="post in posts" class="post">
+                            <td>
+                                <input type="checkbox" checklist-model="selected.posts" checklist-value="post.id">
+                            </td>
+                            <td>
+                                <span ng-show="post.private">
+                                    <i class="fa fa-lock fa-border"></i>
+                                </span>
+                                <span class="text">
+                                    <a href="{% URL::to('view') %}/{{ post.id }}" style="color:#000; font-weight: bold;">
+                                        <span ng-show="post.title">{{ post.title }}</span>
+                                        <span ng-show="!post.title"><em>Post #{{ post.id }}</em></span>
+                                    </a>
+                                </span>
+                            </td>
+                            <td>
+                                <small style="margin-right: 2px;" ng-repeat="tag in post.tags" class="label label-primary">{{ tag.label }}</small>
+                            </td>
+                            <td>
+                                <div class="tools">
+                                    <a class="btn-xs ma-button" href="{% URL::to('create') %}?edit={{ post.id }}">Edit</a>
+                                    <a class="btn-xs ma-button danger" ng-click="deleteSelected(post.id)" style="cursor:pointer;">Delete</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- / POSTS TABLE -->
+
+                <div class="text-right">
+                        {% $posts->links() %}
+                </div>
+
             </div>
         </div>
     </div>
-</div>
-
-<div class="box-tools">
-        {% $posts->links() %}
 </div>
 
 @stop

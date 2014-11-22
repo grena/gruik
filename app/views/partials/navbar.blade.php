@@ -1,22 +1,32 @@
 <a href="{% URL::to('/') %}" class="logo">
     Gruik.
-    <img src="/img/gruik.png" alt="Gruik loko" style="height: 40px; margin-top: -10px;">
+    <img src="/img/gruik-black.png" alt="Gruik loko" style="height: 40px; margin-top: -10px;">
 </a>
 <nav class="navbar navbar-static-top" role="navigation">
 
-    <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-    </a>
+    <div class="navbar-left">
+        <div class="gruik-top-menu">
+            @if(isset($user))
+            <a href="{% URL::to('dashboard') %}">
+                <span>My Gruiks</span>
+            </a>
+            <a href="{% URL::to('tags') %}">
+                <span>Tags</span>
+            </a>
+            @endif
+            <a href="{% URL::to('explore') %}">
+                <span>Explore</span>
+            </a>
+            <input type="text" placeholder="Search...">
+        </div>
+    </div>
 
     @if(isset($user))
     <div class="navbar-right">
         <ul class="nav navbar-nav">
             <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <i class="glyphicon glyphicon-user"></i>
+                    <img src="{% Gravatar::src( $user->email, 20 ) %}" alt="User Image" style="margin-right:5px;" />
                     <span>{% $user->username %} <i class="caret"></i></span>
                 </a>
                 <ul class="dropdown-menu">

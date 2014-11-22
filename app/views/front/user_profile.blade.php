@@ -7,7 +7,7 @@
 @section('content')
 
 <div class="row">
-    <div class="col-md-3 text-center">
+    <div class="col-md-3 col-md-offset-2 text-center">
         <div class="box box-solid">
             <div class="box-body" ng-cloak>
                 <img src="{% Gravatar::src( $visited_user->email, 150 ) %}" class="img-thumbnail img-circle" alt="{% $visited_user->username %} avatar" style="height:150px; width:150px;"  />
@@ -55,51 +55,53 @@
             </div>
         </div>
     </div>
-    <div class="col-md-9">
-        <div class="box box-solid">
-            <div class="box-header" style="border-bottom: 1px solid #EEEEEE;">
-                <h3 class="box-title"><i class="fa fa-files-o"></i> Public gruiks of {% $visited_user->username %}</h3>
-            </div>
-            <div class="box-body" ng-cloak>
-                <div class="row" style="margin:20px 0;" ng-show="posts.length == 0">
+    <div class="col-md-5">
+
+        <div class="panel panel-default">
+            <div class="panel-heading"><i class="fa fa-files-o"></i> Public gruiks of {% $visited_user->username %}</div>
+            <div class="panel-body">
+
+                <!-- NO POST -->
+                <div class="row" style="margin:20px 0;" ng-show="posts.length == 0" ng-cloak>
                     <div class="col-md-12">
                         <div class="text-center small" style="color:#A3A3A3;">
-                            {{ user.username }} has no public post yet<br>
+                            <p><i class="fa fa-book fa-4x"></i></p>
+                            Gruik ! <b>{{ user.username }}</b> has no public gruik to show.
                         </div>
                     </div>
                 </div>
+                <!-- / NO POST -->
 
-                <div class="row">
-                    <div class="col-md-12">
-                        <ul class="todo-list ui-sortable">
-                            <li ng-repeat="post in posts">
-
-                                <span ng-show="post.private" style="color:#f3f4f5; float:left; margin-left: -28px; margin-top: -3px;" data-toggle="tooltip" data-placement="left" title="Private post">
-                                    <span class="fa-stack">
-                                      <i class="fa fa-circle fa-stack-2x"></i>
-                                      <i style="color:#000;" class="fa fa-lock fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </span>
-
+                <!-- POSTS TABLE -->
+                <table class="table table-striped" ng-show="posts.length > 0" ng-cloak>
+                    <thead>
+                        <tr>
+                            <th class="col-md-9">Title</th>
+                            <th class="col-md-3">Tags</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="post in posts" class="post">
+                            <td>
                                 <span class="text">
-                                    <a href="{% URL::to('view') %}/{{ post.id }}" style="color:#000;">
+                                    <a href="{% URL::to('view') %}/{{ post.id }}" style="color:#000; font-weight: bold;">
                                         <span ng-show="post.title">{{ post.title }}</span>
                                         <span ng-show="!post.title"><em>Post #{{ post.id }}</em></span>
                                     </a>
                                 </span>
+                            </td>
+                            <td>
+                                <small style="margin-right: 2px;" ng-repeat="tag in post.tags" class="label label-primary">{{ tag.label }}</small>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- / POSTS TABLE -->
 
-                                <div class="pull-right">
-                                    <small ng-repeat="tag in post.tags" class="label label-primary">{{ tag.label }}</small>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+                <div class="text-right">
+                        {% $posts->links() %}
                 </div>
             </div>
-        </div>
-
-        <div class="box-tools">
-                {% $posts->links() %}
         </div>
     </div>
 </div>
