@@ -80,7 +80,7 @@
                             <div id="editor" class="ace_editor ace-twilight" style="height: 560px; width: 100%;"></div>
                         </div>
 
-                        <div style="display: block; min-height: 560px; width: 100%;" ng-show="is_preview">
+                        <div style="display: block; min-height: 560px; width: 100%;" ng-show="is_preview" id="markdown_content">
                             <span ng-bind-html="currentPost.html"></span>
                         </div>
                     </div>
