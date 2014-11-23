@@ -58,6 +58,7 @@ class PostController extends BaseController {
 
         $posts = $postRepo->byUserIdQuery(Sentry::getUser()->id)
                     ->with('tags')
+                    ->orderBy('created_at', 'desc')
                     ->paginate($limit);
 
         JavaScript::put([

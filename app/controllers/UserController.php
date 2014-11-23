@@ -20,6 +20,7 @@ class UserController extends BaseController {
         $posts = $postRepo->byUserIdQuery($visited_user->id)
                     ->where('private', false)
                     ->with('tags')
+                    ->orderBy('created_at', 'desc')
                     ->paginate($limit);
 
         $diff = Carbon::now()->diffInMinutes(Carbon::parse($visited_user->last_login));
