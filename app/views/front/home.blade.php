@@ -123,7 +123,7 @@
                     </div>
                 </div>
             </div>
-            <div class="panel-footer small">You got a cool idea of feature ? Feel free to <a href="https://github.com/grena/gruik/issues">propose your idea on GitHub</a>. Or event better, make <a href="https://github.com/grena/gruik/pulls">a pull request</a> !</div>
+            <div class="panel-footer small">You got a cool idea of feature ? Feel free to <a href="https://github.com/grena/gruik/issues">propose your idea on GitHub</a>. Or even better, make <a href="https://github.com/grena/gruik/pulls">a pull request</a> !</div>
         </div>
     </div>
 </div>
