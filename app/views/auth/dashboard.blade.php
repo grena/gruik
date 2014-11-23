@@ -62,6 +62,9 @@
                                         <span ng-show="!post.title"><em>Post #{{ post.id }}</em></span>
                                     </a>
                                 </span>
+                                <small>
+                                    <span style="color:#BBBBBB;">{{ post.created_at_human }}</span>
+                                </small>
                             </td>
                             <td>
                                 <small style="margin-right: 2px;" ng-repeat="tag in post.tags" class="label label-primary">{{ tag.label }}</small>

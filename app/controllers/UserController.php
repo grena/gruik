@@ -23,6 +23,11 @@ class UserController extends BaseController {
                     ->orderBy('created_at', 'desc')
                     ->paginate($limit);
 
+        $posts->each(function($post) {
+            $diff = Carbon::now()->diffInMinutes(Carbon::parse($post->created_at));
+            $post->created_at_human = Carbon::now()->subMinutes($diff)->diffForHumans();
+        });
+
         $diff = Carbon::now()->diffInMinutes(Carbon::parse($visited_user->last_login));
         $last_login = Carbon::now()->subMinutes($diff)->diffForHumans();
 

@@ -61,6 +61,11 @@ class PostController extends BaseController {
                     ->orderBy('created_at', 'desc')
                     ->paginate($limit);
 
+        $posts->each(function($post) {
+            $diff = Carbon::now()->diffInMinutes(Carbon::parse($post->created_at));
+            $post->created_at_human = Carbon::now()->subMinutes($diff)->diffForHumans();
+        });
+
         JavaScript::put([
             'posts' => $posts->toArray()
         ]);
