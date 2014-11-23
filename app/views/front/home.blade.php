@@ -137,13 +137,19 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-4 text-center">
-                        <img src="/img/screen1.png" alt="" class="img-thumbnail img-responsive">
+                        <a href="/img/screen1.png" data-toggle="lightbox" data-gallery="multiimages" data-title="Screenshot #1">
+                            <img src="/img/screen1.png" alt="" class="img-thumbnail img-responsive" >
+                        </a>
                     </div>
                     <div class="col-md-4 text-center">
-                        <img src="/img/screen2.png" alt="" class="img-thumbnail img-responsive">
+                        <a href="/img/screen2.png" data-toggle="lightbox" data-gallery="multiimages" data-title="Screenshot #2">
+                            <img src="/img/screen2.png" alt="" class="img-thumbnail img-responsive" >
+                        </a>
                     </div>
                     <div class="col-md-4 text-center">
-                        <img src="/img/screen3.png" alt="" class="img-thumbnail img-responsive">
+                        <a href="/img/screen3.png" data-toggle="lightbox" data-gallery="multiimages" data-title="Screenshot #3">
+                            <img src="/img/screen3.png" alt="" class="img-thumbnail img-responsive" >
+                        </a>
                     </div>
                 </div>
             </div>
@@ -151,4 +157,15 @@
     </div>
 </div>
 <!-- / SCREENSHOTS -->
+@stop
+
+@section('scripts')
+    <script src="/vendor/ekko-lightbox/dist/ekko-lightbox.min.js" type="text/javascript"></script>
+
+    <script>
+    $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
+        event.preventDefault();
+        return $(this).ekkoLightbox();
+    });
+    </script>
 @stop
