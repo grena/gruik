@@ -7,7 +7,7 @@
         <link rel="Shortcut Icon" type="image/png" href="/img/gruik-black.png" />
 
         <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
         <link href="/css/AdminLTE.css" rel="stylesheet" type="text/css" />
 
         <script src="/vendor/angular/angular.min.js" type="text/javascript"></script>
