@@ -48,7 +48,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="post in posts" class="post">
+                        <tr ng-repeat="post in ::posts" class="post">
                             <td>
                                 <input type="checkbox" checklist-model="selected.posts" checklist-value="post.id">
                             </td>

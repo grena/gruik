@@ -81,7 +81,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="post in posts" class="post">
+                        <tr ng-repeat="post in ::posts" class="post">
                             <td>
                                 <span class="text">
                                     <a href="{% URL::to('view') %}/{{ post.id }}" style="color:#000; font-weight: bold;">
