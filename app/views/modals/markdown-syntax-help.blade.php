@@ -62,7 +62,8 @@
                         </tbody>
                     </table>
                     <div class="alert alert-info" style="margin-bottom: 0;">
-                        For further Markdown syntax reference: <a href="http://daringfireball.net/projects/markdown/syntax" target="_blank">Markdown Documentation</a>
+                        For further Markdown syntax reference: <a href="http://daringfireball.net/projects/markdown/syntax" target="_blank">Markdown Documentation</a>. <br>
+                        Gruik uses <a href="https://help.github.com/articles/github-flavored-markdown/">GitHub Flavored Markdown</a>.
                     </div>
                 </section>
             </div>

@@ -175,6 +175,8 @@ app.controller('CreateCtrl', function ($scope, $sce, $http) {
 
     // Marked configuration
     marked.setOptions({
+        gfm: true,
+        breaks: true,
         sanitize: true,
         highlight: function (code) {
             return hljs.highlightAuto(code).value;
@@ -427,6 +429,8 @@ app.controller('ViewCtrl', function ($scope, $sce) {
     $scope.loading = false;
 
     marked.setOptions({
+        gfm: true,
+        breaks: true,
         sanitize: true,
         highlight: function (code) {
             return hljs.highlightAuto(code).value;
