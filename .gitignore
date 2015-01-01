@@ -1,13 +1,25 @@
-/bootstrap/compiled.php
-/vendor
-/public/vendor
-/app/config/local
-composer.phar
-composer.lock
-.env.local.php
-.env.php
+# System
 .DS_Store
 Thumbs.db
+
+# Developer env
+/.idea
+.jshintrc
+
+# Vendor & externals
+/vendor
+/public/vendor
+
+# Composer
+composer.phar
+composer.lock
+
+# NPM
 /node_modules/
 npm-debug.log
-.jshintrc
+
+# Laravel
+/bootstrap/compiled.php
+/app/config/local
+.env.local.php
+.env.php
