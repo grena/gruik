@@ -68,3 +68,7 @@
   padding-left: 25px;
   padding-right: 25px;
 }
+
+.box-body img {
+  max-width: 100%;
+}
