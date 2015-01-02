@@ -50,7 +50,7 @@ class SearchController extends BaseController {
             case 'users':
 
                 $result = $searchService->searchUsersQuery($term, $page)
-                    ->join('posts', 'posts.user_id', '=', 'users.id')
+                    ->leftJoin('posts', 'posts.user_id', '=', 'users.id')
                     ->addSelect(DB::raw('COUNT(posts.id) as public_posts'))
                     ->groupBy('users.id')
                     ->paginate(15);
