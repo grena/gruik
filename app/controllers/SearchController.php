@@ -73,6 +73,13 @@ class SearchController extends BaseController {
                 break;
         }
 
+        if ($type == 'public' || $type == 'owner') {
+            $result->getCollection()->map(function($post) {
+                $diff = Carbon::now()->diffInMinutes(Carbon::parse($post->created_at));
+                $post->created_at_human = Carbon::now()->subMinutes($diff)->diffForHumans();
+            });
+        }
+
         JavaScript::put([
             'result' => $result->toArray()
         ]);

@@ -134,6 +134,7 @@
                                             </a>
                                         </span>
                                         <small>
+                                            <span style="color:#BBBBBB;">by</span> <a href="{% route('user_profile', ['username' => '']) %}/{{ post.user.username }}" style="border-bottom:1px dotted; font-size: 12px;">{{ post.user.username }}</a>
                                             <span style="color:#BBBBBB;">{{ post.created_at_human }}</span>
                                         </small>
                                     </td>
