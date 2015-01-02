@@ -584,3 +584,9 @@ app.controller('ResetPasswordCtrl', function ($scope, $http, $timeout, $window) 
             });
     };
 });
+
+app.controller('SearchCtrl', function ($scope) {
+
+    $scope.result = $scope.post = window.Gruik.result;
+
+});

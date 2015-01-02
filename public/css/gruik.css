@@ -76,3 +76,11 @@
 *:focus {
   outline: none !important;
 }
+
+.transparent {
+  opacity: 0;
+}
+
+.user-item:last-child hr {
+  display: none;
+}

@@ -161,6 +161,20 @@ class EloquentPost extends RepoAbstract implements RepoInterface, PostInterface 
      */
     public function searchByTerm($term, $id_user = 0)
     {
+        return $request->searchByTermQuery($term, $id_user)->get();
+    }
+
+    /**
+     * Build a posts query where $term appears in content or title, and if
+     * $id_user is the author of posts.
+     *
+     * @param  string $term Text to search
+     * @param  integer $id_user Id of author
+     *
+     * @return Illuminate\Database\Eloquent\Builder The query builder
+     */
+    public function searchByTermQuery($term, $id_user = 0)
+    {
         $request = $this->model->where(function ($q) use($term) {
             return $q->where('md_content', 'LIKE', '%'.$term.'%')
                     ->orWhere('title', 'LIKE', '%'.$term.'%');
@@ -170,8 +184,9 @@ class EloquentPost extends RepoAbstract implements RepoInterface, PostInterface 
             $request->where('user_id', $id_user);
         }
 
-        $request->with('tags');
+        $request->with('tags')
+            ->with('user');
 
-        return $request->get();
+        return $request;
     }
 }

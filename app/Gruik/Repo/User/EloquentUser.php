@@ -1,10 +1,14 @@
-<?php namespace Gruik\Repo\User;
+<?php
+
+namespace Gruik\Repo\User;
 
 use Gruik\Repo\RepoAbstract;
 use Gruik\Repo\RepoInterface;
-
 use \User;
 use \UserPreference;
+use \Sentry;
+use \Config;
+use \DB;
 
 class EloquentUser extends RepoAbstract implements RepoInterface, UserInterface {
 
@@ -18,13 +22,19 @@ class EloquentUser extends RepoAbstract implements RepoInterface, UserInterface 
 
     public function byId($id)
     {
-        return \Sentry::findUserById($id);
+        return Sentry::findUserById($id);
+    }
+
+    public function byPartialUsernameQuery($term)
+    {
+        return DB::table('users')
+            ->where('username', 'LIKE', '%'.$term.'%');
     }
 
     public function getPreferencesForUser($id)
     {
         $user_preferences = $this->userPreference->where('user_id', $id)->get();
-        $config = \Config::get('user_preferences');
+        $config = Config::get('user_preferences');
 
         $preferences = [
             'posts.private',
@@ -49,7 +59,7 @@ class EloquentUser extends RepoAbstract implements RepoInterface, UserInterface 
 
     public function setPreferencesForUser($id, $data)
     {
-        $config = \Config::get('user_preferences');
+        $config = Config::get('user_preferences');
 
         $preferences = [
             'posts.private',

@@ -1,14 +1,15 @@
 <?php
 
 use Carbon\Carbon;
+use \App;
 
 class PostController extends BaseController {
 
     public function edit()
     {
-        $tagRepo = \App::make('Gruik\Repo\Tag\TagInterface');
-        $postRepo = \App::make('Gruik\Repo\Post\PostInterface');
-        $userRepo = \App::make('Gruik\Repo\User\UserInterface');
+        $tagRepo = App::make('Gruik\Repo\Tag\TagInterface');
+        $postRepo = App::make('Gruik\Repo\Post\PostInterface');
+        $userRepo = App::make('Gruik\Repo\User\UserInterface');
 
         $id_edit = Input::get('edit', false);
 
@@ -52,7 +53,7 @@ class PostController extends BaseController {
 
     public function dashboard()
     {
-        $postRepo = \App::make('Gruik\Repo\Post\PostInterface');
+        $postRepo = App::make('Gruik\Repo\Post\PostInterface');
 
         $limit = Input::get('limit', 15);
 
@@ -78,7 +79,7 @@ class PostController extends BaseController {
 
     public function view($id)
     {
-        $postRepo = \App::make('Gruik\Repo\Post\PostInterface');
+        $postRepo = App::make('Gruik\Repo\Post\PostInterface');
 
         JavaScript::put([
             'disqus_username' => Config::get('gruik.disqus_username'),

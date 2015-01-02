@@ -17,7 +17,15 @@
             <a href="{% URL::to('explore') %}">
                 <span>Explore</span>
             </a>
-            <input type="text" placeholder="Search...">
+
+
+            <form action="{% URL::to('search') %}"
+                    @if(Route::getCurrentRoute()->getName() === 'search')
+                        class="transparent"
+                    @endif
+                    style="display: inline-block;">
+                <input type="text" placeholder="Search" class="form-control input-sm" style="width: 250px;" name="q" value="{% Input::get('q') %}">
+            </form>
         </div>
     </div>
 

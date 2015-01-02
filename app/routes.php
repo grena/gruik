@@ -27,6 +27,7 @@ Route::post('/login', ['uses' => 'AuthController@login']);
 Route::post('/register', ['uses' => 'AuthController@register']);
 Route::get('/logout', ['uses' => 'AuthController@logout']);
 Route::get('/user/{username}', ['as' => 'user_profile', 'uses' => 'UserController@profile']);
+Route::get('/search', ['as' => 'search', 'uses' => 'SearchController@search']);
 
 Route::group(array('before' => 'auth'), function()
 {
