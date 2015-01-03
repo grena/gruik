@@ -14,42 +14,43 @@ class SearchController extends BaseController {
         $userId = $currentUser ? $currentUser->id : null;
         $searchService = new SearchService;
 
-        $term = trim(Input::get('q'));
+        $term = trim(Input::get('q', ''));
         $type = Input::get('type', 'owner');
-        $page = Input::get('p', 1);
+        $sortBy = Input::get('s', 'created_at,desc');
 
         if (! $term) {
             return View::make('front.search')
-                        ->with('user', Sentry::getUser());
+                ->with('term', $term)
+                ->with('user', Sentry::getUser());
         }
 
         if( ! $currentUser && $type == 'owner') {
             return Redirect::route('search', [
                 'q' => Input::get('q'),
-                'p' => Input::get('p'),
                 'type' => 'public'
             ]);
         }
 
-        $countOwnerPosts = $searchService->searchPostsOwnerQuery($userId, $term, $page)
+        $countOwnerPosts = $searchService->searchPostsOwnerQuery($userId, $term)
             ->count();
 
-        $countPublicPosts = $searchService->searchPostsPublicQuery($term, $page, $userId)
+        $countPublicPosts = $searchService->searchPostsPublicQuery($userId, $term)
             ->count();
 
-        $countUsers = $searchService->searchUsersQuery($term, $page)
+
+        $countUsers = $searchService->searchUsersQuery($term)
             ->count();
 
         switch ($type) {
             case 'public':
 
-                $result = $searchService->searchPostsPublicQuery($term, $page, $userId)
+                $result = $searchService->searchPostsPublicQuery($userId, $term, $sortBy)
                     ->paginate(15);
 
                 break;
             case 'users':
 
-                $result = $searchService->searchUsersQuery($term, $page)
+                $result = $searchService->searchUsersQuery($term, $sortBy)
                     ->leftJoin('posts', 'posts.user_id', '=', 'users.id')
                     ->addSelect(DB::raw('COUNT(posts.id) as public_posts'))
                     ->groupBy('users.id')
@@ -67,7 +68,7 @@ class SearchController extends BaseController {
             case 'owner':
             default:
 
-                $result = $searchService->searchPostsOwnerQuery($userId, $term, $page)
+                $result = $searchService->searchPostsOwnerQuery($userId, $term, $sortBy)
                     ->paginate(15);
 
                 break;
@@ -81,15 +82,26 @@ class SearchController extends BaseController {
         }
 
         JavaScript::put([
-            'result' => $result->toArray()
+            'result' => $result->toArray(),
+            'sortBy' => $sortBy
         ]);
 
+        $pagination = $result->appends([
+            'q' => Input::get('q'),
+            'type' => Input::get('type'),
+            's' => Input::get('s'),
+            'o' => Input::get('o')
+        ])
+        ->links();
+
         return View::make('front.search')
-                    ->with('user', Sentry::getUser())
-                    ->with('countOwnerPosts', $countOwnerPosts)
-                    ->with('countPublicPosts', $countPublicPosts)
-                    ->with('countUsers', $countUsers)
-                    ->with('result', $result);
+            ->with('term', $term)
+            ->with('user', Sentry::getUser())
+            ->with('countOwnerPosts', $countOwnerPosts)
+            ->with('countPublicPosts', $countPublicPosts)
+            ->with('countUsers', $countUsers)
+            ->with('pagination', $pagination)
+            ->with('result', $result);
     }
 
 }

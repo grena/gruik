@@ -7,9 +7,9 @@
 @section('content')
 
 <div class="row">
-    <div class="col-md-8 col-md-offset-2">
+    <div class="col-md-10 col-md-offset-1">
 
-        @if(Input::get('q') === '')
+        @if(! $term)
         <div style="padding-top:50px; padding-bottom:50px;" class="text-center">
             <img src="/img/gruik-black.png" alt="">
             <h4>Oink! Let the search... begin!</h4>
@@ -25,14 +25,16 @@
                                 <h3 style="margin-top: 3px; margin-bottom: 0;">Search</h3>
                             </div>
                             <div class="col-md-9">
-                            <form action="{% URL::to('search') %}">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" name="q" value="{% Input::get('q') %}" autofocus>
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" type="submit">Search</button>
-                                    </span>
-                                </div>
-                            </form>
+                                <form action="{% URL::to('search') %}" id="searchForm">
+                                    <div class="input-group">
+                                        <input type="hidden" name="s" ng-value="sortBy">
+                                        <input type="hidden" name="type" value="{% Input::get('type') %}">
+                                        <input type="text" class="form-control" name="q" value="{% Input::get('q') %}" autofocus>
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="submit" id="applySearch">Search</button>
+                                        </span>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -40,7 +42,7 @@
             </div>
         </div>
 
-        @if(Input::get('q') !== '')
+        @if($term)
         <div class="row">
             <div class="col-md-3">
 
@@ -82,6 +84,27 @@
 
             </div>
             <div class="col-md-9">
+
+                <div class="row" style="margin-bottom: 20px;">
+                    <div class="col-md-4">
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-addon">Sort:</span>
+                            @if(Input::get('type') == 'users')
+                                <select class="form-control" class="form-control" name="sort" ng-model="sortBy">
+                                    <option value="created_at,desc">Recently joined</option>
+                                    <option value="created_at,asc">Least recently joined</option>
+                                </select>
+                            @else
+                                <select class="form-control" class="form-control" name="sort" ng-model="sortBy">
+                                    <option value="created_at,desc">Recently created</option>
+                                    <option value="created_at,asc">Least recently created</option>
+                                    <option value="updated_at,desc">Recently updated</option>
+                                    <option value="updated_at,asc">Least recently updated</option>
+                                </select>
+                            @endif
+                        </div>
+                    </div>
+                </div>
 
                 <div class="panel panel-default">
                     <div class="panel-body">
@@ -149,7 +172,7 @@
                         @endif
 
                         <div class="text-right">
-                                {% $result->appends(['q' => Input::get('q'), 'type' => Input::get('type')])->links() %}
+                                {% $pagination %}
                         </div>
 
                     </div>

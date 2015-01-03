@@ -585,8 +585,17 @@ app.controller('ResetPasswordCtrl', function ($scope, $http, $timeout, $window) 
     };
 });
 
-app.controller('SearchCtrl', function ($scope) {
+app.controller('SearchCtrl', function ($scope, $timeout) {
 
-    $scope.result = $scope.post = window.Gruik.result;
+    $scope.result = window.Gruik.result;
+    $scope.sortBy = window.Gruik.sortBy ? window.Gruik.sortBy : 'created_at,desc';
 
+    // Refresh page on sortBy change
+    $scope.$watch('sortBy', function(oldValue, newValue) {
+        if (oldValue !== newValue) {
+            $timeout(function() {
+                document.querySelector('#applySearch').click();
+            });
+        }
+    });
 });
