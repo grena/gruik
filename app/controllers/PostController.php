@@ -1,7 +1,6 @@
 <?php
 
 use Carbon\Carbon;
-use \App;
 
 class PostController extends BaseController {
 

@@ -28,7 +28,6 @@
                                 <form action="{% URL::to('search') %}" id="searchForm">
                                     <div class="input-group">
                                         <input type="hidden" name="s" ng-value="sortBy">
-                                        <input type="hidden" name="type" value="{% Input::get('type') %}">
                                         <input type="text" class="form-control" name="q" value="{% Input::get('q') %}" autofocus>
                                         <span class="input-group-btn">
                                             <button class="btn btn-default" type="submit" id="applySearch">Search</button>
