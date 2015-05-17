@@ -1,10 +1,8 @@
 <?php
 
 use Carbon\Carbon;
-use \App;
 use \Gruik\Service\SearchService;
 use Illuminate\Pagination\Paginator;
-use \Gravatar;
 
 class SearchController extends BaseController {
 
