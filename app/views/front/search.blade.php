@@ -28,6 +28,11 @@
                                 <form action="{% URL::to('search') %}" id="searchForm">
                                     <div class="input-group">
                                         <input type="hidden" name="s" ng-value="sortBy">
+                                        @if (Input::get('type') == 'users' || Input::get('type') == 'owner' || Input::get('type') == 'public')
+                                            <input type="hidden" name="type" value="{% Input::get('type') %}">
+                                        @else
+                                            <input type="hidden" name="type" value="owner"/>
+                                        @endif
                                         <input type="text" class="form-control" name="q" value="{% Input::get('q') %}" autofocus>
                                         <span class="input-group-btn">
                                             <button class="btn btn-default" type="submit" id="applySearch">Search</button>
