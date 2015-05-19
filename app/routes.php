@@ -39,16 +39,17 @@ Route::group(array('before' => 'auth'), function()
 
 });
 
-Route::group(array('prefix' => 'api','before'), function()
+Route::group(array('prefix' => 'api'), function()
 {
 
     // Public API interface
     Route::resource('posts', 'API\PostController', array('only' => array('index', 'show')));
+    Route::resource('users', 'API\UserController', array('only' => array('index', 'show')));
 
     // Admin API interface
     Route::group(array('before' => 'auth|csrf'), function()
     {
-        Route::resource('users', 'API\UserController');
+        Route::resource('users', 'API\UserController', array('except' => array('index', 'show')));
         Route::resource('posts', 'API\PostController', array('except' => array('index', 'show')));
         Route::post('posts/multiple_delete', ['uses' => 'API\PostController@multiple_delete']);
         Route::post('posts/search', ['uses' => 'API\PostController@search']);

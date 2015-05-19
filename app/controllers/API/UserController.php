@@ -43,9 +43,27 @@ class UserController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($username)
 	{
-		//
+            $user = \User::where('username',$username)->first();
+            if($user)
+            {
+                // We could also unset() the properties we don't want to show but a whitelist is safer than a blacklist
+                $public_user = new \stdClass();
+                $public_user->username = $user->username;
+                $public_user->first_name = $user->first_name;
+                $public_user->last_name = $user->last_name;
+                $public_user->email = $user->email;
+                $public_user->created_at = $user->created_at;
+                $public_user->about = $user->about;
+                $public_user->twitter_username = $user->twitter_username;
+                $public_user->github_username = $user->github_username;
+                return \Response::json($public_user);
+            }
+            else
+            {
+                return \Response::json(null);
+            }
 	}
 
 
