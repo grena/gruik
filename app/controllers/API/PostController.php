@@ -11,7 +11,10 @@ class PostController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+            $postRepo = \App::make('Gruik\Repo\Post\PostInterface');
+            return $postRepo->byUserIdQuery(\Sentry::getUser()->id)
+                ->with('tags')
+                ->get();
 	}
 
 
@@ -22,7 +25,7 @@ class PostController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+               //
 	}
 
 
@@ -33,24 +36,24 @@ class PostController extends \BaseController {
 	 */
 	public function store()
 	{
-        $postRepo = \App::make('Gruik\Repo\Post\PostInterface');
-        $tagRepo = \App::make('Gruik\Repo\Tag\TagInterface');
+            $postRepo = \App::make('Gruik\Repo\Post\PostInterface');
+            $tagRepo = \App::make('Gruik\Repo\Tag\TagInterface');
 
-        $data = [
-            'user_id' => \Sentry::getUser()->id,
-            'title' => Input::get('title', ''),
-            'md_content' => Input::get('md_content', ''),
-            'private' => Input::get('private', false),
-            'allow_comments' => Input::get('allow_comments', false)
-        ];
+            $data = [
+                'user_id' => \Sentry::getUser()->id,
+                'title' => Input::get('title', ''),
+                'md_content' => Input::get('md_content', ''),
+                'private' => Input::get('private', false),
+                'allow_comments' => Input::get('allow_comments', false)
+            ];
 
-        $tags = Input::get('tags', []);
-        $tagsId = $tagRepo->labelToId($tags, \Sentry::getUser()->id);
+            $tags = Input::get('tags', []);
+            $tagsId = $tagRepo->labelToId($tags, \Sentry::getUser()->id);
 
-        $post = $postRepo->store($data);
-        $tags = $postRepo->syncTags($post->id, $tagsId);
+            $post = $postRepo->store($data);
+            $tags = $postRepo->syncTags($post->id, $tagsId);
 
-        return \Response::json($post, 200);
+            return \Response::json($post, 200);
 	}
 
 
@@ -62,7 +65,8 @@ class PostController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+            $postRepo = \App::make('Gruik\Repo\Post\PostInterface');
+            return $postRepo->byId($id);
 	}
 
 

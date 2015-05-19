@@ -39,14 +39,14 @@ Route::group(array('before' => 'auth'), function()
 
 });
 
-Route::group(array('prefix' => 'api', 'before' => 'csrf'), function()
+Route::group(array('prefix' => 'api','before'), function()
 {
 
     // Public API interface
     Route::resource('posts', 'API\PostController', array('only' => array('index', 'show')));
 
     // Admin API interface
-    Route::group(array('before' => 'auth'), function()
+    Route::group(array('before' => 'auth|csrf'), function()
     {
         Route::resource('users', 'API\UserController');
         Route::resource('posts', 'API\PostController', array('except' => array('index', 'show')));
