@@ -64,10 +64,16 @@ class SearchController extends BaseController {
 
                 break;
             case 'owner':
-            default:
-
                 $result = $searchService->searchPostsOwnerQuery($userId, $term, $sortBy)
                     ->paginate(15);
+
+                break;
+            default:
+                return Redirect::route('search',[
+                    'q' => Input::get('q'),
+                    'type' => 'owner',
+                    'term' => $term
+                ]);
 
                 break;
         }
