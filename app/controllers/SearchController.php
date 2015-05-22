@@ -14,6 +14,7 @@ class SearchController extends BaseController {
 
         $term = trim(Input::get('q', ''));
         $type = Input::get('type', 'owner');
+        $type = in_array($type,['public','owner','users']) ? $type : 'owner';
         $sortBy = Input::get('s', 'created_at,desc');
 
         if (! $term) {
@@ -64,16 +65,9 @@ class SearchController extends BaseController {
 
                 break;
             case 'owner':
+            default:
                 $result = $searchService->searchPostsOwnerQuery($userId, $term, $sortBy)
                     ->paginate(15);
-
-                break;
-            default:
-                return Redirect::route('search',[
-                    'q' => Input::get('q'),
-                    'type' => 'owner',
-                    'term' => $term
-                ]);
 
                 break;
         }
@@ -101,6 +95,7 @@ class SearchController extends BaseController {
         return View::make('front.search')
             ->with('term', $term)
             ->with('user', Sentry::getUser())
+            ->with('type',$type)
             ->with('countOwnerPosts', $countOwnerPosts)
             ->with('countPublicPosts', $countPublicPosts)
             ->with('countUsers', $countUsers)

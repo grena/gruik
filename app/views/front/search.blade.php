@@ -51,7 +51,7 @@
                         <ul class="nav nav-pills nav-stacked">
                             @if(isset($user))
                             <li role="presentation"
-                                @if(Input::get('type') == 'owner' || ! Input::get('type'))
+                                @if($type == 'owner')
                                     class="active"
                                 @endif >
 
@@ -61,7 +61,7 @@
                             </li>
                             @endif
                             <li role="presentation"
-                                @if(Input::get('type') == 'public')
+                                @if($type == 'public')
                                     class="active"
                                 @endif >
 
@@ -70,7 +70,7 @@
                                 </a>
                             </li>
                             <li role="presentation"
-                                @if(Input::get('type') == 'users')
+                                @if($type == 'users')
                                     class="active"
                                 @endif >
 
