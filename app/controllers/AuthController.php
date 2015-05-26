@@ -12,17 +12,6 @@ class AuthController extends BaseController {
                 'password' => Input::get('password')
             ];
 
-            $validator = Validator::make($credentials,
-                    [   'email' => 'required|email',
-                        'password' => 'required'
-                    ]
-            );
-
-            if ($validator->fails())
-            {
-                return Response::json(['flash' => $validator->messages()->first()], 400);
-            }
-
             // Try to authenticate the user
             $user = Sentry::authenticate($credentials, Input::get('remember', false));
 
