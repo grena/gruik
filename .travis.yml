@@ -1,0 +1,10 @@
+before_script: 
+  - mysql -e 'create database gruik_test;'
+  - composer install
+  - php artisan migrate --env=testing
+
+language: php
+
+php:
+  - 5.4
+  - 5.5
