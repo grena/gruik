@@ -1,5 +1,5 @@
 before_script: 
-  - mysql -e 'create_database gruik_test;'
+  - mysql -e 'create database gruik_test;'
 
 php:
   - 5.4
