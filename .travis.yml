@@ -1,6 +1,8 @@
 before_script: 
   - mysql -e 'create database gruik_test;'
 
+language: php
+
 php:
   - 5.4
   - 5.5
