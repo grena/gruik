@@ -1,6 +1,7 @@
 before_script: 
   - mysql -e 'create database gruik_test;'
   - composer install
+  - php artisan migrate
 
 language: php
 
