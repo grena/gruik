@@ -1,5 +1,6 @@
 before_script: 
   - mysql -e 'create database gruik_test;'
+  - composer install
 
 language: php
 
