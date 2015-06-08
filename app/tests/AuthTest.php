@@ -67,5 +67,15 @@ class AuthTest extends TestCase {
         $response = $this->action('POST', 'AuthController@register', array('email' => 'example@email.com', 'username' => 'example', 'password' => 'pass'));
         $this->assertResponseOk();
     }
+
+    public function testLogoutOk()
+    {
+        $user = Sentry::findUserById(1);
+        Sentry::login($user);
+        $this->assertTrue(Sentry::check());
+        $response = $this->action('GET', 'AuthController@logout');
+        $this->assertResponseStatus(302);
+        $this->assertFalse(Sentry::check());
+    }
 }
 ?>
