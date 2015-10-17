@@ -1,0 +1,17 @@
+AppBundle\Entity\User:
+    type:  entity
+    table: fos_user
+    fields:
+        id:
+            id: true
+            type: integer
+            generator:
+                strategy: AUTO
+        github_id:
+            type: string
+            length: 255
+            nullable: true
+        github_access_token:
+            type: string
+            length: 255
+            nullable: true

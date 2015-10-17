@@ -1,9 +1,12 @@
 {
     "name": "grena/gruik",
-    "license": "proprietary",
+    "license": "MIT",
     "type": "project",
     "autoload": {
         "psr-4": {
+            "": "src/"
+        },
+        "psr-0": {
             "": "src/"
         }
     },
@@ -17,10 +20,13 @@
         "symfony/monolog-bundle": "~2.4",
         "sensio/distribution-bundle": "~4.0",
         "sensio/framework-extra-bundle": "^3.0.2",
-        "incenteev/composer-parameter-handler": "~2.0"
+        "incenteev/composer-parameter-handler": "~2.0",
+        "hwi/oauth-bundle": "^0.3.9",
+        "friendsofsymfony/user-bundle": "~2.0@dev"
     },
     "require-dev": {
-        "sensio/generator-bundle": "~2.3"
+        "sensio/generator-bundle": "~2.3",
+        "phpspec/phpspec": "~2.0"
     },
     "scripts": {
         "post-install-cmd": [

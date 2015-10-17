@@ -1,11 +1,18 @@
-# To get started with security, check out the documentation:
-# http://symfony.com/doc/current/book/security.html
 security:
+
+    encoders:
+        FOS\UserBundle\Model\UserInterface: bcrypt
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
 
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
         in_memory:
             memory: ~
+        fos_userbundle:
+            id: fos_user.user_provider.username
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -14,11 +21,34 @@ security:
             security: false
 
         main:
-            anonymous: ~
-            # activate different ways to authenticate
+            pattern: ^/
+            form_login:
+                provider: fos_userbundle
+                csrf_provider: form.csrf_provider
+                login_path: /login
+                check_path: /login_check
+            oauth:
+                resource_owners:
+                    github: "/login/check-github"
+                login_path: /login
+                failure_path: /login
 
-            # http_basic: ~
-            # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
+                oauth_user_provider:
+                    # This is a custom user provider, created from FOSUBUserProvider - will manage the
+                    # automatic user registration on your site, with data from the provider (facebook. google, etc.)
+                    service: app_bundle.security.user_provider
+            logout: true
+            anonymous: true
 
-            # form_login: ~
-            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+        login:
+            pattern:  ^/login$
+            security: false
+
+            remember_me:
+                key: "%secret%"
+                lifetime: 31536000 # 365 days in seconds
+                path: /
+                domain: ~ # Defaults to the current domain from $_SERVER
+
+    access_control:
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
