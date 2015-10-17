@@ -9,3 +9,6 @@
 /composer.phar
 /vendor/
 /web/bundles/
+/web/semantic/
+/semantic/
+/node_modules/
