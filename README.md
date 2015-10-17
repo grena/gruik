@@ -3,8 +3,8 @@
 It's a free & open-source **note-taking service**. A space where you can store notes, tutorials, code snippets... by writing them in markdown and then keep them private or public.
 
 | Tests | Code quality | Join chat |
-|:-----:|:------------:|:---------:|
-| ![Travis CI](https://travis-ci.org/grena/gruik.svg?branch=develop) | [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/grena/gruik/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/grena/gruik/?branch=develop) | [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/grena/gruik?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) |
+|:----------------:|:----------:|:----------:|
+| [![Travis CI](https://travis-ci.org/grena/gruik.svg)](https://travis-ci.org/grena/gruik/tree/develop) | [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/grena/gruik/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/grena/gruik/?branch=master) | [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/grena/gruik?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) |
 
 ## License
 
