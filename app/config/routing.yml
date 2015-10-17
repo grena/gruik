@@ -33,3 +33,8 @@ fos_user_resetting:
 fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /profile
+
+# Gruik app
+home:
+    path: /
+    defaults: { _controller: app_bundle.controllers.main:indexAction }

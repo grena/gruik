@@ -8,3 +8,8 @@ services:
         arguments:
             - '@fos_user.user_manager'
             - { github: github_id }
+
+    app_bundle.controllers.main:
+        class: AppBundle\Controller\DefaultController
+        calls:
+            - [ setContainer, [ @service_container ] ]
