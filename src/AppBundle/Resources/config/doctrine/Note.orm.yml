@@ -1,0 +1,26 @@
+AppBundle\Entity\Note:
+    type:  entity
+    table: note
+    fields:
+        id:
+            id: true
+            type: guid
+            generator:
+                strategy: UUID
+        title:
+            type: text
+            length: 255
+            nullable: true
+        content:
+            type: text
+            nullable: false
+        created:
+            type: datetime
+        updated:
+            type: datetime
+    manyToOne:
+        author:
+            targetEntity: AppBundle\Entity\User
+            joinColumn:
+                name: author_id
+                referencedColumnName: id

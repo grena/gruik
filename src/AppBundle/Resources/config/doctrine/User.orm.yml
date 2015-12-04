@@ -4,9 +4,9 @@ AppBundle\Entity\User:
     fields:
         id:
             id: true
-            type: integer
+            type: guid
             generator:
-                strategy: AUTO
+                strategy: UUID
         github_id:
             type: string
             length: 255
