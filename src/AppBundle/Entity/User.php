@@ -15,11 +15,6 @@ class User extends BaseUser
     /** @var string */
     protected $github_access_token;
 
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     /**
      * @return string
      */
