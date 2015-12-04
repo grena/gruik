@@ -2,19 +2,15 @@
 
 namespace AppBundle\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
     /**
-     * @param Request $request
-     *
      * @return Response
      */
-    public function loginAction(Request $request)
+    public function loginAction()
     {
         $user = $this->getUser();
 
@@ -26,11 +22,9 @@ class DefaultController extends Controller
     }
 
     /**
-     * @param Request $request
-     *
      * @return Response
      */
-    public function dashboardAction(Request $request)
+    public function dashboardAction()
     {
         $user = $this->getUser();
 
@@ -40,11 +34,9 @@ class DefaultController extends Controller
     }
 
     /**
-     * @param Request $request
-     *
      * @return Response
      */
-    public function createAction(Request $request)
+    public function createAction()
     {
         $user = $this->getUser();
 
