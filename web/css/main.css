@@ -1,0 +1,17 @@
+body {
+    background-color: #F2F2ED;
+}
+
+body.welcome {
+    /*background: url('../img/fucking-hipster-background2.jpg') no-repeat center center fixed;*/
+    background: url('../img/blue-home-bckgd.gif') repeat-x top center fixed #F2F2ED;
+    padding-top: 70px;
+    /*-webkit-background-size: cover;*/
+    /*-moz-background-size: cover;*/
+    /*-o-background-size: cover;*/
+    /*background-size: cover;*/
+}
+
+#dashboard-view {
+    margin-top: 10px;
+}

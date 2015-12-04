@@ -14,11 +14,42 @@ class DefaultController extends Controller
      *
      * @return Response
      */
-    public function indexAction(Request $request)
+    public function loginAction(Request $request)
     {
-        // replace this example code with whatever you need
-        return $this->render('AppBundle:default:index.html.twig', array(
-            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
-        ));
+        $user = $this->getUser();
+
+        if ($user) {
+            return $this->redirectToRoute('dashboard');
+        }
+
+        return $this->render('AppBundle:default:login.html.twig');
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function dashboardAction(Request $request)
+    {
+        $user = $this->getUser();
+
+        return $this->render('AppBundle:default:dashboard.html.twig', [
+            'user' => $user
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function createAction(Request $request)
+    {
+        $user = $this->getUser();
+
+        return $this->render('AppBundle:default:create.html.twig', [
+            'user' => $user
+        ]);
     }
 }

@@ -1,0 +1,83 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block content %}
+    <div class="ui grid centered" id="dashboard-view">
+        <div class="ten wide column">
+            <div class="ui segment">
+                <div class="ui small feed">
+                    <h4 class="ui header">Your gruiks</h4>
+                    <div class="event">
+                        <div class="content">
+                            <div class="summary">
+                                <i class="lock middle aligned icon" data-content="Private note. Only you can see it." data-variation="inverted tiny" data-position="left center"></i> <a>English programmation characters</a> <span class="date">Updated 59 mins ago</span>
+                            </div>
+                            {#<div class="extra text">#}
+                                {#<a class="ui basic label mini">Basic</a>#}
+                                {#<a class="ui basic label mini">Basic</a>#}
+                            {#</div>#}
+                        </div>
+                    </div>
+                    <div class="event">
+                        <div class="content">
+                            <div class="summary">
+                                <i class="unhide middle aligned icon" data-content="Public note. Other can see it." data-variation="inverted tiny" data-position="left center"></i> <a>Launch composer without memory limit</a> <span class="date">Updated 10 mins ago</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="event">
+                        <div class="content">
+                            <div class="summary">
+                                <i class="lock middle aligned icon" data-content="Private note. Only you can see it." data-variation="inverted tiny" data-position="left center"></i> <a>Downgrade firefox</a> <span class="date">Updated 5 hours ago</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="event">
+                        <div class="content">
+                            <div class="summary">
+                                <i class="unhide middle aligned icon" data-content="Public note. Other can see it." data-variation="inverted tiny" data-position="left center"></i> <a>502 bad gateway with nginx with php-fpm on PHP Exception</a> <span class="date">Updated 59 mins ago</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="event">
+                        <div class="content">
+                            <div class="summary">
+                                <i class="unhide middle aligned icon" data-content="Public note. Other can see it." data-variation="inverted tiny" data-position="left center"></i> <a>No Navigation under keyboard shortcuts in Ubuntu 14.04</a> <span class="date">Updated 10 mins ago</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="event">
+                        <div class="content">
+                            <div class="summary">
+                                <i class="lock middle aligned icon" data-content="Private note. Only you can see it." data-variation="inverted tiny" data-position="left center"></i> <a>Monitoring network usage per process with Nethogs</a> <span class="date">Updated 5 hours ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ui pagination menu">
+                    <a class="active item">
+                        1
+                    </a>
+                    <div class="disabled item">
+                        ...
+                    </div>
+                    <a class="item">
+                        10
+                    </a>
+                    <a class="item">
+                        11
+                    </a>
+                    <a class="item">
+                        12
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $('.lock.icon').popup();
+    </script>
+{% endblock %}

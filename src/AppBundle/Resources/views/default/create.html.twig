@@ -1,0 +1,71 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block content %}
+    <div class="ui grid centered" id="dashboard-view">
+        <div class="ten wide column">
+            <div class="ui segment">
+                <div class="ui small">
+                    <h4 class="ui header">Create a gruik note</h4>
+                </div>
+                <div class="ui form">
+                    <div class="inline fields">
+                        <div class="eight wide field">
+                            <input type="text" placeholder="Title" style="border-left: 0; border-right: 0; border-top: 0; border-bottom: 1px dotted; border-radius: 0;">
+                        </div>
+                        <div class="eight wide field">
+                            <input type="text" placeholder="Tags..." style="border-left: 0; border-right: 0; border-top: 0; border-bottom: 1px dotted; border-radius: 0;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ui segment">
+                <div class="ui small">
+
+                </div>
+            </div>
+
+            <div class="ui segments">
+                <div class="ui secondary segment">
+                    <p>Create a gruik note</p>
+                </div>
+                <div class="ui segment">
+                    <div class="ui form">
+                        <div class="inline fields">
+                            <div class="eight wide field">
+                                <input type="text" placeholder="Title" style="border-left: 0; border-right: 0; border-top: 0; border-bottom: 1px dotted;">
+                            </div>
+                            <div class="eight wide field">
+                                <input type="text" placeholder="Tags...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui secondary segment">
+                    <div class="ui form">
+                        <div class="inline fields">
+                            <div class="field">
+                                <div class="ui checkbox">
+                                    <input type="checkbox" tabindex="0" class="hidden">
+                                    <label>This is a private note</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui checkbox">
+                                    <input type="checkbox" tabindex="0" class="hidden">
+                                    <label>Enable comments</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $('.ui.checkbox').checkbox();
+    </script>
+{% endblock %}

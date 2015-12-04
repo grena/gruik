@@ -25,12 +25,12 @@ security:
             form_login:
                 provider: fos_userbundle
                 csrf_provider: form.csrf_provider
-                login_path: /login
+                login_path: /
                 check_path: /login_check
             oauth:
                 resource_owners:
                     github: "/login/check-github"
-                login_path: /login
+                login_path: /
                 failure_path: /login
 
                 oauth_user_provider:
@@ -41,7 +41,7 @@ security:
             anonymous: true
 
         login:
-            pattern:  ^/login$
+            pattern:  ^/$
             security: false
 
             remember_me:
@@ -51,4 +51,5 @@ security:
                 domain: ~ # Defaults to the current domain from $_SERVER
 
     access_control:
-        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/connect, roles: IS_AUTHENTICATED_ANONYMOUSLY }

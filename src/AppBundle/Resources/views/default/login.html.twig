@@ -1,0 +1,54 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block title %}
+    Gruik. Login
+{% endblock %}
+
+{% block content %}
+<div class="ui center aligned container" id="main-logo">
+    <img src="{{ asset('img/gruik.png') }}" alt="">
+    <h1 style="font-family: 'Kaushan Script', cursive; margin-top: -20px; font-weight: normal; font-size: 4rem; color: #fff">Gruik.</h1>
+</div>
+
+<div class="ui four column centered grid" style="margin-top: 25px;">
+    <div class="column aligned">
+        <div class="ui tall stacked segment">
+            <h4 class="ui header">Welcome! Please log in.</h4>
+            <div class="ui extra content">
+                <p>
+                    <a class="ui secondary button" href="{{ path('github_connect') }}">
+                        <i class="icon github"></i> Log in with GitHub
+                    </a>
+                </p>
+                <p>
+                    <a class="ui google plus button disabled">
+                        <i class="google icon"></i> Log in with Google
+                    </a>
+                </p>
+                <p>
+                    <a class="ui twitter button disabled">
+                        <i class="twitter icon"></i> Log in with Twitter
+                    </a>
+                </p>
+                <div class="ui horizontal divider">
+                    Or
+                </div>
+                <p>
+                    <a class="ui button" href="/">
+                        Explore public gruiks
+                    </a>
+                </p>
+            </div>
+        </div>
+        <p style="color: #B9B9B9;">version {{ app_version }}</p>
+    </div>
+</div>
+{% endblock %}
+
+{% block bodyclass %}
+    welcome
+{% endblock %}
+
+{% block head %}
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+{% endblock %}

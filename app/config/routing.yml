@@ -14,6 +14,12 @@ hwi_oauth_connect:
 github_login:
     path: /login/check-github
 
+github_connect:
+    path: /connect/github
+
+logout:
+    path: /logout
+
 #FosUserBundle Routes
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
@@ -37,4 +43,12 @@ fos_user_change_password:
 # Gruik app
 home:
     path: /
-    defaults: { _controller: app_bundle.controllers.main:indexAction }
+    defaults: { _controller: app_bundle.controllers.main:loginAction }
+
+dashboard:
+    path: /dashboard
+    defaults: { _controller: app_bundle.controllers.main:dashboardAction }
+
+create:
+    path: /create
+    defaults: { _controller: app_bundle.controllers.main:createAction }

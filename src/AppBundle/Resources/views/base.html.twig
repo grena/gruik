@@ -5,9 +5,17 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="stylesheet" href="{{ asset('semantic/dist/semantic.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+
+        {% block head %}{% endblock %}
     </head>
-    <body>
-        {% block body %}{% endblock %}
+    <body class="{% block bodyclass %}{% endblock %}">
+        {% include '@App/default/navbar.html.twig' %}
+        {% block content %}{% endblock %}
+
+        <script src="{{ asset('vendor/dist/jquery.js') }}"></script>
+        <script src="{{ asset('semantic/dist/semantic.min.js') }}"></script>
         {% block javascripts %}{% endblock %}
     </body>
 </html>

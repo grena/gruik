@@ -10,5 +10,6 @@
 /vendor/
 /web/bundles/
 /web/semantic/
+/web/vendor/
 /semantic/
 /node_modules/
