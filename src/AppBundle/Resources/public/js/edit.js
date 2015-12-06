@@ -20,8 +20,11 @@ define(
             aceEditorInstance: null,
             gruikEditor: null,
             gruikViewer: null,
+            events: {
+                'input .edit-note-title': 'setTitle'
+            },
             initialize: function () {
-                this.model.on('change', this.renderViewer, this);
+                this.model.on('change:content', this.renderViewer, this);
             },
             render: function () {
                 this.$el.html(
@@ -50,6 +53,10 @@ define(
             },
             renderViewer: function () {
                 this.gruikViewer.render();
+            },
+            setTitle: function (event) {
+                var title = event.target.value;
+                this.model.set('title', title);
             }
         });
 
