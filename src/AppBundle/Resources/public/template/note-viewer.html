@@ -1,0 +1,14 @@
+<div class="ui stacked segment">
+    <p style="text-align: center;">
+        <i class="ui massive icon file text outline circular blue label" style="font-weight: 200; margin-top: -50px;"></i>
+    </p>
+    <div id="note-content" class="note-content">
+        <% if ('' == content) { %>
+        <p style="color: #cecece; text-align: center;">
+            Here you are! A brand new gruik note.
+        </p>
+        <% } else { %>
+            <%= content %>
+        <% } %>
+    </div>
+</div>

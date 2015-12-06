@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "ace-builds": "^1.2.2",
+    "backbone": "^1.2.3",
     "better-console": "^0.2.4",
     "del": "^2.0.2",
     "extend": "^3.0.0",
@@ -34,8 +35,11 @@
     "map-stream": "0.0.6",
     "marked": "^0.3.5",
     "require-dot-file": "^0.4.0",
+    "requirejs": "^2.1.22",
     "run-sequence": "^1.1.4",
     "semantic-ui": "^2.1.4",
+    "text": "requirejs/text",
+    "underscore": "^1.8.3",
     "yamljs": "^0.2.4"
   },
   "devDependencies": {

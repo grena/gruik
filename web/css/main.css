@@ -12,6 +12,9 @@ body.welcome {
 #dashboard-view {
     margin-top: 10px;
 }
+#edit-view {
+    margin-top: 10px;
+}
 
 hr {
     border: 0;

@@ -15,8 +15,28 @@
         {% include '@App/default/navbar.html.twig' %}
         {% block content %}{% endblock %}
 
+        <script src="{{ asset('vendor/dist/require.js') }}"></script>
+        <script src="{{ asset('vendor/dist/underscore-min.js') }}"></script>
         <script src="{{ asset('vendor/dist/jquery.js') }}"></script>
         <script src="{{ asset('semantic/dist/semantic.min.js') }}"></script>
+
+        <script>
+            require.config({
+                paths: {
+                    'text': 'vendor/dist/text',
+                    'gruik/edit': 'bundles/app/js/edit',
+                    'gruik/note-editor': 'bundles/app/js/note-editor',
+                    'gruik/note-viewer': 'bundles/app/js/note-viewer',
+                    'marked': 'vendor/dist/marked',
+                    'ace/ace': 'vendor/dist/ace',
+                    'backbone': 'vendor/dist/backbone-min',
+
+                    'template/edit': 'bundles/app/template/edit.html',
+                    'template/note-editor': 'bundles/app/template/note-editor.html',
+                    'template/note-viewer': 'bundles/app/template/note-viewer.html'
+                }
+            });
+        </script>
         {% block javascripts %}{% endblock %}
     </body>
 </html>
