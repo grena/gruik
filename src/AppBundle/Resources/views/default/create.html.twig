@@ -3,68 +3,145 @@
 {% block content %}
     <div class="ui grid centered" id="dashboard-view">
         <div class="ten wide column">
-            <div class="ui segment">
-                <div class="ui small">
-                    <h4 class="ui header">Create a gruik note</h4>
-                </div>
+            <div class="ui top attached segment">
+                <h4 class="ui header">Create a gruik note</h4>
+            </div>
+            <div class="ui bottom attached segment">
                 <div class="ui form">
                     <div class="inline fields">
-                        <div class="eight wide field">
+                        <div class="sixteen wide field">
                             <input type="text" placeholder="Title" style="border-left: 0; border-right: 0; border-top: 0; border-bottom: 1px dotted; border-radius: 0;">
-                        </div>
-                        <div class="eight wide field">
-                            <input type="text" placeholder="Tags..." style="border-left: 0; border-right: 0; border-top: 0; border-bottom: 1px dotted; border-radius: 0;">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="ui segment">
-                <div class="ui small">
-
-                </div>
-            </div>
-
-            <div class="ui segments">
-                <div class="ui secondary segment">
-                    <p>Create a gruik note</p>
-                </div>
-                <div class="ui segment">
-                    <div class="ui form">
-                        <div class="inline fields">
-                            <div class="eight wide field">
-                                <input type="text" placeholder="Title" style="border-left: 0; border-right: 0; border-top: 0; border-bottom: 1px dotted;">
-                            </div>
-                            <div class="eight wide field">
-                                <input type="text" placeholder="Tags...">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="ui secondary segment">
-                    <div class="ui form">
-                        <div class="inline fields">
-                            <div class="field">
-                                <div class="ui checkbox">
-                                    <input type="checkbox" tabindex="0" class="hidden">
-                                    <label>This is a private note</label>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="ui checkbox">
-                                    <input type="checkbox" tabindex="0" class="hidden">
-                                    <label>Enable comments</label>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div class="sixteen wide column" style="padding:0 50px; margin-top: 30px;">
+            <div class="ui grid">
+                <div class="eight wide column">
+                    <div class="ui stacked segment">
+                        <p style="text-align: center;">
+                            <i class="ui massive icon write circular blue label" style="font-weight: 200; margin-top: -50px;"></i>
+                        </p>
+                        <div style="margin-top: -40px; text-align: right;">
+                            <button class="ui button icon" data-position="left center" data-content="Need help with markdown syntax?" data-variation="inverted">
+                                <i class="icon help"></i>
+                            </button>
+                            <button class="ui primary button icon">
+                                <i class="icon save"></i> Save
+                            </button>
+                        </div>
+                        <hr>
+                        <div id="editor"></div>
+                    </div>
+                </div>
+                <div class="eight wide column">
+                    <div class="ui stacked segment">
+                        <p style="text-align: center;">
+                            <i class="ui massive icon file text outline circular blue label" style="font-weight: 200; margin-top: -50px;"></i>
+                        </p>
+                        <div id="note-content" class="note-content">
+                            <p style="color: #cecece; text-align: center;">
+                                Here you are! A brand new gruik note.
+                            </p>
+                            {#<p>We increasingly rely on (and <a href="https://stripe.com/open-source">contribute back to</a>!) a#}
+                                {#lot of open-source software to build Stripe, and we?d like to give back and get more people#}
+                                {#working on open-source.</p>#}
+
+                            {#<p>Last year, we invited four developers to the Stripe office as part of our <a#}
+                                        {#href="https://stripe.com/blog/stripe-open-source-retreat">first Open-Source Retreat</a>.#}
+                                {#Our grantees made <a href="https://stripe.com/blog/open-source-retreat-meetup">significant#}
+                                    {#progress</a> on their projects in a relatively short time?from launching a pure-Python <a#}
+                                        {#href="https://github.com/pyca/tls">TLS 1.2 implementation</a> to releasing a major#}
+                                {#update to <a href="https://pypi.python.org/pypi/urllib3#changes">urllib3</a>. Julian Shapiro of#}
+                                {#Velocity.js <a#}
+                                        {#href="https://medium.com/@Shapiro/stripe-san-francisco-and-velocity-js-37575e29a51b">wrote#}
+                                    {#about his experience</a> with the program.</p>#}
+
+                            {#<p>Starting January, we?re hosting another Open-Source Retreat at Stripe. Just like last year, we?re#}
+                                {#looking for existing projects where these grants can make a large difference in spurring the#}
+                                {#development of a new feature or infrastructure.</p>#}
+
+                            {#<p>We?ll host three to four developers at our office in SF for three months to work full-time on an#}
+                                {#open-source project. While we?ll ask that they give a couple of internal tech talks over the#}
+                                {#course of the program, the grant itself is no-strings-attached.</p>#}
+
+                            {#<h2>Selection process</h2>#}
+
+                            {#<p>We?ll select projects on based on their importance to the broader community, independently of#}
+                                {#Stripe itself. Applicants from any country are welcome and we?d love to fund people from#}
+                                {#backgrounds underrepresented in the open-source community. Here are the criteria we?ll use:#}
+
+                            {#</p>#}
+                            {#<ul>#}
+                                {#<li><strong>Impact of our grant.</strong> Does our grant have the ability to transform this#}
+                                    {#project?s trajectory? Are you an influencer within the project? Will your ability to focus#}
+                                    {#on it full-time move the project forward in some significant way?#}
+                                {#</li>#}
+                                {#<li><strong>Importance of the project.</strong> Is this a project that people already use and#}
+                                    {#has attracted a lot of attention? If this project isn?t itself popular yet, how much#}
+                                    {#potential does it have? Is it a project that, while possibly risky, would be particularly#}
+                                    {#exciting if successful?#}
+                                {#</li>#}
+                                {#<li><strong>Likelihood of success.</strong> Is there a good plan for how these three months will#}
+                                    {#be used? What indicators are there that you?ll be able to pull it off (obvious passion for#}
+                                    {#the project, existing work on the project, previous work on similar projects)?#}
+                                {#</li>#}
+                            {#</ul>#}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 {% endblock %}
 
 {% block javascripts %}
+    <script src="{{ asset('vendor/dist/ace.js') }}"></script>
+    <script src="{{ asset('vendor/dist/marked.js') }}"></script>
+    <script>
+        var editor = ace.edit("editor");
+        editor.setTheme("ace/theme/github");
+        editor.getSession().setMode("ace/mode/markdown");
+        editor.setOptions({
+            'fontSize': 14,
+            'wrap': 'free',
+            'showPrintMargin': false,
+            'showGutter': false,
+            'showLineNumbers': false,
+            'highlightActiveLine': false,
+            'highlightGutterLine': false,
+            'maxLines': Infinity
+        });
+
+        marked.setOptions({
+            gfm: true,
+            breaks: true,
+            sanitize: true
+//            highlight: function (code) {
+//                return hljs.highlightAuto(code).value;
+//            }
+        });
+
+//        var marked = require('marked');
+//        marked.setOptions({
+//            gfm: true,
+//            breaks: true,
+//            sanitize: true
+//            highlight: function (code) {
+//                return hljs.highlightAuto(code).value;
+//            }
+//        });
+
+        editor.getSession().on('change', function() {
+            var value = editor.getSession().getValue();
+            document.getElementById('note-content').innerHTML = marked(value);
+        });
+
+        $('.button').popup();
+    </script>
     <script>
         $('.ui.checkbox').checkbox();
     </script>

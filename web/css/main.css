@@ -1,17 +1,92 @@
+/* #F2F2ED ? */
+
 body {
-    background-color: #F2F2ED;
+    background-color: #f5f7f9;
 }
 
 body.welcome {
-    /*background: url('../img/fucking-hipster-background2.jpg') no-repeat center center fixed;*/
-    background: url('../img/blue-home-bckgd.gif') repeat-x top center fixed #F2F2ED;
+    background: url('../img/blue-home-bckgd.gif') repeat-x top center fixed #f5f7f9;
     padding-top: 70px;
-    /*-webkit-background-size: cover;*/
-    /*-moz-background-size: cover;*/
-    /*-o-background-size: cover;*/
-    /*background-size: cover;*/
 }
 
 #dashboard-view {
     margin-top: 10px;
 }
+
+hr {
+    border: 0;
+    border-top: 1px solid #f1f3f3;
+}
+
+#editor {
+    min-height: 88px;
+    margin-top: 35px;
+}
+
+.note-content {
+    padding: 50px 100px;
+}
+.note-content h1,
+.note-content h2,
+.note-content h3,
+.note-content h4,
+.note-content h5,
+.note-content h6,
+{
+    font-family: 'Open Sans', sans-serif;
+    font-style: normal;
+    font-weight: 500 !important;
+}
+.note-content p {
+    font-family: 'Open Sans', sans-serif;
+    color: rgb(76, 85, 90);
+    font-size: 14px;
+    line-height: 26.6px;
+}
+.note-content ul {
+    font-size: 14px;
+    line-height: 24.5px;
+    color: rgb(76, 85, 90);
+    margin: 25px 0;
+    padding: 0;
+}
+.note-content li {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    margin: 5px 0;
+    list-style: none;
+    position: relative;
+}
+.note-content strong {
+    font-weight: 600;
+    color: #292e31;
+}
+.note-content li:before {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #eee;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    left: -22px;
+    top: 9px;
+}
+
+.note-content a {
+    color: #008cdd;
+    text-decoration: none;
+}
+.note-content a:hover {
+    color: #292e31;
+}
+.note-content blockquote {
+    padding: 10px 20px;
+    margin: 0 0 20px;
+    border-left: 5px solid #eee;
+}
+
+.note-content blockquote p {
+    font-size: 17.5px;
+}
+
