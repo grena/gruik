@@ -1,6 +1,6 @@
 {
-    "name": "adrien/gruik",
-    "license": "proprietary",
+    "name": "grena/gruik",
+    "license": "GPL-3.0",
     "type": "project",
     "autoload": {
         "psr-4": {
