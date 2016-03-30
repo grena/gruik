@@ -5,10 +5,10 @@ php:
     - '7.0'
 
 before_install:
-  - composer self-update --no-interaction
+    - composer self-update --no-interaction
 
 install:
-  - composer install --prefer-dist --no-interaction
+    - composer install --prefer-dist --no-interaction
 
 script:
-  - bin/phpspec run
+    - bin/phpspec run
