@@ -6,6 +6,9 @@
         "psr-4": {
             "": "src/"
         },
+        "psr-0": {
+            "": "src"
+        },
         "classmap": [
             "app/AppKernel.php",
             "app/AppCache.php"
@@ -24,7 +27,8 @@
     },
     "require-dev": {
         "sensio/generator-bundle": "~3.0",
-        "symfony/phpunit-bridge": "~2.7"
+        "symfony/phpunit-bridge": "~2.7",
+        "phpspec/phpspec": "~2.0"
     },
     "scripts": {
         "post-install-cmd": [
