@@ -10,7 +10,7 @@
 Gruik is a free & open-source **note-taking service**. A space where you can store notes, tutorials, code snippets... by writing them in markdown and then keep them private or public.
 
 ## Prerequisite
-- PHP 5.5+
+- PHP 5.6+
 - MySQL
 - Composer
 - NodeJS & NPM _(only used to grab front JS dependencies)_
