@@ -6,23 +6,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Gruik</title>
 
-    <link rel="stylesheet" href="{{ asset('vendor/dist/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/semantic-ui-css/semantic.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/dist/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/all.css') }}">
 </head>
-<body>
-    <div class="container">
+<body class="{% block bodyclass %}{% endblock %}">
+
+    <div class="ui container" id="main-container">
+        {% if app.user %}
+            <div class="ui fixed menu">
+                <div class="ui container">
+                    <a href="{{ url('dashboard') }}" class="header item">
+                        <img class="ui logo" src="{{ asset('bundles/app/images/gruik-top.png') }}">
+                    </a>
+                    <a class="item" href="{{ url('dashboard') }}">Notes</a>
+                    <div class="right menu">
+                        <div class="ui dropdown item">
+                            <img class="ui avatar image" src="{{ app.user.profilePicture }}" alt=""/>
+                            &nbsp; {{ app.user.username }} <i class="dropdown icon"></i>
+                            <div class="menu">
+                                <a href="{{ url('dashboard') }}" class="item">Settings</a>
+                                <a href="{{ url('fos_user_security_logout') }}" class="item">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
         {% block body %}
         {% endblock %}
+
+        <footer class="footer">
+            <div class="container">
+                <p class="text-muted"><b>Gruik</b> - Free & open-source note-taking service</p>
+            </div>
+        </footer>
     </div>
 
-    <footer class="footer">
-        <div class="container">
-            <p class="text-muted">Gruik - Free & open-source note-taking service</p>
-        </div>
-    </footer>
-
     <script src="{{ asset('vendor/dist/jquery.min.js') }}"></script>
-    <script src="{{ asset('vendor/dist/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('vendor/semantic-ui-css/semantic.min.js') }}"></script>
+    <script>$('.ui.dropdown').dropdown();</script>
 </body>
 </html>

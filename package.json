@@ -18,7 +18,7 @@
   "homepage": "https://github.com/grena/gruik#readme",
   "dependencies": {
     "jquery": "^2.1.4",
-    "bootstrap": "^3.3.6",
+    "semantic-ui-css": "^2.1.8",
     "font-awesome": "^4.5.0"
   },
   "devDependencies": {

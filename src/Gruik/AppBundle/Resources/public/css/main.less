@@ -1,18 +1,28 @@
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-  margin-bottom: 60px;
-}
-
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 60px;
-  background-color: #f5f5f5;
   text-align: center;
-  padding: 20px 0;
+
+  .container {
+    border-top: 1px solid #eaeaea;
+    padding: 20px 0;
+  }
+}
+
+#main-container {
+  padding-top: 60px;
+}
+
+body.login {
+  background: #f1f1f1;
+
+  .footer {
+    display: none;
+  }
+}
+
+#login-screen {
+  margin-top: 50px;
+
+  .oauth {
+    margin-top: 45px;
+  }
 }
