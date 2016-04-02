@@ -1,0 +1,29 @@
+{
+  "name": "gruik",
+  "version": "0.1.0",
+  "description": "An open-source markdown note-taking web app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/grena/gruik.git"
+  },
+  "author": "grena",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/grena/gruik/issues"
+  },
+  "homepage": "https://github.com/grena/gruik#readme",
+  "dependencies": {
+    "jquery": "^2.1.4",
+    "bootstrap": "^3.3.6",
+    "font-awesome": "^4.5.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-less": "^3.0.5"
+  }
+}
