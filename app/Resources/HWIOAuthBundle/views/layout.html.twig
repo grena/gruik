@@ -1,0 +1,9 @@
+{# extends your own base template #}
+{% extends '@App/base.html.twig' %}
+
+{% block title %}{{ 'Login' | trans }}{% endblock %}
+
+{% block body %}
+    {% block hwi_oauth_content %}
+    {% endblock hwi_oauth_content %}
+{% endblock %}

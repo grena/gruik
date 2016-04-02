@@ -17,3 +17,7 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
+
+    # For oAuth Github authentication
+    github_client_id:     YOUR_GITHUB_CLIENT_ID
+    github_client_secret: YOUR_GITHUB_CLIENT_SECRET

@@ -10,14 +10,14 @@ parameters:
 
 framework:
     #esi:             ~
-    #translator:      { fallbacks: ["%locale%"] }
+    translator:      { fallbacks: ["%locale%"] }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
         strict_requirements: ~
     form:            ~
     csrf_protection: ~
-    validation:      { enable_annotations: true }
+    validation:      { enabled: true, enable_annotations: true }
     #serializer:      { enable_annotations: true }
     templating:
         engines: ['twig']
@@ -64,3 +64,20 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+fos_user:
+    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name: main
+    user_class: Gruik\UserBundle\Entity\User
+
+hwi_oauth:
+    # list of names of the firewalls in which this bundle is active, this setting MUST be set
+    firewall_names: ["main"]
+
+    resource_owners:
+        github:
+            type:                github
+            client_id:           %github_client_id%
+            client_secret:       %github_client_secret%
+            options:
+                csrf: true
