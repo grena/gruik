@@ -1,0 +1,9 @@
+parameters:
+    gruik.user.security.user_provider.class: Gruik\UserBundle\Security\FOSUBUserProvider
+
+services:
+    gruik.user.security.user_provider:
+        class: "%gruik.user.security.user_provider.class%"
+        arguments:
+            - '@fos_user.user_manager'
+            - { github: github_id }

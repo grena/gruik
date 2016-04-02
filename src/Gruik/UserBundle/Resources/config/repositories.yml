@@ -1,0 +1,10 @@
+parameters:
+    gruik.user.repository.user.class: Gruik\UserBundle\Doctrine\Repository\UserRepository
+
+services:
+    gruik.user.repository.user:
+        class: %gruik.user.repository.user.class%
+        factory_service: doctrine.orm.entity_manager
+        factory_method: getRepository
+        arguments:
+            - Gruik\UserBundle\Entity\User

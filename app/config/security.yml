@@ -1,24 +1,33 @@
-# To get started with security, check out the documentation:
-# http://symfony.com/doc/current/book/security.html
 security:
-
-    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
         in_memory:
             memory: ~
+        fos_userbundle:
+            id: fos_user.user_provider.username
+
+    encoders:
+        FOS\UserBundle\Model\UserInterface: bcrypt
 
     firewalls:
-        # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
         main:
-            anonymous: ~
-            # activate different ways to authenticate
+            pattern: ^/
+            oauth:
+                resource_owners:
+                    github: "/login/check-github"
+                login_path: /login
+                failure_path: /login
 
-            # http_basic: ~
-            # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
+                oauth_user_provider:
+                    # This is a custom user provider, created from FOSUBUserProvider - will manage the
+                    # automatic user registration on your site, with data from the provider (facebook. google, etc.)
+                    service: gruik.user.security.user_provider
+            logout: true
+            anonymous: true
 
-            # form_login: ~
-            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+    access_control:
+        - { path: ^/(login|connect), roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, role: ROLE_USER }

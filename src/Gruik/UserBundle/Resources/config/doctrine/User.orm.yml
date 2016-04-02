@@ -1,0 +1,21 @@
+Gruik\UserBundle\Entity\User:
+    type:  entity
+    table: fos_user
+    repositoryClass: Gruik\UserBundle\Doctrine\Repository\UserRepository
+    fields:
+        id:
+            id: true
+            type: guid
+            generator:
+                strategy: UUID
+        github_id:
+            type: string
+            length: 255
+            nullable: true
+        github_access_token:
+            type: string
+            length: 255
+            nullable: true
+        profilePicture:
+            type: string
+            nullable: true
