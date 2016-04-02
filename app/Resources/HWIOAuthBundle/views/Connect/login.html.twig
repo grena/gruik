@@ -1,22 +1,17 @@
 {% extends '@HWIOAuth/layout.html.twig' %}
 
+{% block bodyclass %}login{% endblock %}
+
 {% block hwi_oauth_content %}
-<div class="row" style="margin-top: 50px;">
-    <div class="col-lg-8 col-lg-offset-2">
-        <div style="text-align: center;">
-            <img src="{{ asset('bundles/app/images/gruik.png') }}" alt="Gruik logo">
+    <div id="login-screen" class="ui piled very padded text center aligned container segment">
+        <img src="{{ asset('bundles/app/images/gruik.png') }}" alt="Gruik logo">
+        <div class="ui horizontal divider">
+            Please login
         </div>
-        <div style="text-align: center; margin-top: 25px;">
-            <hr>
-            <h4>Please login</h4>
-            <div class="row" style="margin-top: 40px;">
-                <div class="col-lg-4 col-lg-offset-4">
-                    <a class="btn btn-default btn-block" href="{{ path('hwi_oauth_service_redirect', {'service': 'github' }) }}">
-                        <i class="fa fa-github"></i> Login with GitHub
-                    </a>
-                </div>
-            </div>
+        <div class="oauth">
+            <a class="ui secondary button" href="{{ path('hwi_oauth_service_redirect', {'service': 'github' }) }}">
+                <i class="fa fa-github"></i> Login with GitHub
+            </a>
         </div>
     </div>
-</div>
 {% endblock %}

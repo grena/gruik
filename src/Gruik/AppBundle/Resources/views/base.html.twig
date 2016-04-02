@@ -6,23 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Gruik</title>
 
-    <link rel="stylesheet" href="{{ asset('vendor/dist/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/semantic-ui-css/semantic.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/dist/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/all.css') }}">
 </head>
-<body>
-    <div class="container">
+<body class="{% block bodyclass %}{% endblock %}">
+
+    <div class="ui container">
         {% block body %}
         {% endblock %}
+
+        <footer class="footer">
+            <div class="container">
+                <p class="text-muted"><b>Gruik</b> - Free & open-source note-taking service</p>
+            </div>
+        </footer>
     </div>
 
-    <footer class="footer">
-        <div class="container">
-            <p class="text-muted">Gruik - Free & open-source note-taking service</p>
-        </div>
-    </footer>
-
     <script src="{{ asset('vendor/dist/jquery.min.js') }}"></script>
-    <script src="{{ asset('vendor/dist/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('vendor/semantic-ui-css/semantic.min.js') }}"></script>
 </body>
 </html>
