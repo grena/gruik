@@ -14,10 +14,12 @@ use Symfony\Component\HttpFoundation\Response;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/", name="homepage")
+     * @Route("/", name="dashboard")
      */
-    public function indexAction(Request $request)
+    public function indexAction()
     {
-        return new Response('Gruik!');
+        return $this->render('@App/dashboard.html.twig', [
+            'user' => $this->getUser()
+        ]);
     }
 }
